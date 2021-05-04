@@ -5,23 +5,42 @@ import 'package:home_solutions_kozhikode/main.gr.dart';
 class MyNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Container(
       padding: const EdgeInsets.all(12.0),
       child: Row(
         children: [
-          // Logo
+          Spacer(flex: 2),
 
-          // Title
+          // Home Solutions LOGO
+          Text("LOGO"),
 
-          Spacer(),
+          // Home Solutions Title (shown only if enough space on screen)
+          if (size.width > 600) ...[
+            SizedBox(width: 32),
+            Text(
+              "Home Solutions",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+          ],
 
-          _PageButton("Home", () => LandingRoute()),
-          _PageButton("Products", () => ProductsRoute()),
-          _PageButton("About Us", () => AboutUsRoute()),
+          Spacer(flex: 6),
+
+          // Navigation Buttons
+          ...navigationPageButtons,
+
+          Spacer(flex: 2),
         ],
       ),
     );
   }
+
+  static final navigationPageButtons = [
+    _PageButton("Home", () => LandingRoute()),
+    _PageButton("Products", () => ProductsRoute()),
+    _PageButton("About Us", () => AboutUsRoute()),
+  ];
 }
 
 class _PageButton extends StatelessWidget {
