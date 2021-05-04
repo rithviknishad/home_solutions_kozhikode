@@ -14,7 +14,7 @@ void main() => runApp(HomeSolutions());
 class $AppRouter {}
 
 class HomeSolutions extends StatelessWidget {
-  final _appRouter = AppRouter();
+  final router = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class HomeSolutions extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: router.delegate(),
+      routeInformationParser: router.defaultRouteParser(),
     );
   }
 }
