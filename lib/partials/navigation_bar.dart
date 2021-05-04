@@ -15,9 +15,9 @@ class MyNavigationBar extends StatelessWidget {
 
           Spacer(),
 
-          _PageButton(name: "Home", route: () => LandingRoute()),
-          _PageButton(name: "Products", route: () => ProductsRoute()),
-          _PageButton(name: "About Us", route: () => AboutUsRoute()),
+          _PageButton("Home", () => LandingRoute()),
+          _PageButton("Products", () => ProductsRoute()),
+          _PageButton("About Us", () => AboutUsRoute()),
         ],
       ),
     );
@@ -28,15 +28,10 @@ class _PageButton extends StatelessWidget {
   final String name;
   final PageRouteInfo Function() route;
 
-  const _PageButton({
-    required this.name,
-    required this.route,
-  });
+  const _PageButton(this.name, this.route);
 
   @override
   Widget build(BuildContext context) {
-    final router = context.router;
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
@@ -44,12 +39,12 @@ class _PageButton extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(name),
         ),
-        onPressed: () => updatePage(using: router),
+        onPressed: () => pushPage(using: context.router),
       ),
     );
   }
 
-  void updatePage({required StackRouter using}) {
+  void pushPage({required StackRouter using}) {
     final route = this.route();
 
     if (route.routeName != using.current.name) {
