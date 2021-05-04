@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:home_solutions_kozhikode/partials/navbar.dart';
+import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 
 class LandingPage extends StatelessWidget {
   @override
