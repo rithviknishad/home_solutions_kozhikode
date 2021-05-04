@@ -1,0 +1,48 @@
+name: Deploy to Firebase Hosting
+
+"on":
+  push:
+    branches:
+      - main
+
+env:
+  flutter_version: "2.0.3"
+  java_version: "12.x"
+
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v1
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-cache-${{ env.flutter_version }}
+
+      - name: Flutter SDK Setup (cached)
+        uses: subosito/flutter-action@v1.4.0
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          channel: stable
+
+      - name: Flutter Config Web
+        run: flutter config --enable-web
+
+      - name: Get packages (cached)
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: flutter pub run build_runner build
+
+      - name: Flutter Build - Web
+      - run: flutter build web --tree-shake-icons --no-pub
+
+      - name: Firebase Deploy
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_HOME_SOLUTIONS_7A714 }}"
+          projectId: home-solutions-7a714
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
