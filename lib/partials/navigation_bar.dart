@@ -5,9 +5,6 @@ import 'package:home_solutions_kozhikode/main.gr.dart';
 class MyNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final router = context.router;
-    final current = router.current.name;
-
     return Container(
       padding: const EdgeInsets.all(12.0),
       child: Row(
@@ -18,23 +15,9 @@ class MyNavigationBar extends StatelessWidget {
 
           Spacer(),
 
-          _PageButton(
-            name: "Home",
-            onPressed: () => router.push(LandingRoute()),
-            isCurrent: current == LandingRoute.name,
-          ),
-
-          _PageButton(
-            name: "Products",
-            onPressed: () => router.push(ProductsRoute()),
-            isCurrent: current == ProductsRoute.name,
-          ),
-
-          _PageButton(
-            name: "About Us",
-            onPressed: () => router.push(AboutUsRoute()),
-            isCurrent: current == AboutUsRoute.name,
-          ),
+          _PageButton(name: "Home", route: () => LandingRoute()),
+          _PageButton(name: "Products", route: () => ProductsRoute()),
+          _PageButton(name: "About Us", route: () => AboutUsRoute()),
         ],
       ),
     );
@@ -43,22 +26,27 @@ class MyNavigationBar extends StatelessWidget {
 
 class _PageButton extends StatelessWidget {
   final String name;
-  final Future Function() onPressed;
-  final bool isCurrent;
+  final PageRouteInfo Function() route;
 
   const _PageButton({
     required this.name,
-    required this.onPressed,
-    required this.isCurrent,
+    required this.route,
   });
 
   @override
   Widget build(BuildContext context) {
+    final router = context.router;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
         child: Text(name),
-        onPressed: onPressed,
+        onPressed: () {
+          final route = this.route();
+
+          if (route.routeName != router.current.name) {
+            router.push(route);
+          }
+        },
       ),
     );
   }
