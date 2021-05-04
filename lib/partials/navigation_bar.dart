@@ -36,18 +36,24 @@ class _PageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final router = context.router;
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
-        child: Text(name),
-        onPressed: () {
-          final route = this.route();
-
-          if (route.routeName != router.current.name) {
-            router.push(route);
-          }
-        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(name),
+        ),
+        onPressed: () => updatePage(using: router),
       ),
     );
+  }
+
+  void updatePage({required StackRouter using}) {
+    final route = this.route();
+
+    if (route.routeName != using.current.name) {
+      using.push(route);
+    }
   }
 }
