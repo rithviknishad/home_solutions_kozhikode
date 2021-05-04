@@ -26,6 +26,7 @@ class HomeSolutions extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Home Solutions',
       theme: ThemeData(
+        fontFamily: 'Ubuntu',
         primaryColor: const Color(0xff243f8f),
         accentColor: const Color(0xffe50053),
         appBarTheme: const AppBarTheme(
