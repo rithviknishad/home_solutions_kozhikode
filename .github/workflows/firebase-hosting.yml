@@ -20,23 +20,16 @@ jobs:
           path: /opt/hostedtoolcache/flutter
           key: ${{ runner.OS }}-flutter-cache-${{ env.flutter_version }}
 
-      - name: Flutter SDK Setup (cached)
+      - name: Setup Flutter SDK (cached)
         uses: subosito/flutter-action@v1.4.0
         with:
           flutter-version: ${{ env.flutter_version }}
           channel: stable
 
-      - name: Flutter Config Web
-        run: flutter config --enable-web
-
-      - name: Get packages (cached)
-        run: flutter pub get
-
-      - name: Run build_runner
-        run: flutter pub run build_runner build
-
-      - name: Flutter Build - Web
-        run: flutter build web --tree-shake-icons --no-pub
+      - name: Flutter Build (Web)
+        run: |
+          flutter config --enable-web
+          flutter build web --tree-shake-icons
 
       - name: Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
