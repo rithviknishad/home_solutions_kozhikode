@@ -33,6 +33,12 @@ class HomeSolutions extends StatelessWidget {
           backgroundColor: const Color(0xfffafafa),
         ),
         scaffoldBackgroundColor: const Color(0xfffafafa),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            padding: MaterialStateProperty.all(const EdgeInsets.all(8.0)),
+            foregroundColor: MaterialStateProperty.all(const Color(0xff243f8f)),
+          ),
+        ),
       ),
       routerDelegate: _router.delegate(),
       routeInformationParser: _router.defaultRouteParser(),
