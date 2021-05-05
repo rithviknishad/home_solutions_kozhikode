@@ -28,6 +28,7 @@ class HomeSolutions extends StatelessWidget {
   static const accentColor = const Color(0xffe50053);
   static const subtleWhite = Color(0xfffafafa);
   static const fontFamily = 'Ubuntu';
+  static const textStyle = TextStyle(fontFamily: fontFamily);
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +51,12 @@ class HomeSolutions extends StatelessWidget {
 
         // Text Theme
         textTheme: const TextTheme(
-          headline1: const TextStyle(fontFamily: fontFamily),
-          headline2: const TextStyle(fontFamily: fontFamily),
-          headline3: const TextStyle(fontFamily: fontFamily),
-          headline4: const TextStyle(fontFamily: fontFamily),
-          headline5: const TextStyle(fontFamily: fontFamily),
-          headline6: const TextStyle(fontFamily: fontFamily),
+          headline1: textStyle,
+          headline2: textStyle,
+          headline3: textStyle,
+          headline4: textStyle,
+          headline5: textStyle,
+          headline6: textStyle,
         ),
         textSelectionTheme: TextSelectionThemeData(
           selectionColor: accentColor.withOpacity(0.35),
@@ -65,8 +66,7 @@ class HomeSolutions extends StatelessWidget {
         // Snack Bar
         snackBarTheme: SnackBarThemeData(
           backgroundColor: primaryColor,
-          contentTextStyle: TextStyle(
-            fontFamily: fontFamily,
+          contentTextStyle: textStyle.copyWith(
             letterSpacing: 0.5,
             color: Colors.white,
           ),
@@ -76,6 +76,8 @@ class HomeSolutions extends StatelessWidget {
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.all(subtleWhite),
+            textStyle:
+                MaterialStateProperty.all(textStyle.copyWith(fontSize: 18)),
           ),
         ),
 
