@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/main.gr.dart';
-import 'package:home_solutions_kozhikode/routes/about_us.dart';
+import 'package:home_solutions_kozhikode/routes/about.dart';
 import 'package:home_solutions_kozhikode/routes/contact.dart';
 import 'package:home_solutions_kozhikode/routes/landing.dart';
 import 'package:home_solutions_kozhikode/routes/products.dart';
