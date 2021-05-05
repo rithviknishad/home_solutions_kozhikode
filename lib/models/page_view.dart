@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PageViewController extends ChangeNotifier {
-  factory PageViewController.of(BuildContext context) => Provider.of(context);
+class WebPageController extends ChangeNotifier {
+  factory WebPageController.of(BuildContext context) => Provider.of(context);
 
-  PageViewController({
+  WebPageController({
     required this.pages,
   })   : assert(pages.isNotEmpty, "Should have atleast more than one page"),
         currentPage = pages.first;
