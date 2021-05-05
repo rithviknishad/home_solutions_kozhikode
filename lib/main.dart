@@ -13,6 +13,7 @@ class HomeSolutions extends StatelessWidget {
   static const primaryColor = const Color(0xff243f8f);
   static const accentColor = const Color(0xffe50053);
   static const subtleWhite = Color(0xfffafafa);
+  static const fontFamily = 'Ubuntu';
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class HomeSolutions extends StatelessWidget {
       title: 'Home Solutions',
       theme: ThemeData(
         // General Theme Setting
-        fontFamily: 'Ubuntu',
+        fontFamily: fontFamily,
         primaryColor: primaryColor,
         accentColor: accentColor,
 
@@ -35,12 +36,12 @@ class HomeSolutions extends StatelessWidget {
 
         // Text Theme
         textTheme: const TextTheme(
-          headline1: const TextStyle(fontFamily: 'Ubuntu'),
-          headline2: const TextStyle(fontFamily: 'Ubuntu'),
-          headline3: const TextStyle(fontFamily: 'Ubuntu'),
-          headline4: const TextStyle(fontFamily: 'Ubuntu'),
-          headline5: const TextStyle(fontFamily: 'Ubuntu'),
-          headline6: const TextStyle(fontFamily: 'Ubuntu'),
+          headline1: const TextStyle(fontFamily: fontFamily),
+          headline2: const TextStyle(fontFamily: fontFamily),
+          headline3: const TextStyle(fontFamily: fontFamily),
+          headline4: const TextStyle(fontFamily: fontFamily),
+          headline5: const TextStyle(fontFamily: fontFamily),
+          headline6: const TextStyle(fontFamily: fontFamily),
         ),
         textSelectionTheme: TextSelectionThemeData(
           selectionColor: accentColor.withOpacity(0.35),
@@ -51,7 +52,7 @@ class HomeSolutions extends StatelessWidget {
         snackBarTheme: SnackBarThemeData(
           backgroundColor: primaryColor,
           contentTextStyle: TextStyle(
-            fontFamily: 'Ubuntu',
+            fontFamily: fontFamily,
             letterSpacing: 0.5,
             color: Colors.white,
           ),
@@ -72,7 +73,7 @@ class HomeSolutions extends StatelessWidget {
             shape: MaterialStateProperty.all(StadiumBorder()),
             textStyle: MaterialStateProperty.all(TextStyle(
               color: primaryColor,
-              fontFamily: 'Ubuntu',
+              fontFamily: fontFamily,
               letterSpacing: 0.5,
             )),
           ),
@@ -117,7 +118,7 @@ class HomeSolutions extends StatelessWidget {
     final pageController = WebPageController.of(context);
 
     return PreferredSize(
-      preferredSize: Size.fromHeight(55.0),
+      preferredSize: Size.fromHeight(116.0),
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
