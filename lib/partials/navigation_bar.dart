@@ -22,11 +22,7 @@ class MyNavigationBar extends StatelessWidget {
           Spacer(flex: 3),
 
           // Home Solutions LOGO
-          Image.asset(
-            'assets/logo.png',
-            height: 90,
-            isAntiAlias: true,
-          ),
+          Image.asset('assets/logo.png', height: 90, isAntiAlias: true),
 
           // Home Solutions Title
           if (size.width > 600) ...[
@@ -34,9 +30,7 @@ class MyNavigationBar extends StatelessWidget {
             Text(
               "Home Solutions",
               style: theme.textTheme.headline6?.copyWith(
-                color: theme.primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
+                  color: theme.primaryColor, fontWeight: FontWeight.bold),
             ),
           ],
 
