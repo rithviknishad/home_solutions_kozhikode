@@ -3,32 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/main.gr.dart';
 
 class MyNavigationBar extends StatelessWidget {
+  const MyNavigationBar._();
+
+  factory MyNavigationBar() => instance;
+
+  static const instance = const MyNavigationBar._();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
 
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomCenter,
-          colors: [
-            theme.scaffoldBackgroundColor,
-            Colors.white.withOpacity(0.7),
-          ],
-        ),
-      ),
-      // color: theme.appBarTheme.backgroundColor,
-      padding: const EdgeInsets.all(16),
+      color: theme.appBarTheme.backgroundColor,
+      padding: const EdgeInsets.all(8),
       child: Row(
         children: [
-          Spacer(flex: 2),
+          Spacer(flex: 3),
 
           // Home Solutions LOGO
           Image.asset(
-            'assets/logo_borderless.png',
-            height: 70,
+            'assets/logo.png',
+            height: 90,
             isAntiAlias: true,
           ),
 
@@ -44,12 +40,10 @@ class MyNavigationBar extends StatelessWidget {
             ),
           ],
 
-          Spacer(flex: 6),
-
+          Spacer(flex: 9),
           // Navigation Buttons
-          ...navigationPageButtons,
-
-          Spacer(flex: 2),
+          for (final b in navigationPageButtons) ...[b, const Spacer(flex: 1)],
+          Spacer(flex: 3),
         ],
       ),
     );
