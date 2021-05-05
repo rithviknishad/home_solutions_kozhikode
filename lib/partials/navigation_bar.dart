@@ -43,7 +43,7 @@ class MyNavigationBar extends StatelessWidget {
           ),
 
           // Home Solutions Title
-          if (size.width > 600)
+          if (size.width > 800)
             Text(
               "Home Solutions",
               style: theme.textTheme.headline5?.copyWith(
