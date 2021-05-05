@@ -15,24 +15,45 @@ class MyNavigationBar extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      color: theme.appBarTheme.backgroundColor,
-      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.lightBlue[900]!,
+            Colors.lightBlue[300]!,
+          ],
+        ),
+      ),
+      // color: theme.appBarTheme.backgroundColor,
       child: Row(
         children: [
           Spacer(flex: 3),
 
           // Home Solutions LOGO
-          Image.asset('assets/logo.png', height: 90, isAntiAlias: true),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 16, 40, 16),
+            child: Material(
+              elevation: 4,
+              shape: const CircleBorder(),
+              clipBehavior: Clip.antiAlias,
+              child: Image.asset(
+                'assets/logo_borderless.png',
+                height: 90,
+                isAntiAlias: true,
+              ),
+            ),
+          ),
 
           // Home Solutions Title
-          if (size.width > 600) ...[
-            SizedBox(width: 40),
+          if (size.width > 600)
             Text(
               "Home Solutions",
-              style: theme.textTheme.headline6?.copyWith(
-                  color: theme.primaryColor, fontWeight: FontWeight.bold),
+              style: theme.textTheme.headline5?.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  shadows: [Shadow(color: Colors.black26, blurRadius: 12)]),
             ),
-          ],
 
           Spacer(flex: 9),
           // Navigation Buttons
@@ -61,6 +82,7 @@ class _PageButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
+        style: ButtonStyle(overlayColor: MaterialStateProperty.all()),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(name),
