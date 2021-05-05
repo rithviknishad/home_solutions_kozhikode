@@ -9,18 +9,39 @@ class MyNavigationBar extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(12.0),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomCenter,
+          colors: [
+            theme.scaffoldBackgroundColor,
+            Colors.white.withOpacity(0.7),
+          ],
+        ),
+      ),
+      // color: theme.appBarTheme.backgroundColor,
+      padding: const EdgeInsets.all(16),
       child: Row(
         children: [
           Spacer(flex: 2),
 
           // Home Solutions LOGO
-          Text("LOGO"),
+          Image.asset(
+            'assets/logo_borderless.png',
+            height: 70,
+            isAntiAlias: true,
+          ),
 
           // Home Solutions Title
           if (size.width > 600) ...[
-            SizedBox(width: 32),
-            Text("Home Solutions", style: theme.textTheme.headline5),
+            SizedBox(width: 40),
+            Text(
+              "Home Solutions",
+              style: theme.textTheme.headline6?.copyWith(
+                color: theme.primaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
 
           Spacer(flex: 6),
