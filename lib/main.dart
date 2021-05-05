@@ -2,17 +2,21 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/main.gr.dart';
 import 'package:home_solutions_kozhikode/routes/about_us.dart';
+import 'package:home_solutions_kozhikode/routes/contact.dart';
 import 'package:home_solutions_kozhikode/routes/landing.dart';
 import 'package:home_solutions_kozhikode/routes/products.dart';
+import 'package:home_solutions_kozhikode/routes/services.dart';
 
 void main() => runApp(HomeSolutions());
 
-@MaterialAutoRouter(
+@CustomAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: [
-    AutoRoute(page: LandingPage, initial: true),
-    AutoRoute(page: ProductsPage, path: '/product'),
-    AutoRoute(page: AboutPage, path: '/about'),
+    AutoRoute(page: LandingPage, initial: true, name: "Home"),
+    AutoRoute(page: ProductsPage, path: '/products', name: "Products"),
+    AutoRoute(page: ServicesPage, path: '/services', name: "Services"),
+    AutoRoute(page: AboutPage, path: '/about', name: "About"),
+    AutoRoute(page: ContactPage, path: '/contact', name: "Contact"),
   ],
 )
 class $AppRouter {}
