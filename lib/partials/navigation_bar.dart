@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:home_solutions_kozhikode/main.dart';
 import 'package:home_solutions_kozhikode/main.gr.dart';
 
 class MyNavigationBar extends StatelessWidget {
@@ -15,8 +14,6 @@ class MyNavigationBar extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
 
-    print(HomeSolutions.router.routes);
-
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -30,6 +27,7 @@ class MyNavigationBar extends StatelessWidget {
       ),
       // color: theme.appBarTheme.backgroundColor,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Spacer(flex: 3),
 
@@ -40,11 +38,7 @@ class MyNavigationBar extends StatelessWidget {
               elevation: 4,
               shape: const CircleBorder(),
               clipBehavior: Clip.antiAlias,
-              child: Image.asset(
-                'assets/logo_borderless.png',
-                height: 90,
-                isAntiAlias: true,
-              ),
+              child: logo,
             ),
           ),
 
@@ -68,10 +62,15 @@ class MyNavigationBar extends StatelessWidget {
   }
 
   static final navigationPageButtons = [
-    _PageButton("Home", () => LandingRoute()),
-    _PageButton("Products", () => ProductsRoute()),
-    _PageButton("About Us", () => AboutRoute()),
+    _PageButton("Home", () => Home()),
+    _PageButton("Products", () => Products()),
+    _PageButton("Services", () => Services()),
+    _PageButton("About", () => About()),
+    _PageButton("Contact", () => Contact()),
   ];
+
+  Image get logo =>
+      Image.asset('assets/logo_borderless.png', height: 86, isAntiAlias: true);
 }
 
 class _PageButton extends StatelessWidget {
@@ -82,13 +81,20 @@ class _PageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    final isCurrent = context.routeData.name.replaceAll('_', ' ') == name;
+
+    return Container(
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
         // style: ButtonStyle(overlayColor: MaterialStateProperty.all()),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(name),
+          child: Text(
+            name,
+            style: TextStyle(
+              fontWeight: isCurrent ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
         ),
         onPressed: () => pushPage(using: context.router),
       ),
@@ -100,6 +106,7 @@ class _PageButton extends StatelessWidget {
 
     if (route.routeName != using.current.name) {
       using.push(route);
+      print("pushed $route");
     }
   }
 }
