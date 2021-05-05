@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 
-class AboutUsPage extends StatelessWidget {
+class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

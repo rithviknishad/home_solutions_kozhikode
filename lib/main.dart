@@ -11,18 +11,19 @@ void main() => runApp(HomeSolutions());
   replaceInRouteName: 'Page,Route',
   routes: [
     AutoRoute(page: LandingPage, initial: true),
-    AutoRoute(page: ProductsPage),
-    AutoRoute(page: AboutUsPage),
+    AutoRoute(page: ProductsPage, path: '/product'),
+    AutoRoute(page: AboutPage, path: '/about'),
   ],
 )
 class $AppRouter {}
 
 class HomeSolutions extends StatelessWidget {
-  final _router = AppRouter();
+  static final router = AppRouter();
 
-  static const _primary = const Color(0xff243f8f);
-  static const _accent = const Color(0xffe50053);
-  static const _subtleWhite = Color(0xfffafafa);
+  static const primaryColor = const Color(0xff243f8f);
+  static const accentColor = const Color(0xffe50053);
+  static const subtleWhite = Color(0xfffafafa);
+  static const fontFamily = 'Ubuntu';
 
   @override
   Widget build(BuildContext context) {
@@ -30,49 +31,59 @@ class HomeSolutions extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Home Solutions',
       theme: ThemeData(
-        fontFamily: 'Ubuntu',
-        primaryColor: _primary,
-        accentColor: _accent,
+        // General Theme Setting
+        fontFamily: fontFamily,
+        primaryColor: primaryColor,
+        accentColor: accentColor,
+
+        // App Bar Theme
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
         ),
-        scaffoldBackgroundColor: _subtleWhite,
-        textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            padding: MaterialStateProperty.all(const EdgeInsets.all(8.0)),
-            foregroundColor: MaterialStateProperty.all(_primary),
-          ),
-        ),
 
-        ////////
+        // Scaffold
+        scaffoldBackgroundColor: subtleWhite,
+
+        // Text Theme
         textTheme: const TextTheme(
-          headline1: const TextStyle(fontFamily: 'Ubuntu'),
-          headline2: const TextStyle(fontFamily: 'Ubuntu'),
-          headline3: const TextStyle(fontFamily: 'Ubuntu'),
-          headline4: const TextStyle(fontFamily: 'Ubuntu'),
-          headline5: const TextStyle(fontFamily: 'Ubuntu'),
-          headline6: const TextStyle(fontFamily: 'Ubuntu'),
+          headline1: const TextStyle(fontFamily: fontFamily),
+          headline2: const TextStyle(fontFamily: fontFamily),
+          headline3: const TextStyle(fontFamily: fontFamily),
+          headline4: const TextStyle(fontFamily: fontFamily),
+          headline5: const TextStyle(fontFamily: fontFamily),
+          headline6: const TextStyle(fontFamily: fontFamily),
         ),
         textSelectionTheme: TextSelectionThemeData(
-          selectionColor: _accent.withOpacity(0.35),
-          cursorColor: _accent,
+          selectionColor: accentColor.withOpacity(0.35),
+          cursorColor: accentColor,
         ),
+
+        // Snack Bar
         snackBarTheme: SnackBarThemeData(
-          backgroundColor: _primary,
+          backgroundColor: primaryColor,
           contentTextStyle: TextStyle(
-            fontFamily: 'Ubuntu',
+            fontFamily: fontFamily,
             letterSpacing: 0.5,
             color: Colors.white,
           ),
         ),
+
+        // Text Button Theme
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(subtleWhite),
+          ),
+        ),
+
+        // Elevated Button Theme
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(_primary),
-            foregroundColor: MaterialStateProperty.all(_accent),
+            backgroundColor: MaterialStateProperty.all(primaryColor),
+            foregroundColor: MaterialStateProperty.all(accentColor),
             shape: MaterialStateProperty.all(StadiumBorder()),
             textStyle: MaterialStateProperty.all(TextStyle(
-              color: _primary,
-              fontFamily: 'Ubuntu',
+              color: primaryColor,
+              fontFamily: fontFamily,
               letterSpacing: 0.5,
             )),
           ),
@@ -90,13 +101,13 @@ class HomeSolutions extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(color: Colors.red),
           ),
-          labelStyle: const TextStyle(color: _accent, fontSize: 14),
+          labelStyle: const TextStyle(color: accentColor, fontSize: 14),
           focusColor: Colors.transparent,
         ),
         ////////
       ),
-      routerDelegate: _router.delegate(),
-      routeInformationParser: _router.defaultRouteParser(),
+      routerDelegate: router.delegate(),
+      routeInformationParser: router.defaultRouteParser(),
     );
   }
 }

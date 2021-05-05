@@ -25,17 +25,17 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX<dynamic>(
           routeData: routeData, child: _i4.ProductsPage());
     },
-    AboutUsRoute.name: (routeData) {
+    AboutRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i5.AboutUsPage());
+          routeData: routeData, child: _i5.AboutPage());
     }
   };
 
   @override
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(LandingRoute.name, path: '/'),
-        _i1.RouteConfig(ProductsRoute.name, path: '/products-page'),
-        _i1.RouteConfig(AboutUsRoute.name, path: '/about-us-page')
+        _i1.RouteConfig(ProductsRoute.name, path: '/product'),
+        _i1.RouteConfig(AboutRoute.name, path: '/about')
       ];
 }
 
@@ -46,13 +46,13 @@ class LandingRoute extends _i1.PageRouteInfo {
 }
 
 class ProductsRoute extends _i1.PageRouteInfo {
-  const ProductsRoute() : super(name, path: '/products-page');
+  const ProductsRoute() : super(name, path: '/product');
 
   static const String name = 'ProductsRoute';
 }
 
-class AboutUsRoute extends _i1.PageRouteInfo {
-  const AboutUsRoute() : super(name, path: '/about-us-page');
+class AboutRoute extends _i1.PageRouteInfo {
+  const AboutRoute() : super(name, path: '/about');
 
-  static const String name = 'AboutUsRoute';
+  static const String name = 'AboutRoute';
 }

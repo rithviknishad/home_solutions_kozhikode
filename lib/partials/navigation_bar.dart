@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:home_solutions_kozhikode/main.dart';
 import 'package:home_solutions_kozhikode/main.gr.dart';
 
 class MyNavigationBar extends StatelessWidget {
@@ -13,6 +14,8 @@ class MyNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
+
+    print(HomeSolutions.router.routes);
 
     return Container(
       decoration: BoxDecoration(
@@ -67,7 +70,7 @@ class MyNavigationBar extends StatelessWidget {
   static final navigationPageButtons = [
     _PageButton("Home", () => LandingRoute()),
     _PageButton("Products", () => ProductsRoute()),
-    _PageButton("About Us", () => AboutUsRoute()),
+    _PageButton("About Us", () => AboutRoute()),
   ];
 }
 
