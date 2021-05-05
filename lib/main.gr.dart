@@ -19,41 +19,41 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    Home.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
-          routeData: routeData,
-          child: _i3.LandingPage(),
-          opaque: true,
-          barrierDismissible: false);
-    },
-    Products.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
-          routeData: routeData,
-          child: _i4.ProductsPage(),
-          opaque: true,
-          barrierDismissible: false);
-    },
-    Services.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
-          routeData: routeData,
-          child: _i5.ServicesPage(),
-          opaque: true,
-          barrierDismissible: false);
-    },
-    About.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
-          routeData: routeData,
-          child: _i6.AboutPage(),
-          opaque: true,
-          barrierDismissible: false);
-    },
-    Contact.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
-          routeData: routeData,
-          child: _i7.ContactPage(),
-          opaque: true,
-          barrierDismissible: false);
-    }
+    Home.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i3.LandingPage();
+        },
+        opaque: true,
+        barrierDismissible: false),
+    Products.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i4.ProductsPage();
+        },
+        opaque: true,
+        barrierDismissible: false),
+    Services.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i5.ServicesPage();
+        },
+        opaque: true,
+        barrierDismissible: false),
+    About.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i6.AboutPage();
+        },
+        opaque: true,
+        barrierDismissible: false),
+    Contact.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i7.ContactPage();
+        },
+        opaque: true,
+        barrierDismissible: false)
   };
 
   @override
