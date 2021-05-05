@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WebPageController extends ChangeNotifier {
-  factory WebPageController.of(BuildContext context) => Provider.of(context);
+  factory WebPageController.of(BuildContext context) =>
+      Provider.of(context, listen: false);
 
   WebPageController({
     required this.pages,
