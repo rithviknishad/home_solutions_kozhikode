@@ -7,9 +7,11 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import 'routes/about_us.dart' as _i5;
+import 'routes/about.dart' as _i6;
+import 'routes/contact.dart' as _i7;
 import 'routes/landing.dart' as _i3;
 import 'routes/products.dart' as _i4;
+import 'routes/services.dart' as _i5;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -17,42 +19,79 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    LandingRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i3.LandingPage());
+    Home.name: (routeData) {
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: _i3.LandingPage(),
+          opaque: true,
+          barrierDismissible: false);
     },
-    ProductsRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i4.ProductsPage());
+    Products.name: (routeData) {
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: _i4.ProductsPage(),
+          opaque: true,
+          barrierDismissible: false);
     },
-    AboutRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i5.AboutPage());
+    Services.name: (routeData) {
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: _i5.ServicesPage(),
+          opaque: true,
+          barrierDismissible: false);
+    },
+    About.name: (routeData) {
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: _i6.AboutPage(),
+          opaque: true,
+          barrierDismissible: false);
+    },
+    Contact.name: (routeData) {
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: _i7.ContactPage(),
+          opaque: true,
+          barrierDismissible: false);
     }
   };
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(LandingRoute.name, path: '/'),
-        _i1.RouteConfig(ProductsRoute.name, path: '/product'),
-        _i1.RouteConfig(AboutRoute.name, path: '/about')
+        _i1.RouteConfig(Home.name, path: '/'),
+        _i1.RouteConfig(Products.name, path: '/products'),
+        _i1.RouteConfig(Services.name, path: '/services'),
+        _i1.RouteConfig(About.name, path: '/about'),
+        _i1.RouteConfig(Contact.name, path: '/contact')
       ];
 }
 
-class LandingRoute extends _i1.PageRouteInfo {
-  const LandingRoute() : super(name, path: '/');
+class Home extends _i1.PageRouteInfo {
+  const Home() : super(name, path: '/');
 
-  static const String name = 'LandingRoute';
+  static const String name = 'Home';
 }
 
-class ProductsRoute extends _i1.PageRouteInfo {
-  const ProductsRoute() : super(name, path: '/product');
+class Products extends _i1.PageRouteInfo {
+  const Products() : super(name, path: '/products');
 
-  static const String name = 'ProductsRoute';
+  static const String name = 'Products';
 }
 
-class AboutRoute extends _i1.PageRouteInfo {
-  const AboutRoute() : super(name, path: '/about');
+class Services extends _i1.PageRouteInfo {
+  const Services() : super(name, path: '/services');
 
-  static const String name = 'AboutRoute';
+  static const String name = 'Services';
+}
+
+class About extends _i1.PageRouteInfo {
+  const About() : super(name, path: '/about');
+
+  static const String name = 'About';
+}
+
+class Contact extends _i1.PageRouteInfo {
+  const Contact() : super(name, path: '/contact');
+
+  static const String name = 'Contact';
 }
