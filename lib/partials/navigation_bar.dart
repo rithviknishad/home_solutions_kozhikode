@@ -82,7 +82,7 @@ class _PageButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
-        style: ButtonStyle(overlayColor: MaterialStateProperty.all()),
+        // style: ButtonStyle(overlayColor: MaterialStateProperty.all()),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(name),
