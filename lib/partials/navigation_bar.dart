@@ -6,6 +6,7 @@ class MyNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
 
     return Container(
       padding: const EdgeInsets.all(12.0),
@@ -16,13 +17,10 @@ class MyNavigationBar extends StatelessWidget {
           // Home Solutions LOGO
           Text("LOGO"),
 
-          // Home Solutions Title (shown only if enough space on screen)
+          // Home Solutions Title
           if (size.width > 600) ...[
             SizedBox(width: 32),
-            Text(
-              "Home Solutions",
-              style: Theme.of(context).textTheme.headline5,
-            ),
+            Text("Home Solutions", style: theme.textTheme.headline5),
           ],
 
           Spacer(flex: 6),
