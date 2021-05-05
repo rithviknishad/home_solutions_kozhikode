@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   gradient_widgets: ^0.6.0
+  provider: ^5.0.0
 
 dev_dependencies:
   # auto_route_generator: ^2.0.1
