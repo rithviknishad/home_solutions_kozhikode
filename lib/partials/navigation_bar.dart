@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/home_solutions.dart';
 import 'package:home_solutions_kozhikode/partials/my_page.dart';
-import 'package:home_solutions_kozhikode/router.gr.dart';
 
 class MyNavigationBar extends StatelessWidget {
   const MyNavigationBar._();
@@ -17,8 +16,6 @@ class MyNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
-
-    print(size);
 
     return Container(
       decoration: BoxDecoration(
@@ -107,13 +104,8 @@ class _NavbarPageButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () => _open(using: context.router),
+        onPressed: () => page.open(using: context.router),
       ),
     );
-  }
-
-  void _open({required StackRouter using}) {
-    final route = this.page.opens();
-    if (route.routeName != using.current.name) using.push(route);
   }
 }

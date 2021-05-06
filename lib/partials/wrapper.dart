@@ -51,12 +51,7 @@ class _DrawerPageButton extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      onTap: () => _open(using: context.router),
+      onTap: () => page.open(using: context.router),
     );
-  }
-
-  void _open({required StackRouter using}) {
-    final route = this.page.opens();
-    if (route.routeName != using.current.name) using.push(route);
   }
 }
