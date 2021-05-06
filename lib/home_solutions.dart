@@ -4,7 +4,7 @@ import 'package:home_solutions_kozhikode/router.gr.dart';
 
 class HomeSolutions extends StatelessWidget {
   static const MailingIds = [
-    "4homesolutions@gmail.com",
+    "4homesolutionsclt@gmail.com",
   ];
 
   static const ContactNumbers = [
@@ -81,19 +81,33 @@ class HomeSolutions extends StatelessWidget {
 
     // Text Theme
     textTheme: const TextTheme(
+      // headlines
       headline1: textStyle,
       headline2: textStyle,
-      headline3: textStyle,
-      headline4: textStyle,
+      headline3: TextStyle(fontFamily: fontFamily, letterSpacing: 2.0),
+      headline4: TextStyle(
+          fontFamily: fontFamily,
+          letterSpacing: 1.0,
+          fontWeight: FontWeight.w500),
       headline5: textStyle,
       headline6: textStyle,
+      // subtitles
+      subtitle1: TextStyle(fontFamily: fontFamily, letterSpacing: 2.0),
+      subtitle2: TextStyle(fontFamily: fontFamily, letterSpacing: 2.0),
+      // body
+      bodyText1:
+          TextStyle(fontFamily: fontFamily, fontSize: 20, letterSpacing: 0),
+      bodyText2:
+          TextStyle(fontFamily: fontFamily, fontSize: 18, letterSpacing: 0),
+
+      button:
+          TextStyle(fontFamily: fontFamily, fontSize: 18, letterSpacing: 1.5),
     ),
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: accentColor.withOpacity(0.35),
       cursorColor: accentColor,
     ),
 
-    // Snack Bar
     snackBarTheme: SnackBarThemeData(
       backgroundColor: primaryColor,
       contentTextStyle: textStyle.copyWith(
@@ -102,27 +116,14 @@ class HomeSolutions extends StatelessWidget {
       ),
     ),
 
-    // Text Button Theme
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(subtleWhite),
-        textStyle: MaterialStateProperty.all(textStyle.copyWith(fontSize: 18)),
-      ),
-    ),
-
-    // Elevated Button Theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(primaryColor),
         foregroundColor: MaterialStateProperty.all(accentColor),
         shape: MaterialStateProperty.all(StadiumBorder()),
-        textStyle: MaterialStateProperty.all(TextStyle(
-          color: primaryColor,
-          fontFamily: fontFamily,
-          letterSpacing: 0.5,
-        )),
       ),
     ),
+
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.transparent,
