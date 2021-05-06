@@ -69,10 +69,8 @@ class _MailingIds extends StatelessWidget {
         for (final id in HomeSolutions.MailingIds)
           Link(
             uri: Uri(scheme: 'mailto', path: id),
-            builder: (_, followLink) => TextButton(
-              onPressed: followLink,
-              child: Text(id),
-            ),
+            builder: (_, followLink) =>
+                TextButton(onPressed: followLink, child: Text(id)),
           ),
       ],
     );
@@ -99,10 +97,8 @@ class _ContactNumbers extends StatelessWidget {
         for (final id in HomeSolutions.ContactNumbers)
           Link(
             uri: Uri(scheme: 'tel', path: id),
-            builder: (_, followLink) => TextButton(
-              onPressed: followLink,
-              child: Text(id),
-            ),
+            builder: (_, followLink) =>
+                TextButton(onPressed: followLink, child: Text(id)),
           ),
       ],
     );
