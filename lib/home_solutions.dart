@@ -13,6 +13,10 @@ class HomeSolutions extends StatelessWidget {
     "+91 9048-336658",
   ];
 
+  static const WhatsappNumbers = [
+    "+91 9048-336658",
+  ];
+
   static final List<MyPage> pages = [
     MyPage(
       name: "Home",

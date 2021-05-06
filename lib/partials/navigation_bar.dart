@@ -44,7 +44,8 @@ class MyNavigationBar extends StatelessWidget {
               elevation: 4,
               shape: const CircleBorder(),
               clipBehavior: Clip.antiAlias,
-              child: logo,
+              child: Image.asset('assets/logo_borderless.png',
+                  height: 128, isAntiAlias: true),
             ),
           ),
 
@@ -77,9 +78,6 @@ class MyNavigationBar extends StatelessWidget {
       ),
     );
   }
-
-  Image get logo =>
-      Image.asset('assets/logo_borderless.png', height: 128, isAntiAlias: true);
 }
 
 class _NavbarPageButton extends StatelessWidget {
