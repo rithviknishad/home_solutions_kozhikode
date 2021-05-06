@@ -5,8 +5,25 @@ class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageWrapper(
-      child: Container(
-        child: Text("Call me"),
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Banner
+
+            Container(
+              color: Colors.red,
+              width: 1100,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Hi"),
+                  Text("Hi"),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
