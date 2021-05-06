@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 
 class PageWrapper extends StatelessWidget {
-  final Widget page;
+  final Widget child;
 
   const PageWrapper({
-    required this.page,
+    required this.child,
   });
 
   @override
@@ -17,7 +17,7 @@ class PageWrapper extends StatelessWidget {
       ),
       body: Scrollbar(
         child: SingleChildScrollView(
-          child: page,
+          child: child,
         ),
       ),
     );

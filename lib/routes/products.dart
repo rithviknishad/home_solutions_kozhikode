@@ -7,7 +7,7 @@ class ProductsPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return PageWrapper(
-      page: SizedBox.fromSize(
+      child: SizedBox.fromSize(
         size: size,
         child: Center(
           child: Text("Hello"),

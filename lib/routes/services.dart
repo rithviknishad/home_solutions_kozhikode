@@ -5,7 +5,7 @@ class ServicesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageWrapper(
-      page: Container(
+      child: Container(
         child: Text("Services"),
       ),
     );
