@@ -24,6 +24,11 @@ flutter:
     - assets/logo_borderless.png
 
   fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Thin.ttf
+          weight: 100
+
     - family: Ubuntu
       fonts:
         - asset: assets/fonts/Ubuntu-Regular.ttf
