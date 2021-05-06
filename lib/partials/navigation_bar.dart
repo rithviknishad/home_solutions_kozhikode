@@ -114,10 +114,6 @@ class _NavbarPageButton extends StatelessWidget {
 
   void _open({required StackRouter using}) {
     final route = this.page.opens();
-
-    if (route.routeName != using.current.name) {
-      using.push(route);
-      print("pushed $route");
-    }
+    if (route.routeName != using.current.name) using.push(route);
   }
 }
