@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/home_solutions.dart';
 import 'package:home_solutions_kozhikode/partials/wrapper.dart';
+import 'package:url_launcher/link.dart';
 
 class ContactPage extends StatelessWidget {
   @override
@@ -22,9 +23,8 @@ class ContactPage extends StatelessWidget {
               height: 300,
               child: Center(
                 child: Text(
-                  "CONTACT HOME SOLUTIONS TODAY!",
-                  style: theme.textTheme.headline3?.copyWith(
-                      fontWeight: FontWeight.bold, color: Colors.white),
+                  "CONTACT HOME SOLUTIONS TODAY !",
+                  style: theme.textTheme.headline3?.apply(color: Colors.white),
                 ),
               ),
             ),
@@ -33,31 +33,13 @@ class ContactPage extends StatelessWidget {
 
             // All Contact Information
             Container(
-              width: 800,
+              width: 900,
               child: GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
                 mainAxisSpacing: 50,
                 crossAxisSpacing: 50,
                 children: [
-                  _InfoBlock("SEND US A MAIL",
-                      child: Column(
-                        children: [
-                          for (final id in HomeSolutions.MailingIds)
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
-                              child: Text(
-                                id,
-                                style: theme.textTheme.headline6?.copyWith(
-                                  letterSpacing: 1.0,
-                                  color: Colors.grey[800],
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ),
-                        ],
-                      )),
                   _MailingIds(),
                   _ContactNumbers(),
                 ],
@@ -66,37 +48,6 @@ class ContactPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _InfoBlock extends StatelessWidget {
-  final String name;
-  final Widget child;
-
-  _InfoBlock(
-    this.name, {
-    required this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          name,
-          style: theme.textTheme.subtitle2?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: theme.primaryColor,
-          ),
-        ),
-        SizedBox(height: 20),
-        child,
-      ],
     );
   }
 }
@@ -111,23 +62,16 @@ class _MailingIds extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "SEND US A MAIL",
-          style: theme.textTheme.subtitle2?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: theme.primaryColor,
-          ),
+          "SEND US AN EMAIL",
+          style: theme.textTheme.subtitle1?.apply(color: theme.primaryColor),
         ),
         SizedBox(height: 20),
         for (final id in HomeSolutions.MailingIds)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              id,
-              style: theme.textTheme.headline6?.copyWith(
-                letterSpacing: 1.0,
-                color: Colors.grey[800],
-                fontWeight: FontWeight.normal,
-              ),
+          Link(
+            uri: Uri(scheme: 'mailto', path: id),
+            builder: (_, followLink) => TextButton(
+              onPressed: followLink,
+              child: Text(id),
             ),
           ),
       ],
@@ -153,15 +97,11 @@ class _ContactNumbers extends StatelessWidget {
         ),
         SizedBox(height: 20),
         for (final id in HomeSolutions.ContactNumbers)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              id,
-              style: theme.textTheme.headline6?.copyWith(
-                letterSpacing: 1.0,
-                color: Colors.grey[800],
-                fontWeight: FontWeight.normal,
-              ),
+          Link(
+            uri: Uri(scheme: 'tel', path: id),
+            builder: (_, followLink) => TextButton(
+              onPressed: followLink,
+              child: Text(id),
             ),
           ),
       ],
