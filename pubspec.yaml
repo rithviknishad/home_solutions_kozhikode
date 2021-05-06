@@ -58,6 +58,9 @@ flutter:
 
         - asset: assets/fonts/Poppins-SemiBold.ttf
           weight: 600
+        - asset: assets/fonts/Poppins-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
 
     - family: Ubuntu
       fonts:
