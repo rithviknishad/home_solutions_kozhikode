@@ -52,6 +52,9 @@ flutter:
 
         - asset: assets/fonts/Poppins-Medium.ttf
           weight: 500
+        - asset: assets/fonts/Poppins-MediumItalic.ttf
+          weight: 500
+          style: italic
 
     - family: Ubuntu
       fonts:
