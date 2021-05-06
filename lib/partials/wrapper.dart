@@ -24,10 +24,13 @@ class PageWrapper extends StatelessWidget {
         ),
       ),
       endDrawer: Drawer(
-        child: ListView(
-          children: [
-            for (final page in HomeSolutions.pages) _DrawerPageButton(page),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: ListView(
+            children: [
+              for (final page in HomeSolutions.pages) _DrawerPageButton(page),
+            ],
+          ),
         ),
       ),
     );
@@ -41,14 +44,23 @@ class _DrawerPageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isCurrent = context.routeData.name.replaceAll('_', ' ') == page.name;
+    final theme = Theme.of(context);
+    final isCurrent = page.isCurrent(context);
 
     return ListTile(
+      contentPadding: const EdgeInsets.all(20),
+      tileColor: isCurrent ? theme.hoverColor : null,
+      leading: Icon(
+        page.icon.icon,
+        size: 28,
+        color: theme.primaryColor.withOpacity(isCurrent ? 1.0 : 0.8),
+      ),
       title: Text(
         page.name,
-        style: TextStyle(
-          fontWeight: isCurrent ? FontWeight.bold : FontWeight.normal,
-          color: Colors.black,
+        style: theme.textTheme.button?.apply(
+          color: theme.primaryColor.withOpacity(isCurrent ? 1.0 : 0.8),
+          fontSizeDelta: 2,
+          fontWeightDelta: isCurrent ? 300 : 0,
         ),
       ),
       onTap: () => page.open(using: context.router),
