@@ -10,7 +10,7 @@ class MyNavigationBar extends StatelessWidget {
 
   static const instance = const MyNavigationBar._();
 
-  static const _width = 1100;
+  static const _width = 1200;
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +44,11 @@ class MyNavigationBar extends StatelessWidget {
               elevation: 4,
               shape: const CircleBorder(),
               clipBehavior: Clip.antiAlias,
-              child: Image.asset('assets/logo_borderless.png',
-                  height: 128, isAntiAlias: true),
+              child: Image.asset(
+                'assets/logo_borderless.png',
+                height: 128,
+                isAntiAlias: true,
+              ),
             ),
           ),
 
@@ -53,10 +56,10 @@ class MyNavigationBar extends StatelessWidget {
           if (size.width > 1000)
             Text(
               "Home Solutions",
-              style: theme.textTheme.headline4?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  shadows: [Shadow(color: Colors.black26, blurRadius: 12)]),
+              style: theme.textTheme.headline4?.apply(
+                color: Colors.white,
+                shadows: [Shadow(color: Colors.black26, blurRadius: 12)],
+              ),
             ),
 
           Spacer(flex: 9),
@@ -87,12 +90,16 @@ class _NavbarPageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final isCurrent = context.routeData.name.replaceAll('_', ' ') == page.name;
 
     return Padding(
       padding: const EdgeInsets.all(16),
       child: TextButton(
-        // style: ButtonStyle(overlayColor: MaterialStateProperty.all()),
+        style: ButtonStyle(
+          foregroundColor:
+              MaterialStateProperty.all(theme.scaffoldBackgroundColor),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
