@@ -9,13 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  auto_route: ^2.0.2
+  auto_route: ^2.1.1
   gradient_widgets: ^0.6.0
   url_launcher: ^6.0.3
   flutter_icons: ^1.1.0
+  flutter_animator: ^3.1.1
 
 dev_dependencies:
-  auto_route_generator: ^2.0.1
+  auto_route_generator: ^2.1.0
   build_runner: ^2.0.2
 
 flutter:
