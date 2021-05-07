@@ -1,7 +1,0 @@
-high_priority:
-  -
-
-required_brfore_publish:
-  - logo in app bar shall pop out
-
-optional:
