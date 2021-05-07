@@ -8,6 +8,7 @@ class LandingPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return PageWrapper(
+      appBar: null,
       child: SizedBox.fromSize(
         size: size,
         child: Center(
