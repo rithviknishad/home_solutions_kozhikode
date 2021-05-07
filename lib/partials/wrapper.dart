@@ -7,22 +7,23 @@ import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 class PageWrapper extends StatelessWidget {
   final Widget child;
 
+  final PreferredSizeWidget? appBar;
+
   const PageWrapper({
     required this.child,
+    this.appBar = _kDefaultNavigationBar,
   });
+
+  static const _kDefaultNavigationBar = PreferredSize(
+    preferredSize: Size.fromHeight(138),
+    child: MyNavigationBar.instance,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(138),
-        child: MyNavigationBar(),
-      ),
-      body: Scrollbar(
-        child: SingleChildScrollView(
-          child: child,
-        ),
-      ),
+      appBar: appBar,
+      body: child,
       endDrawer: Drawer(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
