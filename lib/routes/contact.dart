@@ -62,15 +62,18 @@ class _MailingIds extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "SEND US AN EMAIL",
+          "SEND US AN EMAIL . . .",
           style: theme.textTheme.subtitle1?.apply(color: theme.primaryColor),
         ),
         SizedBox(height: 20),
         for (final id in HomeSolutions.MailingIds)
           Link(
             uri: Uri(scheme: 'mailto', path: id),
-            builder: (_, followLink) =>
-                TextButton(onPressed: followLink, child: Text(id)),
+            builder: (_, followLink) => TextButton.icon(
+              onPressed: followLink,
+              icon: Icon(Icons.mail_rounded),
+              label: Text(id),
+            ),
           ),
       ],
     );
@@ -87,18 +90,30 @@ class _ContactNumbers extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "TALK TO US",
-          style: theme.textTheme.subtitle2?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: theme.primaryColor,
-          ),
+          "TALK TO US . . .",
+          style: theme.textTheme.subtitle1?.apply(color: theme.primaryColor),
         ),
         SizedBox(height: 20),
-        for (final id in HomeSolutions.ContactNumbers)
-          Link(
-            uri: Uri(scheme: 'tel', path: id),
-            builder: (_, followLink) =>
-                TextButton(onPressed: followLink, child: Text(id)),
+        for (final entry in HomeSolutions.ContactNumbers.entries)
+          Row(
+            children: [
+              Icon(Icons.call, color: theme.primaryColor),
+              SizedBox(width: 16, height: 40),
+              Text(entry.key),
+              Link(
+                uri: Uri(scheme: 'tel', path: entry.key),
+                builder: (_, followLink) =>
+                    TextButton(onPressed: followLink, child: Text("CALL")),
+              ),
+              if (entry.value)
+                Link(
+                  uri: Uri(scheme: 'tel', path: entry.key),
+                  builder: (_, followLink) => TextButton(
+                    onPressed: followLink,
+                    child: Text("WhatsApp"),
+                  ),
+                ),
+            ],
           ),
       ],
     );
