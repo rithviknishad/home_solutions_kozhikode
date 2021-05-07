@@ -7,11 +7,12 @@ class HomeSolutions extends StatelessWidget {
     "4homesolutionsclt@gmail.com",
   ];
 
-  static const ContactNumbers = [
-    "+91 9048-336656",
-    "+91 9048-336657",
-    "+91 9048-336658",
-  ];
+  // Key: Number, Value: Has Whatsapp linked.
+  static const ContactNumbers = {
+    "+91 9048-336656": false,
+    "+91 9048-336657": false,
+    "+91 9048-336658": true,
+  };
 
   static const WhatsappNumbers = [
     "+91 9048-336658",
@@ -115,6 +116,11 @@ class HomeSolutions extends StatelessWidget {
         color: Colors.white,
       ),
     ),
+
+    textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+      foregroundColor: MaterialStateProperty.all(primaryColor),
+    )),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
