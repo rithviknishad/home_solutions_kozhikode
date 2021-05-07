@@ -18,33 +18,7 @@ class HomeSolutions extends StatelessWidget {
     "+91 9048-336658",
   ];
 
-  static final List<MyPage> pages = [
-    MyPage(
-      name: "Home",
-      icon: Icon(Icons.home_work_outlined),
-      opens: () => Home(),
-    ),
-    MyPage(
-      name: "Products",
-      icon: Icon(Icons.shopping_bag),
-      opens: () => Products(),
-    ),
-    MyPage(
-      name: "Services",
-      icon: Icon(Icons.handyman_outlined),
-      opens: () => Services(),
-    ),
-    MyPage(
-      name: "About",
-      icon: Icon(Icons.info_outline),
-      opens: () => About(),
-    ),
-    MyPage(
-      name: "Contact",
-      icon: Icon(Icons.contact_page_outlined),
-      opens: () => Contact(),
-    ),
-  ];
+  static final List<MyPage> pages = [];
 
   static final router = AppRouter();
 
