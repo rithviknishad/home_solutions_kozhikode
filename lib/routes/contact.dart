@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/home_solutions.dart';
-import 'package:home_solutions_kozhikode/partials/wrapper.dart';
 import 'package:url_launcher/link.dart';
 
 class ContactPage extends StatelessWidget {
@@ -8,45 +7,43 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return PageWrapper(
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Banner // TODO: replace gradient with store image
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.grey[200]!, Colors.grey[800]!],
-                ),
-              ),
-              height: 300,
-              child: Center(
-                child: Text(
-                  "CONTACT HOME SOLUTIONS TODAY !",
-                  style: theme.textTheme.headline3?.apply(color: Colors.white),
-                ),
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Banner // TODO: replace gradient with store image
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.grey[200]!, Colors.grey[800]!],
               ),
             ),
-
-            SizedBox(height: 70),
-
-            // All Contact Information
-            Container(
-              width: 900,
-              child: GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 2,
-                mainAxisSpacing: 50,
-                crossAxisSpacing: 50,
-                children: [
-                  _MailingIds(),
-                  _ContactNumbers(),
-                ],
+            height: 300,
+            child: Center(
+              child: Text(
+                "CONTACT HOME SOLUTIONS TODAY !",
+                style: theme.textTheme.headline3?.apply(color: Colors.white),
               ),
             ),
-          ],
-        ),
+          ),
+
+          SizedBox(height: 70),
+
+          // All Contact Information
+          Container(
+            width: 900,
+            child: GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 2,
+              mainAxisSpacing: 50,
+              crossAxisSpacing: 50,
+              children: [
+                _MailingIds(),
+                _ContactNumbers(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
