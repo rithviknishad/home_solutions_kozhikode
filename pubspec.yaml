@@ -27,6 +27,19 @@ flutter:
     - assets/logo_borderless.png
 
   fonts:
+    - family: Lemonada
+      fonts:
+        - asset: assets/fonts/Lemonada-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Lemonada-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Lemonada-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Lemonada-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Lemonada-Bold.ttf
+          weight: 700
+
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-Thin.ttf
