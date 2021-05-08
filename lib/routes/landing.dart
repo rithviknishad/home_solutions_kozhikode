@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
+import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
 import 'package:home_solutions_kozhikode/partials/wrapper.dart';
 
 class LandingPage extends StatelessWidget {
@@ -10,7 +11,7 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
-
+    final text = "The quick brown fox jumps over the lazy dog";
     return PageWrapper(
       appBar: null,
       child: CustomScrollView(
@@ -20,19 +21,9 @@ class LandingPage extends StatelessWidget {
             hasScrollBody: false,
             child: Column(
               children: [
-                Text("hI"),
-                SizedBox.fromSize(
-                  size: size,
-                  child: Center(
-                    child: Text("Hello"),
-                  ),
-                ),
-                Text("hI"),
-                Text("hI"),
-                Text("hI"),
-                Text("hI"),
-                Text("hI"),
-                Text("hI"),
+                WelcomeSection(),
+                Text(text, style: theme.textTheme.headline1),
+                Text(text, style: theme.textTheme.headline1),
                 // _Footer(),
               ],
             ),
@@ -126,14 +117,23 @@ class _HeaderDelegate extends SliverPersistentHeaderDelegate {
 class _InlineNavBar extends StatelessWidget {
   const _InlineNavBar();
 
+  static final _sections = {
+    "Products": () {},
+    "Services": () {},
+    "About": () {},
+    "Contact": () {},
+  };
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        TextButton(onPressed: () {}, child: Text("Button")),
-        TextButton(onPressed: () {}, child: Text("Button")),
-        TextButton(onPressed: () {}, child: Text("Button")),
-        TextButton(onPressed: () {}, child: Text("Button")),
+        for (final section in _sections.entries)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child:
+                TextButton(onPressed: section.value, child: Text(section.key)),
+          )
       ],
     );
   }
