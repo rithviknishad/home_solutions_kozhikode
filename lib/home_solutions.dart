@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:home_solutions_kozhikode/constants/theme.dart';
 import 'package:home_solutions_kozhikode/partials/my_page.dart';
 import 'package:home_solutions_kozhikode/router.gr.dart';
 
@@ -19,6 +18,8 @@ class HomeSolutions extends StatelessWidget {
     "+91 9048-336658",
   ];
 
+  static const catchPrase = "We take care of your needs...";
+
   static final List<MyPage> pages = [];
 
   static final router = AppRouter();
@@ -34,45 +35,22 @@ class HomeSolutions extends StatelessWidget {
     );
   }
 
+  static const primaryColor = const Color(0xff243f8f);
+  static const accentColor = const Color(0xff12143c);
+  static const subtleWhite = Color(0xfffafafa);
+  static const fontFamily = 'Poppins';
+  static const textStyle = TextStyle(fontFamily: fontFamily);
+
   static final _theme = ThemeData(
     // General Theme Setting
     fontFamily: fontFamily,
     primaryColor: primaryColor,
     accentColor: accentColor,
 
-    // App Bar Theme
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.white,
-    ),
-
     // Scaffold
     scaffoldBackgroundColor: subtleWhite,
     canvasColor: subtleWhite,
 
-    // Text Theme
-    textTheme: const TextTheme(
-      // headlines
-      headline1: textStyle,
-      headline2: textStyle,
-      headline3: TextStyle(fontFamily: fontFamily, letterSpacing: 2.0),
-      headline4: TextStyle(
-          fontFamily: fontFamily,
-          letterSpacing: 1.0,
-          fontWeight: FontWeight.w500),
-      headline5: textStyle,
-      headline6: textStyle,
-      // subtitles
-      subtitle1: TextStyle(fontFamily: fontFamily, letterSpacing: 2.0),
-      subtitle2: TextStyle(fontFamily: fontFamily, letterSpacing: 2.0),
-      // body
-      bodyText1:
-          TextStyle(fontFamily: fontFamily, fontSize: 20, letterSpacing: 0),
-      bodyText2:
-          TextStyle(fontFamily: fontFamily, fontSize: 18, letterSpacing: 0),
-
-      button:
-          TextStyle(fontFamily: fontFamily, fontSize: 18, letterSpacing: 1.5),
-    ),
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: accentColor.withOpacity(0.35),
       cursorColor: accentColor,
@@ -86,10 +64,10 @@ class HomeSolutions extends StatelessWidget {
       ),
     ),
 
-    textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-      foregroundColor: MaterialStateProperty.all(primaryColor),
-    )),
+    // textButtonTheme: TextButtonThemeData(
+    //     style: ButtonStyle(
+    //   foregroundColor: MaterialStateProperty.all(primaryColor),
+    // )),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
