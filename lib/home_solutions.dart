@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_solutions_kozhikode/constants/theme.dart';
 import 'package:home_solutions_kozhikode/partials/my_page.dart';
 import 'package:home_solutions_kozhikode/router.gr.dart';
 
@@ -32,12 +33,6 @@ class HomeSolutions extends StatelessWidget {
       routeInformationParser: router.defaultRouteParser(),
     );
   }
-
-  static const primaryColor = const Color(0xff243f8f);
-  static const accentColor = const Color(0xffe50053);
-  static const subtleWhite = Color(0xfffafafa);
-  static const fontFamily = 'Poppins';
-  static const textStyle = TextStyle(fontFamily: fontFamily);
 
   static final _theme = ThemeData(
     // General Theme Setting

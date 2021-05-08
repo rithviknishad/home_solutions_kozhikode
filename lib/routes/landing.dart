@@ -2,34 +2,117 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 import 'package:home_solutions_kozhikode/partials/wrapper.dart';
 
 class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
 
     return PageWrapper(
       appBar: null,
       child: CustomScrollView(
         slivers: [
-          SliverPersistentHeader(
-              delegate: _SliverAppBarDelegate(), pinned: true),
+          SliverPersistentHeader(delegate: _HeaderDelegate(), pinned: true),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Column(
+              children: [
+                Text("hI"),
+                SizedBox.fromSize(
+                  size: size,
+                  child: Center(
+                    child: Text("Hello"),
+                  ),
+                ),
+                Text("hI"),
+                Text("hI"),
+                Text("hI"),
+                Text("hI"),
+                Text("hI"),
+                Text("hI"),
+                // _Footer(),
+              ],
+            ),
+          )
         ],
       ),
     );
   }
 }
 
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  @override
-  double get maxExtent => 300.0;
+class _HeaderDelegate extends SliverPersistentHeaderDelegate {
+  static const _drawer = MyDrawer();
 
   @override
-  double get minExtent => 56.0;
+  Widget build(context, shrinkOffset, _) {
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+
+    final visibleMainHeight = max(maxExtent - shrinkOffset, minExtent);
+    final animation = scrollAnimationValue(shrinkOffset);
+
+    return Material(
+      elevation: 6 * (1 - animation),
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.lightBlue[900]!.withOpacity(1 - animation),
+            Colors.lightBlue[700]!.withOpacity(1 - animation),
+          ],
+        )),
+        height: visibleMainHeight,
+        width: size.width,
+        padding:
+            EdgeInsets.symmetric(horizontal: max((size.width - 1140) / 2, 0)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            fit: StackFit.expand,
+            children: [
+              // Logo
+              Positioned(left: 0, top: 0, bottom: 0, child: logo),
+
+              // Nav Bar Buttons
+              if (size.width > 1000)
+                Positioned(right: 0, child: _InlineNavBar())
+              else
+                Positioned(right: 0, child: _drawer),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget get logo => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Material(
+          // elevation: 4,
+          shape: const CircleBorder(),
+          clipBehavior: Clip.antiAlias,
+          child: Image.asset(
+            'assets/logo_borderless.png',
+            // height: 128,
+            isAntiAlias: true,
+          ),
+        ),
+      );
 
   @override
-  bool shouldRebuild(oldDelegate) => true;
+  double get maxExtent => 110.0;
+
+  @override
+  double get minExtent => 60.0;
+
+  @override
+  bool shouldRebuild(_) => true;
 
   double scrollAnimationValue(double shrinkOffset) {
     double maxScrollAllowed = maxExtent - minExtent;
@@ -38,51 +121,39 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
         .clamp(0, 1)
         .toDouble();
   }
+}
+
+class _InlineNavBar extends StatelessWidget {
+  const _InlineNavBar();
 
   @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    final double visibleMainHeight = max(maxExtent - shrinkOffset, minExtent);
-    final double animationVal = scrollAnimationValue(shrinkOffset);
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        TextButton(onPressed: () {}, child: Text("Button")),
+        TextButton(onPressed: () {}, child: Text("Button")),
+        TextButton(onPressed: () {}, child: Text("Button")),
+        TextButton(onPressed: () {}, child: Text("Button")),
+      ],
+    );
+  }
+}
+
+class _Footer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
 
     return Container(
-      height: visibleMainHeight,
-      width: MediaQuery.of(context).size.width,
-      child: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Container(color: Colors.blue),
-          Opacity(
-              opacity: animationVal,
-              child: Image.network(
-                "https://picsum.photos/500/500",
-                fit: BoxFit.cover,
-              )),
-          Positioned(
-            bottom: 0.0,
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    flex: (animationVal * 100).toInt(),
-                    child: Container(),
-                  ),
-                  Text("Lorem Ipsum Dolar Sit"),
-                  Expanded(
-                    flex: 100,
-                    child: Container(),
-                  )
-                ],
-              ),
-            ),
-          )
-        ],
+      color: theme.accentColor,
+      height: 510,
+      width: size.width,
+      padding: EdgeInsets.symmetric(
+        vertical: 65,
+        horizontal: (size.width - 1170) / 2,
       ),
+      child: Container(),
     );
   }
 }
