@@ -12,22 +12,24 @@ class MyNavigationBar extends StatelessWidget {
 
   static const _width = 1200;
 
+  static final decoration = BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topRight,
+      end: Alignment.bottomCenter,
+      colors: [
+        Colors.lightBlue[900]!,
+        Colors.lightBlue[300]!,
+      ],
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
 
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.lightBlue[900]!,
-            Colors.lightBlue[300]!,
-          ],
-        ),
-      ),
+      decoration: decoration,
       // color: theme.appBarTheme.backgroundColor,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,20 +67,25 @@ class MyNavigationBar extends StatelessWidget {
           Spacer(flex: 9),
           // Navigation Buttons
           if (size.width < 745)
-            Padding(
-              padding: const EdgeInsets.all(32),
-              child: IconButton(
-                icon: Icon(Icons.menu),
-                color: Colors.white,
-                iconSize: 32,
-                onPressed: Scaffold.of(context).openEndDrawer,
-              ),
-            )
+            MyDrawer()
           else
             for (final page in HomeSolutions.pages) _NavbarPageButton(page),
           if (size.width > _width) SizedBox(width: (size.width - _width) / 2),
         ],
       ),
+    );
+  }
+}
+
+class MyDrawer extends StatelessWidget {
+  const MyDrawer();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.menu),
+      color: Colors.white,
+      onPressed: Scaffold.of(context).openEndDrawer,
     );
   }
 }
