@@ -21,7 +21,7 @@ class ContactSection extends MySection {
         children: [
           title(theme),
 
-          SizedBox(height: 45),
+          // SizedBox(height: 45),
 
           // All Contact Information
           Container(
@@ -46,7 +46,7 @@ class ContactSection extends MySection {
       horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10);
 
   Widget title(ThemeData theme) => Padding(
-        padding: EdgeInsets.symmetric(vertical: 100, horizontal: 25),
+        padding: EdgeInsets.symmetric(vertical: 100),
         child: Text(
           "GET IN TOUCH WITH US TODAY !",
           style: TextStyle(
