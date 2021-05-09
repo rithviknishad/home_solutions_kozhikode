@@ -7,16 +7,13 @@ class HomeSolutions extends StatelessWidget {
     "4homesolutionsclt@gmail.com",
   ];
 
-  // Key: Number, Value: Has Whatsapp linked.
   static const ContactNumbers = {
-    "+91 9048-336656": false,
-    "+91 9048-336657": false,
-    "+91 9048-336658": true,
+    "+91 9048-336656",
+    "+91 9048-336657",
+    "+91 9048-336658",
   };
 
-  static const WhatsappNumbers = [
-    "+91 9048-336658",
-  ];
+  static const WhatsappNumber = "+91 9048-336658";
 
   static const catchPrase = "We take care of your needs...";
 
