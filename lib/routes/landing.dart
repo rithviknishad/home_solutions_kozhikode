@@ -12,9 +12,6 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(context) {
-    final size = MediaQuery.of(context).size;
-    final theme = Theme.of(context);
-    final text = "The quick brown fox jumps over the lazy dog";
     return PageWrapper(
       appBar: null,
       child: CustomScrollView(
@@ -27,8 +24,6 @@ class LandingPage extends StatelessWidget {
               children: [
                 WelcomeSection(),
                 ContactSection(),
-                Text(text, style: theme.textTheme.headline1),
-                Text(text, style: theme.textTheme.headline1),
                 // _Footer(),
               ],
             ),
