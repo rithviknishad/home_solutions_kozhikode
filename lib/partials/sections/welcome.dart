@@ -18,8 +18,28 @@ class WelcomeSection extends MySection {
         ),
       ),
       height: size.height * 0.9,
-      child: Center(
-        child: Text(HomeSolutions.catchPrase, style: theme.textTheme.headline3),
+      width: size.width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            HomeSolutions.catchPrase,
+            style: theme.textTheme.caption,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: size.height * 0.1),
+          Material(
+            // elevation: 4,
+            shape: const CircleBorder(),
+            clipBehavior: Clip.antiAlias,
+            child: Image.asset(
+              'assets/logo_borderless.png',
+              height: size.height * 0.4,
+              isAntiAlias: true,
+            ),
+          ),
+        ],
       ),
     );
   }
