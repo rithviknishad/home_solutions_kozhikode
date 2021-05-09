@@ -68,11 +68,21 @@ class _HeaderDelegate extends SliverPersistentHeaderDelegate {
             fit: StackFit.expand,
             children: [
               // Logo
-              Positioned(left: 0, top: 0, bottom: 0, child: logo),
+              Positioned(
+                  left: 0,
+                  top: 0,
+                  bottom: 0,
+                  child: Opacity(
+                    opacity: 1 - animation,
+                    child: logo,
+                  )),
 
               // Nav Bar Buttons
               if (size.width > 1000)
-                Positioned(right: 0, child: _InlineNavBar())
+                Positioned(
+                  right: 0,
+                  child: _InlineNavBar(animation: animation),
+                )
               else
                 Positioned(right: 0, child: _drawer),
             ],
@@ -97,7 +107,7 @@ class _HeaderDelegate extends SliverPersistentHeaderDelegate {
       );
 
   @override
-  double get maxExtent => 110.0;
+  double get maxExtent => 90.0;
 
   @override
   double get minExtent => 60.0;
@@ -115,7 +125,9 @@ class _HeaderDelegate extends SliverPersistentHeaderDelegate {
 }
 
 class _InlineNavBar extends StatelessWidget {
-  const _InlineNavBar();
+  final double animation;
+
+  const _InlineNavBar({this.animation = 1.0});
 
   static final _sections = {
     "Products": () {},
@@ -131,8 +143,15 @@ class _InlineNavBar extends StatelessWidget {
         for (final section in _sections.entries)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child:
-                TextButton(onPressed: section.value, child: Text(section.key)),
+            child: TextButton(
+              onPressed: section.value,
+              child: Text(
+                section.key,
+                style: TextStyle(
+                  color: Color.lerp(Colors.white, Colors.blue, animation),
+                ),
+              ),
+            ),
           )
       ],
     );
