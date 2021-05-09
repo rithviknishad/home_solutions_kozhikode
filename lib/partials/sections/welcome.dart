@@ -23,12 +23,6 @@ class WelcomeSection extends MySection {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            HomeSolutions.catchPrase,
-            style: theme.textTheme.caption,
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: size.height * 0.1),
           Material(
             // elevation: 4,
             shape: const CircleBorder(),
@@ -38,6 +32,12 @@ class WelcomeSection extends MySection {
               height: size.height * 0.4,
               isAntiAlias: true,
             ),
+          ),
+          SizedBox(height: size.height * 0.1),
+          Text(
+            HomeSolutions.catchPrase,
+            style: theme.textTheme.caption,
+            textAlign: TextAlign.center,
           ),
         ],
       ),
