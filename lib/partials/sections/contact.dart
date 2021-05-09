@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/home_solutions.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:url_launcher/link.dart';
 
 class ContactSection extends MySection {
@@ -17,26 +18,15 @@ class ContactSection extends MySection {
       height: size.height * 0.9,
       width: size.width,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          title(theme),
-
-          // SizedBox(height: 45),
-
-          // All Contact Information
-          Container(
-            width: 900,
-            child: GridView.count(
-              shrinkWrap: true,
-              crossAxisCount: 2,
-              mainAxisSpacing: 50,
-              crossAxisSpacing: 50,
-              children: [
-                _MailingIds(),
-                _ContactNumbers(),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [title(theme)],
           ),
+          _MailingIds(),
+          _ContactNumbers(),
         ],
       ),
     );
@@ -46,7 +36,7 @@ class ContactSection extends MySection {
       horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10);
 
   Widget title(ThemeData theme) => Padding(
-        padding: EdgeInsets.symmetric(vertical: 100),
+        padding: EdgeInsets.fromLTRB(0, 100, 0, 60),
         child: Text(
           "GET IN TOUCH WITH US TODAY !",
           style: TextStyle(
@@ -64,23 +54,21 @@ class _MailingIds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          "SEND US AN EMAIL . . .",
-          style: theme.textTheme.subtitle1?.apply(color: theme.primaryColor),
-        ),
+        Icon(Ionicons.mail_open, size: 28),
+        // Text(
+        //   "SEND US AN EMAIL . . .",
+        //   style: theme.textTheme.subtitle1?.apply(color: theme.primaryColor),
+        // ),
+
         SizedBox(height: 20),
         for (final id in HomeSolutions.MailingIds)
           Link(
             uri: Uri(scheme: 'mailto', path: id),
-            builder: (_, followLink) => TextButton.icon(
+            builder: (_, followLink) => TextButton(
               onPressed: followLink,
-              icon: Icon(Icons.mail_rounded),
-              label: Text(id),
+              child: Text(id),
             ),
           ),
       ],
