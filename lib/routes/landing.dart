@@ -3,18 +3,22 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
+import 'package:home_solutions_kozhikode/partials/sections/contact.dart';
 import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
 import 'package:home_solutions_kozhikode/partials/wrapper.dart';
 
 class LandingPage extends StatelessWidget {
+  final controller = ScrollController(initialScrollOffset: 700);
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
     final text = "The quick brown fox jumps over the lazy dog";
     return PageWrapper(
       appBar: null,
       child: CustomScrollView(
+        controller: controller,
         slivers: [
           SliverPersistentHeader(delegate: _HeaderDelegate(), pinned: true),
           SliverFillRemaining(
@@ -22,6 +26,7 @@ class LandingPage extends StatelessWidget {
             child: Column(
               children: [
                 WelcomeSection(),
+                ContactSection(),
                 Text(text, style: theme.textTheme.headline1),
                 Text(text, style: theme.textTheme.headline1),
                 // _Footer(),
