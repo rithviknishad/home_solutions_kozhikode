@@ -15,103 +15,118 @@ class ContactSection extends MySection {
     return Container(
       color: Colors.white,
       padding: sectionPadding(size),
-      height: size.height * 0.9,
       width: size.width,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [title(theme)],
+          SizedBox(height: 100),
+          Text(
+            "GET IN TOUCH WITH US TODAY !",
+            style: TextStyle(
+              color: theme.primaryColor.withAlpha(160),
+              fontSize: 26,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 1.0,
+            ),
+            textAlign: TextAlign.center,
           ),
-          _MailingIds(),
-          _ContactNumbers(),
+
+          // Email
+          SizedBox(height: 60),
+          ...mailingAddressWidgets(context),
+
+          // Contact Number
+          SizedBox(height: 60),
+          ...contactNumbersWidgets(context),
+
+          // WhatsApp
+          SizedBox(height: 60),
+          ...chatWithUsWidgets(context),
         ],
       ),
     );
   }
 
-  EdgeInsets sectionPadding(Size size) => EdgeInsets.symmetric(
-      horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10);
-
-  Widget title(ThemeData theme) => Padding(
-        padding: EdgeInsets.fromLTRB(0, 100, 0, 60),
-        child: Text(
-          "GET IN TOUCH WITH US TODAY !",
-          style: TextStyle(
-            color: theme.primaryColor.withAlpha(160),
-            fontSize: 26,
-            fontWeight: FontWeight.w500,
-            letterSpacing: 1.0,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      );
-}
-
-class _MailingIds extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  List<Widget> mailingAddressWidgets(BuildContext context) {
     final theme = Theme.of(context);
-    return Column(
-      children: [
-        Icon(Ionicons.mail_open, size: 28),
-        // Text(
-        //   "SEND US AN EMAIL . . .",
-        //   style: theme.textTheme.subtitle1?.apply(color: theme.primaryColor),
-        // ),
 
-        SizedBox(height: 20),
-        for (final id in HomeSolutions.MailingIds)
-          Link(
-            uri: Uri(scheme: 'mailto', path: id),
-            builder: (_, followLink) => TextButton(
-              onPressed: followLink,
-              child: Text(id),
+    return [
+      Icon(
+        Ionicons.mail_open_outline,
+        size: 64,
+        color: theme.primaryColorDark,
+      ),
+      SizedBox(height: 30),
+      for (final id in HomeSolutions.MailingIds)
+        Link(
+          uri: Uri(scheme: 'mailto', path: id),
+          builder: (_, followLink) => TextButton(
+            onPressed: followLink,
+            child: Text(
+              id,
+              style: TextStyle(
+                fontSize: 16,
+                color: theme.primaryColor.withAlpha(200),
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
-      ],
-    );
+        ),
+    ];
   }
-}
 
-class _ContactNumbers extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  List<Widget> contactNumbersWidgets(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          "TALK TO US . . .",
-          style: theme.textTheme.subtitle1?.apply(color: theme.primaryColor),
-        ),
-        SizedBox(height: 20),
-        for (final entry in HomeSolutions.ContactNumbers.entries)
-          Row(
-            children: [
-              Icon(Icons.call, color: theme.primaryColor),
-              SizedBox(width: 16, height: 40),
-              Text(entry.key),
-              Link(
-                uri: Uri(scheme: 'tel', path: entry.key),
-                builder: (_, followLink) =>
-                    TextButton(onPressed: followLink, child: Text("CALL")),
-              ),
-              if (entry.value)
-                Link(
-                  uri: Uri(scheme: 'tel', path: entry.key),
-                  builder: (_, followLink) => TextButton(
-                    onPressed: followLink,
-                    child: Text("WhatsApp"),
-                  ),
-                ),
-            ],
+    return [
+      Icon(
+        Ionicons.call,
+        size: 64,
+        color: theme.primaryColorDark,
+      ),
+      SizedBox(height: 30),
+      for (final number in HomeSolutions.ContactNumbers)
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Link(
+            uri: Uri(scheme: 'tel', path: number),
+            builder: (_, followLink) => TextButton(
+              onPressed: followLink,
+              child: Text(number),
+            ),
           ),
-      ],
-    );
+        ),
+    ];
   }
+
+  List<Widget> chatWithUsWidgets(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return [
+      Icon(
+        Ionicons.chatbubbles,
+        size: 64,
+        color: theme.primaryColorDark,
+      ),
+      SizedBox(height: 30),
+      Link(
+        uri: Uri(scheme: 'wa.me', path: ""),
+        builder: (_, followLink) => TextButton(
+          onPressed: followLink,
+          child: Text(
+            "WhatsApp",
+            style: TextStyle(
+              fontSize: 16,
+              color: theme.primaryColor.withAlpha(200),
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    ];
+  }
+
+  EdgeInsets sectionPadding(Size size) => EdgeInsets.symmetric(
+      horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10);
 }
