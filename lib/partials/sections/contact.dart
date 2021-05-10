@@ -81,7 +81,7 @@ class ContactSection extends MySection {
 
     return [
       Icon(
-        Ionicons.call,
+        Ionicons.call_outline,
         size: 64,
         color: theme.primaryColorDark,
       ),
@@ -91,10 +91,23 @@ class ContactSection extends MySection {
           padding: const EdgeInsets.all(8.0),
           child: Link(
             uri: Uri(scheme: 'tel', path: number),
-            builder: (_, followLink) => TextButton(
-              onPressed: followLink,
-              child: Text(number),
-            ),
+            builder: (_, followLink) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: followLink,
+                    child: Text(
+                      '$number   |   CALL NOW',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: theme.primaryColor.withAlpha(200),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ),
     ];
@@ -105,7 +118,7 @@ class ContactSection extends MySection {
 
     return [
       Icon(
-        Ionicons.chatbubbles,
+        Ionicons.chatbubbles_outline,
         size: 64,
         color: theme.primaryColorDark,
       ),

@@ -17,7 +17,10 @@ class LandingPage extends StatelessWidget {
       child: CustomScrollView(
         controller: controller,
         slivers: [
-          SliverPersistentHeader(delegate: _HeaderDelegate(), pinned: true),
+          SliverPersistentHeader(
+            delegate: _HeaderDelegate(),
+            pinned: true,
+          ),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Column(

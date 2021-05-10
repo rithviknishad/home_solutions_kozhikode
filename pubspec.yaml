@@ -25,6 +25,7 @@ flutter:
   assets:
     - assets/logo.png
     - assets/logo_borderless.png
+    - assets/banner.png
 
   fonts:
     - family: Lemonada
