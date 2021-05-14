@@ -1,7 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/flutter_animator.dart';
 import 'package:home_solutions_kozhikode/home_solutions.dart';
+import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:url_launcher/link.dart';
@@ -23,14 +25,17 @@ class ContactSection extends MySection {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
-            child: Text(
-              "GET IN TOUCH WITH US TODAY !",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: theme.primaryColor.withAlpha(160),
-                fontSize: 26,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 1.0,
+            child: FadeInUp(
+              preferences: normalAnimation,
+              child: Text(
+                "GET IN TOUCH WITH US TODAY !",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: theme.primaryColor.withAlpha(160),
+                  fontSize: 26,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 1.0,
+                ),
               ),
             ),
           ),
@@ -60,10 +65,13 @@ class ContactSection extends MySection {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 30),
-          child: Icon(
-            Ionicons.mail_open_outline,
-            size: 64,
-            color: theme.primaryColorDark,
+          child: FadeInUp(
+            preferences: slowAnimation,
+            child: Icon(
+              Ionicons.mail_open_outline,
+              size: 64,
+              color: theme.primaryColorDark,
+            ),
           ),
         ),
         for (final id in HomeSolutions.MailingIds)
@@ -75,10 +83,14 @@ class ContactSection extends MySection {
                 uri: Uri(scheme: 'mailto', path: id),
                 builder: (_, followLink) => TextButton(
                   onPressed: followLink,
-                  child: Text(
-                    id,
-                    style: TextStyle(color: theme.primaryColor.withAlpha(200)),
-                    textAlign: TextAlign.center,
+                  child: FadeInUp(
+                    preferences: slowAnimation,
+                    child: Text(
+                      id,
+                      style:
+                          TextStyle(color: theme.primaryColor.withAlpha(200)),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
@@ -96,42 +108,48 @@ class ContactSection extends MySection {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 30),
-          child: Icon(
-            Ionicons.chatbubbles_outline,
-            size: 64,
-            color: theme.primaryColorDark,
+          child: FadeInUp(
+            preferences: slowAnimation,
+            child: Icon(
+              Ionicons.chatbubbles_outline,
+              size: 64,
+              color: theme.primaryColorDark,
+            ),
           ),
         ),
 
         // Contact Details
         for (final entry in HomeSolutions.contactNumbers.entries)
-          SizedBox(
-            width: 300,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  entry.key,
-                  style: TextStyle(color: theme.primaryColor),
-                ),
-                ButtonBar(
-                  children: [
-                    for (final method in entry.value.entries)
-                      Link(
-                        uri: method.value,
-                        builder: (context, followLink) {
-                          return IconButton(
-                            icon: _contactIcon[method.key]!,
-                            tooltip: _tooltip[method.key],
-                            color: theme.primaryColorDark,
-                            onPressed: followLink,
-                          );
-                        },
-                      ),
-                  ],
-                ),
-              ],
+          FadeInUp(
+            preferences: slowAnimation,
+            child: SizedBox(
+              width: 300,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    entry.key,
+                    style: TextStyle(color: theme.primaryColor),
+                  ),
+                  ButtonBar(
+                    children: [
+                      for (final method in entry.value.entries)
+                        Link(
+                          uri: method.value,
+                          builder: (context, followLink) {
+                            return IconButton(
+                              icon: _contactIcon[method.key]!,
+                              tooltip: _tooltip[method.key],
+                              color: theme.primaryColorDark,
+                              onPressed: followLink,
+                            );
+                          },
+                        ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
       ],

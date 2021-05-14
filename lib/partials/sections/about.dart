@@ -25,7 +25,7 @@ class AboutUsSection extends MySection {
             child: FadeInUp(
               preferences: normalAnimation,
               child: Text(
-                "We are",
+                "We are ...",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
