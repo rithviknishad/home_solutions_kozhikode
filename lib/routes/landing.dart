@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 import 'package:home_solutions_kozhikode/partials/sections/contact.dart';
+import 'package:home_solutions_kozhikode/partials/sections/footer.dart';
 import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
 import 'package:home_solutions_kozhikode/partials/wrapper.dart';
 
@@ -17,17 +18,14 @@ class LandingPage extends StatelessWidget {
       child: CustomScrollView(
         controller: controller,
         slivers: [
-          SliverPersistentHeader(
-            delegate: _HeaderDelegate(),
-            pinned: true,
-          ),
+          SliverPersistentHeader(delegate: _HeaderDelegate(), pinned: true),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Column(
               children: [
                 WelcomeSection(),
                 ContactSection(),
-                // _Footer(),
+                FooterSection(),
               ],
             ),
           )
