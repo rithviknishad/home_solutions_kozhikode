@@ -25,7 +25,7 @@ class WelcomeSection extends MySection {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: ExactAssetImage('assets/banner.png'),
-            fit: BoxFit.cover,
+            fit: BoxFit.fitWidth,
             colorFilter: ColorFilter.mode(
               Colors.black12,
               BlendMode.darken,
@@ -34,22 +34,11 @@ class WelcomeSection extends MySection {
         ),
         child: ClipRRect(
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+            filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Material(
-                  // elevation: 4,
-                  shape: const CircleBorder(),
-                  clipBehavior: Clip.antiAlias,
-                  child: Image.asset(
-                    'assets/logo_borderless.png',
-                    height: size.height * 0.4,
-                    isAntiAlias: true,
-                  ),
-                ),
-                SizedBox(height: size.height * 0.1),
                 Text(
                   HomeSolutions.catchPrase,
                   style: theme.textTheme.caption?.apply(
@@ -62,6 +51,12 @@ class WelcomeSection extends MySection {
                     ],
                   ),
                   textAlign: TextAlign.center,
+                ),
+                SizedBox(height: size.height * 0.1),
+                Image.asset(
+                  'assets/logo.png',
+                  height: size.height * 0.3,
+                  isAntiAlias: true,
                 ),
               ],
             ),
