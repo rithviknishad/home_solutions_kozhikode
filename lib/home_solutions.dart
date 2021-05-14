@@ -7,10 +7,28 @@ class HomeSolutions extends StatelessWidget {
     "4homesolutionsclt@gmail.com",
   ];
 
-  static const ContactNumbers = {
-    "+91 9048-336656",
-    "+91 9048-336657",
-    "+91 9048-336658",
+  /// `Map<String, Map<String, Uri>>`.
+  ///
+  /// ```yaml
+  /// "display_value":
+  ///   - call: Uri(...)
+  ///   - sms: Uri(...)
+  ///   - whatsapp: Uri(...)
+  /// ```
+  static final contactNumbers = {
+    "+91 9048-336656": {
+      'call': Uri(scheme: 'tel', path: '+91 9048-336656'),
+      'sms': Uri(scheme: 'sms', path: '+91 9048-336656'),
+    },
+    "+91 9048-336657": {
+      'call': Uri(scheme: 'tel', path: '+91 9048-336657'),
+      'sms': Uri(scheme: 'sms', path: '+91 9048-336657'),
+    },
+    "+91 9048-336658": {
+      'call': Uri(scheme: 'tel', path: '+91 9048-336658'),
+      'sms': Uri(scheme: 'sms', path: '+91 9048-336658'),
+      'whatsapp': Uri(scheme: 'sms', path: '+91 9048-336658'),
+    },
   };
 
   static const WhatsappNumber = "+91 9048-336658";
