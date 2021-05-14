@@ -16,8 +16,7 @@ class ContactSection extends MySection {
       color: Colors.white,
       padding: EdgeInsets.symmetric(
         horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10,
-        vertical: 30,
-      ),
+      ).copyWith(top: 30, bottom: 60),
       width: size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,7 +44,6 @@ class ContactSection extends MySection {
               children: [
                 mailingAddressWidget(context),
                 contactNumbersWidget(context),
-                chatWithUsWidget(context),
               ],
             ),
           )
@@ -69,19 +67,22 @@ class ContactSection extends MySection {
           ),
         ),
         for (final id in HomeSolutions.MailingIds)
-          Link(
-            uri: Uri(scheme: 'mailto', path: id),
-            builder: (_, followLink) => TextButton(
-              onPressed: followLink,
-              child: Text(
-                id,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: theme.primaryColor.withAlpha(200),
+          ButtonBar(
+            mainAxisSize: MainAxisSize.min,
+            alignment: MainAxisAlignment.center,
+            children: [
+              Link(
+                uri: Uri(scheme: 'mailto', path: id),
+                builder: (_, followLink) => TextButton(
+                  onPressed: followLink,
+                  child: Text(
+                    id,
+                    style: TextStyle(color: theme.primaryColor.withAlpha(200)),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                textAlign: TextAlign.center,
               ),
-            ),
+            ],
           ),
       ],
     );
@@ -96,7 +97,7 @@ class ContactSection extends MySection {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 30),
           child: Icon(
-            Ionicons.call_outline,
+            Ionicons.chatbubbles_outline,
             size: 64,
             color: theme.primaryColorDark,
           ),
@@ -104,77 +105,51 @@ class ContactSection extends MySection {
 
         // Contact Details
         for (final entry in HomeSolutions.contactNumbers.entries)
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                entry.key,
-                style: TextStyle(color: theme.primaryColor),
-              ),
-              SizedBox(width: 20),
-              ButtonBar(
-                children: [
-                  for (final method in entry.value.entries)
-                    Link(
-                      uri: method.value,
-                      builder: (context, followLink) {
-                        return IconButton(
-                          icon: _contactIcon(method.key),
-                          color: theme.primaryColorDark,
-                          onPressed: followLink,
-                        );
-                      },
-                    ),
-                ],
-              ),
-            ],
-          ),
-      ],
-    );
-  }
-
-  Widget _contactIcon(String contactMethod) {
-    switch (contactMethod) {
-      case 'call':
-        return Icon(Icons.call);
-      case 'sms':
-        return Icon(Icons.sms);
-      case 'whatsapp':
-        return Icon(Icons.sms);
-      default:
-        return Container();
-    }
-  }
-
-  Widget chatWithUsWidget(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30),
-          child: Icon(
-            Ionicons.chatbubbles_outline,
-            size: 64,
-            color: theme.primaryColorDark,
-          ),
-        ),
-        Link(
-          uri: Uri(scheme: 'wa.me', path: ""),
-          builder: (_, followLink) => TextButton(
-            onPressed: followLink,
-            child: Text(
-              "WhatsApp",
-              style: TextStyle(
-                fontSize: 16,
-                color: theme.primaryColor.withAlpha(200),
-              ),
-              textAlign: TextAlign.center,
+          SizedBox(
+            width: 300,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  entry.key,
+                  style: TextStyle(color: theme.primaryColor),
+                ),
+                ButtonBar(
+                  children: [
+                    for (final method in entry.value.entries)
+                      Link(
+                        uri: method.value,
+                        builder: (context, followLink) {
+                          return IconButton(
+                            icon: _contactIcon[method.key]!,
+                            tooltip: _tooltip[method.key],
+                            color: theme.primaryColorDark,
+                            onPressed: followLink,
+                          );
+                        },
+                      ),
+                  ],
+                ),
+              ],
             ),
           ),
-        ),
       ],
     );
   }
+
+  static final _contactIcon = {
+    'call': Icon(Ionicons.call_outline),
+    'sms': Icon(Ionicons.chatbox_ellipses_outline),
+    'whatsapp': Icon(
+      Ionicons.logo_whatsapp,
+      color: Color(0xff31d26e),
+    ),
+  };
+
+  static final _tooltip = {
+    'call': 'Call Now',
+    'sms': 'Send an SMS',
+    'whatsapp': 'Message in WhatsApp'
+  };
 }
