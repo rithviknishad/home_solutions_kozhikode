@@ -6,6 +6,19 @@ import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 
 class SteelxProductSection extends MySection {
+  static const _features = {
+    "No Bacteria, Fungus & Algae": "no_bacteria_fungae_and_algae.png",
+    "Safe Healthy & Hygienic": "safe_healthy_and_hygienic.png",
+    "SS 304/316 BA Food Grade Steel & Medical Grade": "food_grade.png",
+    "Mirror Finish Steel": "mirror_finish.png",
+    "Bio-degradable": "bio_degradable.png",
+    "No Harmful Toxins": "no_harmful_toxins.png",
+    "Easy Cleaning": "easy_cleaning.png",
+    "Maintains Temperature": "maintains_temperature.png",
+    "Easy Installation": "easy_installation.png",
+    "High Resale Valued Material": "high_resale_valued_material.png",
+  };
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -21,24 +34,33 @@ class SteelxProductSection extends MySection {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _Heading(),
-          Wrap(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Image(
-                  image: AssetImage('assets/steelx_banner.png'),
-                  height: 600,
-                ),
-              ),
 
-              // Features
-              _FeatureTile(
-                description: "No Bacteria",
-                asset:
-                    'assets/steelx_features/no_bacteria_fungae_and_algae.png',
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Image(
+              image: AssetImage('assets/steelx_banner.png'),
+              isAntiAlias: true,
+              filterQuality: FilterQuality.high,
+              height: 600,
+            ),
           ),
+          SizedBox(height: 30.0),
+
+          // Features
+          Wrap(
+            alignment: WrapAlignment.center,
+            runAlignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 30,
+            runSpacing: 30,
+            children: [
+              for (final f in _features.entries)
+                _FeatureTile(
+                  description: f.key,
+                  asset: 'assets/steelx_features/${f.value}',
+                ),
+            ],
+          )
         ],
       ),
     );
@@ -56,15 +78,27 @@ class _FeatureTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    final theme = Theme.of(context);
+
+    return Container(
       padding: const EdgeInsets.all(8.0),
-      child: Row(
+      width: 200.0,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Image(image: AssetImage(asset), height: 100),
-          SizedBox(width: 10),
+          Image(
+            image: AssetImage(asset),
+            height: 60,
+          ),
+          SizedBox(height: 12.0),
           Text(
             description,
-            style: TextStyle(fontSize: 13.0),
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w700,
+              color: theme.primaryColor,
+            ),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
