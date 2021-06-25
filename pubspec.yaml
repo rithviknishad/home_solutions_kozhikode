@@ -14,6 +14,8 @@ dependencies:
   url_launcher: ^6.0.3
   flutter_animator: ^3.1.1
   ionicons: ^0.1.2
+  simple_animations: ^3.1.1
+  supercharged: ^2.0.0
 
 dev_dependencies:
   auto_route_generator: ^2.1.0
