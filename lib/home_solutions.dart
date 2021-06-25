@@ -68,7 +68,7 @@ class HomeSolutions extends StatelessWidget {
 
     // Text Theme
     textTheme:
-        TextTheme(caption: TextStyle(fontFamily: 'Lemonada', fontSize: 32)),
+        TextTheme(caption: TextStyle(fontFamily: 'Nunito', fontSize: 32)),
 
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: accentColor.withOpacity(0.35),
