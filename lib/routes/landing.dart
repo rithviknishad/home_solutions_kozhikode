@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:home_solutions_kozhikode/partials/header.dart';
 import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 import 'package:home_solutions_kozhikode/partials/sections/about.dart';
 import 'package:home_solutions_kozhikode/partials/sections/contact.dart';
@@ -14,6 +15,31 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(context) {
+    final size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      body: Container(
+        height: size.height,
+        width: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Row(
+                    children: [
+                      Container(),
+                    ],
+                  ),
+                  Header(),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+
     return PageWrapper(
       appBar: null,
       child: CustomScrollView(
