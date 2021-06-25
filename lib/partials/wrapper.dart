@@ -16,7 +16,7 @@ class PageWrapper extends StatelessWidget {
 
   static const _kDefaultNavigationBar = PreferredSize(
     preferredSize: Size.fromHeight(138),
-    child: MyNavigationBar.instance,
+    child: NavBar.instance,
   );
 
   @override

@@ -24,7 +24,7 @@ class WelcomeSection extends MySection {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: ExactAssetImage('assets/banner.png'),
+            image: ExactAssetImage('assets/steelx_banner.png'),
             fit: BoxFit.fitWidth,
             colorFilter: ColorFilter.mode(
               Colors.black12,

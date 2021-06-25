@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/home_solutions.dart';
 import 'package:home_solutions_kozhikode/partials/my_page.dart';
 
-class MyNavigationBar extends StatelessWidget {
-  const MyNavigationBar._();
+class NavBar extends StatelessWidget {
+  const NavBar._();
 
-  factory MyNavigationBar() => instance;
+  factory NavBar() => instance;
 
-  static const instance = const MyNavigationBar._();
+  static const instance = const NavBar._();
 
   static const _width = 1200;
 

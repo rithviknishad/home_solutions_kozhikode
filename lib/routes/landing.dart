@@ -7,6 +7,7 @@ import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 import 'package:home_solutions_kozhikode/partials/sections/about.dart';
 import 'package:home_solutions_kozhikode/partials/sections/contact.dart';
 import 'package:home_solutions_kozhikode/partials/sections/footer.dart';
+import 'package:home_solutions_kozhikode/partials/sections/steelx_product.dart';
 import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
 import 'package:home_solutions_kozhikode/partials/wrapper.dart';
 
@@ -16,29 +17,237 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(context) {
     final size = MediaQuery.of(context).size;
-
-    return Scaffold(
-      body: Container(
-        height: size.height,
-        width: double.infinity,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  Row(
-                    children: [
-                      Container(),
-                    ],
-                  ),
-                  Header(),
-                ],
-              )
-            ],
+    if (false)
+      return Scaffold(
+        body: Container(
+          height: size.height,
+          width: double.infinity,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 600.0,
+                          width: size.width * 0.45,
+                          color: Colors.white,
+                          child: Stack(
+                            children: [
+                              Transform(
+                                transform: Matrix4.rotationZ(pi / 6.0)
+                                  ..translate(-180.0, 170.0),
+                                child: Container(
+                                  height: 350.0,
+                                  width: 700.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[100],
+                                    borderRadius: BorderRadius.circular(300.0),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 200.0,
+                                left: 100.0,
+                                child: Container(
+                                  height: 400.0,
+                                  width: 400.0,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Manage all your",
+                                        style: TextStyle(
+                                          fontSize: 38.0,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      Text(
+                                        "projects in one place",
+                                        style: TextStyle(
+                                          fontSize: 25.0,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      SizedBox(height: 20.0),
+                                      Container(
+                                        width: 300.0,
+                                        child: Text(
+                                          "Describe your pdfllnskdjfhkjsdhflksjfdlksjdflksjflskdjflskfj",
+                                          style: TextStyle(
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 30.0),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            height: 45.0,
+                                            width: 230.0,
+                                            child: TextField(
+                                              decoration: InputDecoration(
+                                                hintText:
+                                                    'Enter your email address',
+                                                hintStyle:
+                                                    TextStyle(fontSize: 12.0),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50.0),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 20.0),
+                                          TextButton(
+                                            style: TextButton.styleFrom(
+                                              backgroundColor: Colors.black87,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(30.0),
+                                              ),
+                                            ),
+                                            onPressed: () {},
+                                            child: Container(
+                                              height: 45,
+                                              width: 100.0,
+                                              child: Center(
+                                                child: Text(
+                                                  'Get Invite',
+                                                  style:
+                                                      TextStyle(fontSize: 13.0),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          height: 600.0,
+                          color: Colors.white,
+                          width: size.width * 0.55,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Transform(
+                                transform: Matrix4.rotationZ(pi / 6.0)
+                                  ..translate(-180.0, 170.0),
+                                child: Container(
+                                  height: 350.0,
+                                  width: 700.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[100],
+                                    borderRadius: BorderRadius.circular(300.0),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 200.0,
+                                left: 100.0,
+                                child: Container(
+                                  height: 400.0,
+                                  width: 400.0,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Manage all your",
+                                        style: TextStyle(
+                                          fontSize: 38.0,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      Text(
+                                        "projects in one place",
+                                        style: TextStyle(
+                                          fontSize: 25.0,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      SizedBox(height: 20.0),
+                                      Container(
+                                        width: 300.0,
+                                        child: Text(
+                                          "Describe your pdfllnskdjfhkjsdhflksjfdlksjdflksjflskdjflskfj",
+                                          style: TextStyle(
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 30.0),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            height: 45.0,
+                                            width: 230.0,
+                                            child: TextField(
+                                              decoration: InputDecoration(
+                                                hintText:
+                                                    'Enter your email address',
+                                                hintStyle:
+                                                    TextStyle(fontSize: 12.0),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50.0),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 20.0),
+                                          TextButton(
+                                            style: TextButton.styleFrom(
+                                              backgroundColor: Colors.black87,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(30.0),
+                                              ),
+                                            ),
+                                            onPressed: () {},
+                                            child: Container(
+                                              height: 45,
+                                              width: 100.0,
+                                              child: Center(
+                                                child: Text(
+                                                  'Get Invite',
+                                                  style:
+                                                      TextStyle(fontSize: 13.0),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    Header(),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
 
     return PageWrapper(
       appBar: null,
@@ -51,6 +260,7 @@ class LandingPage extends StatelessWidget {
             child: Column(
               children: [
                 WelcomeSection(),
+                SteelxProductSection(),
                 AboutUsSection(),
                 ContactSection(),
                 FooterSection(),
