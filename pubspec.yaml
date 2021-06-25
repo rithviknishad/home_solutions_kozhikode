@@ -26,6 +26,7 @@ flutter:
     - assets/logo.png
     - assets/logo_borderless.png
     - assets/banner.png
+    - assets/steelx_banner.png
 
   fonts:
     - family: Lemonada
