@@ -136,3 +136,33 @@ class _Heading extends StatelessWidget {
     );
   }
 }
+
+@immutable
+class _SteelxTank {
+  final String model;
+  final int litres;
+  final int diameter;
+  final int height;
+  final int stand;
+  final int legs;
+
+  const _SteelxTank(
+    this.litres, {
+    required this.diameter,
+    required this.height,
+    required this.stand,
+    required this.legs,
+  }) : model = 'SXG${litres}L';
+
+  static const List<_SteelxTank> allTanks = [
+    _SteelxTank(250, diameter: 760, height: 960, stand: 320, legs: 3),
+    _SteelxTank(500, diameter: 760, height: 1450, stand: 320, legs: 3),
+    _SteelxTank(1000, diameter: 1030, height: 1760, stand: 320, legs: 3),
+    _SteelxTank(1500, diameter: 1030, height: 2325, stand: 320, legs: 4),
+    _SteelxTank(2000, diameter: 1480, height: 2055, stand: 485, legs: 4),
+    _SteelxTank(2500, diameter: 1480, height: 2365, stand: 485, legs: 4),
+    _SteelxTank(3000, diameter: 1480, height: 2575, stand: 485, legs: 6),
+    _SteelxTank(4000, diameter: 1720, height: 2150, stand: 485, legs: 8),
+    _SteelxTank(5000, diameter: 1720, height: 2600, stand: 485, legs: 8),
+  ];
+}
