@@ -1,19 +1,33 @@
 import 'package:flutter/foundation.dart';
 
-abstract class TankDimensions {}
+@immutable
+abstract class TankDimensions {
+  const TankDimensions();
+}
 
 class VerticalTankDimensions extends TankDimensions {
   final double diameter;
   final double height;
 
-  VerticalTankDimensions(this.diameter, this.height);
+  const VerticalTankDimensions(this.diameter, this.height);
 }
 
 class HorizontalTankDimensions extends TankDimensions {
   final double length;
   final double clearance;
 
-  HorizontalTankDimensions(this.length, this.clearance);
+  const HorizontalTankDimensions(this.length, this.clearance);
+}
+
+@immutable
+class HoleFittingSize {
+  /// Inlet: inches
+  /// Outlet: inches
+  /// Thickenss: mm
+  /// Drain: inches
+  final double inlet, outlet, thickness, drain;
+
+  const HoleFittingSize(this.inlet, this.outlet, this.thickness, this.drain);
 }
 
 @immutable
@@ -27,7 +41,7 @@ class SteelxTank {
 
   final int? stand, legs;
 
-  final double? inlet, outlet, thickness, drain;
+  final HoleFittingSize? holeFittingSize;
 
   bool get isHorizontal => dimensions is HorizontalTankDimensions;
   bool get isVertical => dimensions is VerticalTankDimensions;
@@ -39,10 +53,7 @@ class SteelxTank {
     this.manholeDiameter,
     this.stand,
     this.legs,
-    this.inlet,
-    this.outlet,
-    this.thickness,
-    this.drain,
+    this.holeFittingSize,
   });
 
   static List<SteelxTank> allTanks = [
@@ -51,10 +62,7 @@ class SteelxTank {
       capacity: 250,
       dimensions: VerticalTankDimensions(700, 960),
       manholeDiameter: 420,
-      inlet: 1,
-      outlet: 2,
-      thickness: 0.6,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
     ),
     SteelxTank(
       'SXG250L',
@@ -68,10 +76,7 @@ class SteelxTank {
       capacity: 500,
       dimensions: VerticalTankDimensions(700, 1450),
       manholeDiameter: 420,
-      inlet: 1,
-      outlet: 2,
-      thickness: 0.6,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
     ),
     SteelxTank(
       'SXG500L',
@@ -85,10 +90,7 @@ class SteelxTank {
       capacity: 1000,
       dimensions: VerticalTankDimensions(970, 1760),
       manholeDiameter: 420,
-      inlet: 1,
-      outlet: 2,
-      thickness: 0.6,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
     ),
     SteelxTank(
       'SXG1000L',
@@ -102,10 +104,7 @@ class SteelxTank {
       capacity: 1500,
       dimensions: VerticalTankDimensions(1230, 2325),
       manholeDiameter: 420,
-      inlet: 1,
-      outlet: 2,
-      thickness: 0.6,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
     ),
     SteelxTank(
       'SXG1500L',
@@ -119,10 +118,7 @@ class SteelxTank {
       capacity: 2000,
       dimensions: VerticalTankDimensions(1420, 2355),
       manholeDiameter: 530,
-      inlet: 1,
-      outlet: 2,
-      thickness: 0.6,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
     ),
     SteelxTank(
       'SXG2000L',
@@ -143,10 +139,7 @@ class SteelxTank {
       capacity: 3000,
       dimensions: VerticalTankDimensions(1420, 2365),
       manholeDiameter: 530,
-      inlet: 1,
-      outlet: 2,
-      thickness: 0.8,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(1, 2, 0.8, 1),
     ),
     SteelxTank(
       'SXG3000L',
@@ -160,10 +153,7 @@ class SteelxTank {
       capacity: 4000,
       dimensions: VerticalTankDimensions(1700, 2575),
       manholeDiameter: 530,
-      inlet: 2,
-      outlet: 2,
-      thickness: 0.8,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(2, 2, 0.8, 1),
     ),
     SteelxTank(
       'SXG4000L',
@@ -177,10 +167,7 @@ class SteelxTank {
       capacity: 5000,
       dimensions: VerticalTankDimensions(1700, 2600),
       manholeDiameter: 700,
-      inlet: 2,
-      outlet: 2,
-      thickness: 0.8,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(2, 2, 0.8, 1),
     ),
     SteelxTank(
       'SXG5000L',
@@ -194,30 +181,21 @@ class SteelxTank {
       capacity: 1000,
       dimensions: HorizontalTankDimensions(1600, 160),
       manholeDiameter: 420,
-      inlet: 1,
-      outlet: 2,
-      thickness: 0.6,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
     ),
     SteelxTank(
       'SXH15',
       capacity: 1500,
       dimensions: HorizontalTankDimensions(1650, 160),
       manholeDiameter: 420,
-      inlet: 1,
-      outlet: 2,
-      thickness: 0.6,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
     ),
     SteelxTank(
       'SXH20',
       capacity: 2000,
       dimensions: HorizontalTankDimensions(1700, 160),
       manholeDiameter: 530,
-      inlet: 1,
-      outlet: 2,
-      thickness: 0.6,
-      drain: 1,
+      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
     ),
   ]..sort((a, b) => a.capacity.compareTo(b.capacity));
 }
