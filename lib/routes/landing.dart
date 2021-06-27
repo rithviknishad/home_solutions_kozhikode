@@ -7,6 +7,7 @@ import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 import 'package:home_solutions_kozhikode/partials/sections/about.dart';
 import 'package:home_solutions_kozhikode/partials/sections/contact.dart';
 import 'package:home_solutions_kozhikode/partials/sections/footer.dart';
+import 'package:home_solutions_kozhikode/partials/sections/steelx/size_selector.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/steelx.dart';
 import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
 import 'package:home_solutions_kozhikode/partials/wrapper.dart';
@@ -261,6 +262,7 @@ class LandingPage extends StatelessWidget {
               children: [
                 WelcomeSection(),
                 SteelxProductSection(),
+                SteelxTankSizesSection(),
                 AboutUsSection(),
                 ContactSection(),
                 FooterSection(),

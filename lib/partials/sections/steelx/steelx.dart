@@ -10,6 +10,7 @@ import 'package:home_solutions_kozhikode/partials/sections/steelx/size_selector.
 class SteelxProductSection extends MySection {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
 
     return Container(
@@ -19,7 +20,22 @@ class SteelxProductSection extends MySection {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // The Heading
-          _Heading(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
+            child: FadeInUp(
+              preferences: normalAnimation,
+              child: Text(
+                "Premium Quality Stainless Steel Water Tanks",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: theme.primaryColor,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2,
+                ),
+              ),
+            ),
+          ),
 
           // Tank's Banner
           demoTank,
@@ -27,10 +43,6 @@ class SteelxProductSection extends MySection {
 
           // All features
           SteelxProductFeatures(),
-          SizedBox(height: 60.0),
-
-          // Available Sizes
-          SteelxAvailableSizes(),
           SizedBox(height: 30.0),
         ],
       ),
@@ -50,30 +62,4 @@ class SteelxProductSection extends MySection {
   EdgeInsets _getPadding(Size size) => EdgeInsets.symmetric(
         horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10,
       ).copyWith(top: 30, bottom: 60);
-}
-
-class _Heading extends StatelessWidget {
-  const _Heading();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
-      child: FadeInUp(
-        preferences: normalAnimation,
-        child: Text(
-          "Premium Quality Stainless Steel Water Tanks",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: theme.primaryColor,
-            fontSize: 26,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 1.0,
-          ),
-        ),
-      ),
-    );
-  }
 }

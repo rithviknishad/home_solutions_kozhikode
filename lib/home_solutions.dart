@@ -53,7 +53,7 @@ class HomeSolutions extends StatelessWidget {
   static const primaryColor = const Color(0xff243f8f);
   static const accentColor = const Color(0xff12143c);
   static const subtleWhite = Color(0xfffafafa);
-  static const fontFamily = 'Ubuntu';
+  static const fontFamily = 'Nunito';
   static const textStyle = TextStyle(fontFamily: fontFamily);
 
   static final _theme = ThemeData(
@@ -68,7 +68,7 @@ class HomeSolutions extends StatelessWidget {
 
     // Text Theme
     textTheme:
-        TextTheme(caption: TextStyle(fontFamily: 'Ubuntu', fontSize: 32)),
+        TextTheme(caption: TextStyle(fontFamily: 'Nunito', fontSize: 32)),
 
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: accentColor.withOpacity(0.35),

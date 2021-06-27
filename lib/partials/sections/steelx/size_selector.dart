@@ -1,7 +1,55 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/widgets/fading_entrances/fade_in_up.dart';
+import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
+import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/tank_model.dart';
+
+class SteelxTankSizesSection extends MySection {
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+
+    return Container(
+      padding: _getPadding(size),
+      color: theme.primaryColor,
+      width: size.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // The Heading
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 8),
+            child: FadeInUp(
+              preferences: normalAnimation,
+              child: Text(
+                "Available in variety of sizes that suit your needs",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2,
+                ),
+              ),
+            ),
+          ),
+
+          // Available Sizes
+          SteelxAvailableSizes(),
+          SizedBox(height: 30.0),
+        ],
+      ),
+    );
+  }
+
+  EdgeInsets _getPadding(Size size) => EdgeInsets.symmetric(
+        horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10,
+      ).copyWith(top: 30, bottom: 60);
+}
 
 class SteelxAvailableSizes extends StatefulWidget {
   const SteelxAvailableSizes();
@@ -21,7 +69,6 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
 
     return Column(
       children: [
-        _heading(theme),
         Wrap(
           spacing: 120,
           runSpacing: 20,
@@ -33,13 +80,18 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Select capacity: ",
-                    style: TextStyle(fontWeight: FontWeight.w500),
+                    "SELECT CAPACITY:".toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: theme.primaryColorLight,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1.0,
+                    ),
                   ),
-                  SizedBox(height: 4),
+                  SizedBox(height: 10),
                   DropdownButton<SteelxTank>(
                     value: selectedTank,
                     items: [
@@ -71,6 +123,8 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 24,
+                            color: Colors.white,
+                            letterSpacing: 1,
                           ),
                         ),
                     ],
@@ -92,20 +146,6 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
       ],
     );
   }
-
-  Widget _heading(ThemeData theme) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
-        child: Text(
-          "Available in a variety of capacities",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: theme.primaryColor,
-            fontSize: 26,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 1.0,
-          ),
-        ),
-      );
 }
 
 class _TankProperties extends StatelessWidget {
@@ -115,6 +155,8 @@ class _TankProperties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
       width: 300.0,
@@ -128,7 +170,12 @@ class _TankProperties extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               '${tank.model}  -  ${tank.capacity} Litres',
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
+                color: Colors.white,
+                letterSpacing: 1.0,
+              ),
             ),
           ),
 
@@ -139,6 +186,35 @@ class _TankProperties extends StatelessWidget {
             _HoleSizeForFittingProperties(tank.holeFittingSize!),
             SizedBox(height: 16)
           ],
+
+          // Enquire Now Button
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                elevation: 6,
+              ),
+              onPressed: () {},
+              child: Container(
+                height: 55,
+                width: 170,
+                child: Center(
+                  child: Text(
+                    'ENQUIRE NOW',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
+                      color: theme.primaryColor,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -150,8 +226,14 @@ class _DimensionProperties extends StatelessWidget {
 
   const _DimensionProperties(this.tank);
 
+  static const _propTextStyle = TextStyle(
+    color: Colors.white,
+    letterSpacing: 1,
+  );
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     var d = tank.dimensions;
 
     return Padding(
@@ -160,8 +242,13 @@ class _DimensionProperties extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Dimensions',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+            'DIMENSIONS',
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 14,
+              color: theme.primaryColorLight,
+              letterSpacing: 1,
+            ),
           ),
           SizedBox(height: 16),
           Wrap(
@@ -169,16 +256,31 @@ class _DimensionProperties extends StatelessWidget {
             runSpacing: 12,
             children: [
               if (d is HorizontalTankDimensions) ...[
-                Text('Length: ${d.length} mm'),
-                Text('Clearance: ${d.clearance} mm'),
+                Text(
+                  'Length: ${d.length} mm',
+                  style: _propTextStyle,
+                ),
+                Text(
+                  'Clearance: ${d.clearance} mm',
+                  style: _propTextStyle,
+                ),
               ] else if (d is VerticalTankDimensions) ...[
-                Text('Diameter: ${d.diameter} mm'),
-                Text('Height: ${d.height} mm'),
+                Text(
+                  'Diameter: ${d.diameter} mm',
+                  style: _propTextStyle,
+                ),
+                Text(
+                  'Height: ${d.height} mm',
+                  style: _propTextStyle,
+                ),
               ],
 
               // Manhole Dia
               if (tank.manholeDiameter != null)
-                Text('Manhole Diameter: ${tank.manholeDiameter} mm'),
+                Text(
+                  'Manhole Diameter: ${tank.manholeDiameter} mm',
+                  style: _propTextStyle,
+                ),
             ],
           ),
         ],
@@ -193,24 +295,43 @@ class _HoleSizeForFittingProperties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Hole Size for fitting',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+            'HOLE SEIZE FOR FITTING',
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 14,
+              color: theme.primaryColorLight,
+              letterSpacing: 1,
+            ),
           ),
           SizedBox(height: 16),
           Wrap(
             spacing: 24,
             runSpacing: 12,
             children: [
-              Text('Inlet: ${size.inlet}"'),
-              Text('Outlet: ${size.outlet}"'),
-              Text('Drain: ${size.drain}"'),
-              Text('Thickness: ${size.thickness} mm'),
+              Text(
+                'Inlet: ${size.inlet}"',
+                style: _DimensionProperties._propTextStyle,
+              ),
+              Text(
+                'Outlet: ${size.outlet}"',
+                style: _DimensionProperties._propTextStyle,
+              ),
+              Text(
+                'Drain: ${size.drain}"',
+                style: _DimensionProperties._propTextStyle,
+              ),
+              Text(
+                'Thickness: ${size.thickness} mm',
+                style: _DimensionProperties._propTextStyle,
+              ),
             ],
           ),
         ],
@@ -274,15 +395,19 @@ class _InteractiveTank extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.w700,
-            fontSize: 16,
+            fontSize: 18,
+            color: Colors.white,
+            letterSpacing: 1,
           ),
         ),
         Text(
           description,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+            color: Colors.white,
+            letterSpacing: 1,
           ),
         ),
       ],
