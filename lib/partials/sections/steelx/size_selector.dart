@@ -64,7 +64,7 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
                             children: [
                               Text('${type.model}'),
                               Text(
-                                '${type.litres} L',
+                                '${type.capacity} L',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -78,7 +78,7 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
                   selectedItemBuilder: (_) => [
                     for (final type in SteelxTank.allTanks)
                       Text(
-                        '${type.litres} L',
+                        '${type.capacity} L',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
@@ -137,6 +137,8 @@ class _TankProperties extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
           ),
 
+          _DimensionProperties(tank),
+
           if ((tank.inlet ?? tank.outlet ?? tank.thickness ?? tank.drain) !=
               null)
             _HoleSizeForFittingProperties(tank),
@@ -153,6 +155,8 @@ class _DimensionProperties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var d = tank.dimensions;
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -167,18 +171,17 @@ class _DimensionProperties extends StatelessWidget {
             spacing: 16,
             runSpacing: 4,
             children: [
-              // Diameter
-              Text('Diameter: ${tank.diameter}"'),
+              if (d is HorizontalTankDimensions) ...[
+                Text('Length: ${d.length} mm'),
+                Text('Clearance: ${d.clearance} mm'),
+              ] else if (d is VerticalTankDimensions) ...[
+                Text('Diameter: ${d.diameter} mm'),
+                Text('Height: ${d.height} mm'),
+              ],
 
-              // Height
-              Text('Height: ${tank.height}"'),
-
-              // Drain
-              if (tank.drain != null) Text('Drain: ${tank.drain}"'),
-
-              // Thickness
-              if (tank.thickness != null)
-                Text('Thickness: ${tank.thickness} mm'),
+              // Manhole Dia
+              if (tank.manholeDiameter != null)
+                Text('Manhole Diameter: ${tank.manholeDiameter} mm'),
             ],
           ),
         ],
@@ -234,25 +237,33 @@ class _InteractiveTank extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var d = tank.dimensions;
+
     return Container(
       width: 400,
       height: 420,
       child: Stack(
         children: [
           Center(child: _tankThumbnail),
-
-          // Height
-          Align(
-            alignment: Alignment.centerLeft,
-            child: parameter(tank.height, 'mm', 'height'),
-          ),
-
-          // Diameter
-          Align(
-            alignment: Alignment.topCenter,
-            child: parameter(tank.diameter, 'mm', 'diameter'),
-          ),
-
+          if (d is VerticalTankDimensions) ...[
+            Align(
+              alignment: Alignment.centerLeft,
+              child: parameter(d.height, 'mm', 'height'),
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: parameter(d.diameter, 'mm', 'diameter'),
+            ),
+          ] else if (d is HorizontalTankDimensions) ...[
+            Align(
+              alignment: Alignment.centerRight,
+              child: parameter(d.clearance, 'mm', 'clearance'),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: parameter(d.length, 'mm', 'length'),
+            ),
+          ],
           if (tank.stand != null)
             Positioned(
               right: 10,

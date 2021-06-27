@@ -1,24 +1,41 @@
 import 'package:flutter/foundation.dart';
 
+abstract class TankDimensions {}
+
+class VerticalTankDimensions extends TankDimensions {
+  final double diameter;
+  final double height;
+
+  VerticalTankDimensions(this.diameter, this.height);
+}
+
+class HorizontalTankDimensions extends TankDimensions {
+  final double length;
+  final double clearance;
+
+  HorizontalTankDimensions(this.length, this.clearance);
+}
+
 @immutable
 class SteelxTank {
   final String model;
-  final int litres;
+  final int capacity;
 
-  final int diameter, height;
+  final TankDimensions dimensions;
+
   final int? manholeDiameter;
 
   final int? stand, legs;
 
   final double? inlet, outlet, thickness, drain;
 
-  final bool isHorizontal;
+  bool get isHorizontal => dimensions is HorizontalTankDimensions;
+  bool get isVertical => dimensions is VerticalTankDimensions;
 
   const SteelxTank(
     this.model, {
-    required this.litres,
-    required this.diameter,
-    required this.height,
+    required this.capacity,
+    required this.dimensions,
     this.manholeDiameter,
     this.stand,
     this.legs,
@@ -26,15 +43,13 @@ class SteelxTank {
     this.outlet,
     this.thickness,
     this.drain,
-    this.isHorizontal = false,
   });
 
   static List<SteelxTank> allTanks = [
     SteelxTank(
       'SX25',
-      litres: 250,
-      diameter: 700,
-      height: 960,
+      capacity: 250,
+      dimensions: VerticalTankDimensions(700, 960),
       manholeDiameter: 420,
       inlet: 1,
       outlet: 2,
@@ -43,17 +58,15 @@ class SteelxTank {
     ),
     SteelxTank(
       'SXG250L',
-      litres: 250,
-      diameter: 760,
-      height: 960,
+      capacity: 250,
+      dimensions: VerticalTankDimensions(760, 960),
       stand: 320,
       legs: 3,
     ),
     SteelxTank(
       'SX50',
-      litres: 500,
-      diameter: 700,
-      height: 1450,
+      capacity: 500,
+      dimensions: VerticalTankDimensions(700, 1450),
       manholeDiameter: 420,
       inlet: 1,
       outlet: 2,
@@ -62,17 +75,15 @@ class SteelxTank {
     ),
     SteelxTank(
       'SXG500L',
-      litres: 500,
-      diameter: 760,
-      height: 1450,
+      capacity: 500,
+      dimensions: VerticalTankDimensions(760, 1450),
       stand: 320,
       legs: 3,
     ),
     SteelxTank(
       'SX100',
-      litres: 1000,
-      diameter: 970,
-      height: 1760,
+      capacity: 1000,
+      dimensions: VerticalTankDimensions(970, 1760),
       manholeDiameter: 420,
       inlet: 1,
       outlet: 2,
@@ -81,17 +92,15 @@ class SteelxTank {
     ),
     SteelxTank(
       'SXG1000L',
-      litres: 1000,
-      diameter: 1030,
-      height: 1760,
+      capacity: 1000,
+      dimensions: VerticalTankDimensions(1030, 1760),
       stand: 320,
       legs: 3,
     ),
     SteelxTank(
       'SX150',
-      litres: 1500,
-      diameter: 1230,
-      height: 2325,
+      capacity: 1500,
+      dimensions: VerticalTankDimensions(1230, 2325),
       manholeDiameter: 420,
       inlet: 1,
       outlet: 2,
@@ -100,17 +109,15 @@ class SteelxTank {
     ),
     SteelxTank(
       'SXG1500L',
-      litres: 1500,
-      diameter: 1030,
-      height: 2325,
+      capacity: 1500,
+      dimensions: VerticalTankDimensions(1030, 2325),
       stand: 320,
       legs: 4,
     ),
     SteelxTank(
       'SX200',
-      litres: 2000,
-      diameter: 1420,
-      height: 2355,
+      capacity: 2000,
+      dimensions: VerticalTankDimensions(1420, 2355),
       manholeDiameter: 530,
       inlet: 1,
       outlet: 2,
@@ -119,25 +126,22 @@ class SteelxTank {
     ),
     SteelxTank(
       'SXG2000L',
-      litres: 2000,
-      diameter: 1480,
-      height: 2055,
+      capacity: 2000,
+      dimensions: VerticalTankDimensions(1480, 2055),
       stand: 485,
       legs: 4,
     ),
     SteelxTank(
       'SXG2500L',
-      litres: 2500,
-      diameter: 1480,
-      height: 2365,
+      capacity: 2500,
+      dimensions: VerticalTankDimensions(1480, 2365),
       stand: 485,
       legs: 4,
     ),
     SteelxTank(
       'SX300',
-      litres: 3000,
-      diameter: 1420,
-      height: 2365,
+      capacity: 3000,
+      dimensions: VerticalTankDimensions(1420, 2365),
       manholeDiameter: 530,
       inlet: 1,
       outlet: 2,
@@ -146,17 +150,15 @@ class SteelxTank {
     ),
     SteelxTank(
       'SXG3000L',
-      litres: 3000,
-      diameter: 1480,
-      height: 2575,
+      capacity: 3000,
+      dimensions: VerticalTankDimensions(1480, 2575),
       stand: 485,
       legs: 6,
     ),
     SteelxTank(
       'SX400',
-      litres: 4000,
-      diameter: 1700,
-      height: 2575,
+      capacity: 4000,
+      dimensions: VerticalTankDimensions(1700, 2575),
       manholeDiameter: 530,
       inlet: 2,
       outlet: 2,
@@ -165,17 +167,15 @@ class SteelxTank {
     ),
     SteelxTank(
       'SXG4000L',
-      litres: 4000,
-      diameter: 1720,
-      height: 2150,
+      capacity: 4000,
+      dimensions: VerticalTankDimensions(1720, 2150),
       stand: 485,
       legs: 8,
     ),
     SteelxTank(
       'SX500',
-      litres: 5000,
-      diameter: 1700,
-      height: 2600,
+      capacity: 5000,
+      dimensions: VerticalTankDimensions(1700, 2600),
       manholeDiameter: 700,
       inlet: 2,
       outlet: 2,
@@ -184,47 +184,40 @@ class SteelxTank {
     ),
     SteelxTank(
       'SXG5000L',
-      litres: 5000,
-      diameter: 1720,
-      height: 2600,
+      capacity: 5000,
+      dimensions: VerticalTankDimensions(1720, 2600),
       stand: 485,
       legs: 8,
     ),
     SteelxTank(
       'SXH10',
-      litres: 1000,
-      diameter: 1600,
-      height: 160,
+      capacity: 1000,
+      dimensions: HorizontalTankDimensions(1600, 160),
       manholeDiameter: 420,
       inlet: 1,
       outlet: 2,
       thickness: 0.6,
       drain: 1,
-      isHorizontal: true,
     ),
     SteelxTank(
       'SXH15',
-      litres: 1500,
-      diameter: 1650,
-      height: 160,
+      capacity: 1500,
+      dimensions: HorizontalTankDimensions(1650, 160),
       manholeDiameter: 420,
       inlet: 1,
       outlet: 2,
       thickness: 0.6,
       drain: 1,
-      isHorizontal: true,
     ),
     SteelxTank(
       'SXH20',
-      litres: 2000,
-      diameter: 1700,
-      height: 160,
+      capacity: 2000,
+      dimensions: HorizontalTankDimensions(1700, 160),
       manholeDiameter: 530,
       inlet: 1,
       outlet: 2,
       thickness: 0.6,
       drain: 1,
-      isHorizontal: true,
     ),
-  ]..sort((a, b) => a.litres.compareTo(b.litres));
+  ]..sort((a, b) => a.capacity.compareTo(b.capacity));
 }
