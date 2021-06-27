@@ -26,9 +26,7 @@ flutter:
 
   assets:
     - assets/steelx_features/
-    - assets/logo.png
-    - assets/logo_borderless.png
-    - assets/steelx_banner.png
+    - assets/
 
   fonts:
     - family: Lemonada
