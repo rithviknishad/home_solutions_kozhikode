@@ -27,7 +27,7 @@ class SteelxProductSection extends MySection {
 
           // All features
           SteelxProductFeatures(),
-          SizedBox(height: 30.0),
+          SizedBox(height: 60.0),
 
           // Available Sizes
           SteelxAvailableSizes(),

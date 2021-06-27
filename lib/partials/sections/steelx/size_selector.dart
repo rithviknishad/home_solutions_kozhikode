@@ -22,7 +22,6 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
     return Column(
       children: [
         _heading(theme),
-        SizedBox(height: 10),
         Wrap(
           spacing: 120,
           runSpacing: 20,
@@ -30,54 +29,57 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
           runAlignment: WrapAlignment.spaceBetween,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Select capacity: ",
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-                SizedBox(height: 4),
-                DropdownButton<SteelxTank>(
-                  value: selectedTank,
-                  items: [
-                    for (final type in SteelxTank.allTanks)
-                      DropdownMenuItem(
-                        value: type,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('${type.model}'),
-                              Text(
-                                '${type.capacity} L',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Select capacity: ",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(height: 4),
+                  DropdownButton<SteelxTank>(
+                    value: selectedTank,
+                    items: [
+                      for (final type in SteelxTank.allTanks)
+                        DropdownMenuItem(
+                          value: type,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('${type.model}'),
+                                Text(
+                                  '${type.capacity} L',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                  ],
-                  selectedItemBuilder: (_) => [
-                    for (final type in SteelxTank.allTanks)
-                      Text(
-                        '${type.capacity} L',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                    ],
+                    selectedItemBuilder: (_) => [
+                      for (final type in SteelxTank.allTanks)
+                        Text(
+                          '${type.capacity} L',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
                         ),
-                      ),
-                  ],
-                  onChanged: (value) {
-                    if (value != null) setState(() => selectedTank = value);
-                  },
-                ),
-              ],
+                    ],
+                    onChanged: (value) {
+                      if (value != null) setState(() => selectedTank = value);
+                    },
+                  ),
+                ],
+              ),
             ),
 
             // Dimensions
@@ -113,12 +115,14 @@ class _TankProperties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 300,
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      width: 300.0,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 20),
           // Model Number
           Padding(
             padding: const EdgeInsets.all(8.0),
