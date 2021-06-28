@@ -24,17 +24,14 @@ class WelcomeSection extends MySection {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: ExactAssetImage('assets/steelx_banner.png'),
-            fit: BoxFit.fitWidth,
-            colorFilter: ColorFilter.mode(
-              Colors.black12,
-              BlendMode.darken,
-            ),
+            image: ExactAssetImage('assets/banner.jpg'),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black12, BlendMode.darken),
           ),
         ),
         child: ClipRRect(
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+            filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
