@@ -303,7 +303,7 @@ class _HoleSizeForFittingProperties extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'HOLE SEIZE FOR FITTING',
+            'HOLE SIZE FOR FITTING',
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 14,
