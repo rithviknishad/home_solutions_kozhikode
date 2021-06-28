@@ -5,7 +5,6 @@ import 'package:flutter_animator/flutter_animator.dart';
 import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/features.dart';
-import 'package:home_solutions_kozhikode/partials/sections/steelx/size_selector.dart';
 
 class SteelxProductSection extends MySection {
   @override
