@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:home_solutions_kozhikode/partials/header.dart';
 import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 import 'package:home_solutions_kozhikode/partials/sections/about.dart';
 import 'package:home_solutions_kozhikode/partials/sections/contact.dart';
@@ -22,11 +21,7 @@ class LandingPage extends StatelessWidget {
       child: CustomScrollView(
         controller: controller,
         slivers: [
-          SliverPersistentHeader(
-            delegate: _HeaderDelegate(),
-            pinned: false,
-            floating: true,
-          ),
+          SliverPersistentHeader(delegate: _HeaderDelegate(), floating: true),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Column(
