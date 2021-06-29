@@ -9,16 +9,14 @@ import 'package:home_solutions_kozhikode/partials/sections/footer.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/size_selector.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/steelx.dart';
 import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
-import 'package:home_solutions_kozhikode/partials/wrapper.dart';
 
 class LandingPage extends StatelessWidget {
   final controller = ScrollController(initialScrollOffset: 700);
 
   @override
   Widget build(context) {
-    return PageWrapper(
-      appBar: null,
-      child: CustomScrollView(
+    return Scaffold(
+      body: CustomScrollView(
         controller: controller,
         slivers: [
           SliverPersistentHeader(delegate: _HeaderDelegate(), floating: true),
@@ -53,18 +51,18 @@ class _HeaderDelegate extends SliverPersistentHeaderDelegate {
     final animation = scrollAnimationValue(shrinkOffset);
 
     return Material(
-      elevation: 6 * (1 - animation),
+      elevation: 10 * animation,
+      color: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.grey.shade400,
-
-              Colors.white,
+              Colors.lightBlue.shade700.withOpacity(animation),
+              // Colors.grey.shade400.withOpacity(animation),
+              Colors.white.withOpacity(animation),
               // Colors.lightBlue.shade900.withOpacity(animation),
-              // Colors.lightBlue.shade700.withOpacity(animation),
             ],
           ),
         ),
@@ -97,15 +95,15 @@ class _HeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 
   Widget get logo => Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(8),
         child: Image.asset(
-          'assets/logo_navbar.png',
+          'assets/logo_transparent.png',
           isAntiAlias: true,
         ),
       );
 
   @override
-  double get maxExtent => 90;
+  double get maxExtent => 60;
 
   @override
   double get minExtent => 0;
