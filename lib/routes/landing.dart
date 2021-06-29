@@ -60,8 +60,11 @@ class _HeaderDelegate extends SliverPersistentHeaderDelegate {
             begin: Alignment.topRight,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.lightBlue.shade900.withOpacity(animation),
-              Colors.lightBlue.shade700.withOpacity(animation),
+              Colors.grey.shade400,
+
+              Colors.white,
+              // Colors.lightBlue.shade900.withOpacity(animation),
+              // Colors.lightBlue.shade700.withOpacity(animation),
             ],
           ),
         ),
@@ -94,21 +97,15 @@ class _HeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 
   Widget get logo => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        child: Material(
-          // elevation: 4,
-          shape: const CircleBorder(),
-          clipBehavior: Clip.antiAlias,
-          child: Image.asset(
-            'assets/logo_borderless.png',
-            // height: 128,
-            isAntiAlias: true,
-          ),
+        padding: const EdgeInsets.all(12),
+        child: Image.asset(
+          'assets/logo_navbar.png',
+          isAntiAlias: true,
         ),
       );
 
   @override
-  double get maxExtent => 120.0;
+  double get maxExtent => 90;
 
   @override
   double get minExtent => 0;
@@ -143,13 +140,16 @@ class _InlineNavBar extends StatelessWidget {
       children: [
         for (final section in _sections.entries)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TextButton(
               onPressed: section.value,
               child: Text(
                 section.key,
                 style: TextStyle(
-                  color: Color.lerp(Colors.white, Colors.blue, animation),
+                  color:
+                      Color.lerp(Colors.transparent, Colors.white, animation),
+                  fontSize: 16,
+                  letterSpacing: 1,
                 ),
               ),
             ),

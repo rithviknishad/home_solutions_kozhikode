@@ -47,7 +47,7 @@ class NavBar extends StatelessWidget {
               shape: const CircleBorder(),
               clipBehavior: Clip.antiAlias,
               child: Image.asset(
-                'assets/logo_borderless.png',
+                'assets/logo_navbar.png',
                 height: 128,
                 isAntiAlias: true,
               ),

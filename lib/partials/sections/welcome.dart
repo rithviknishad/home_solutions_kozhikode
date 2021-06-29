@@ -38,24 +38,19 @@ class WelcomeSection extends MySection {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Image.asset(
+                    'assets/logo.png',
+                    height: 250,
+                    isAntiAlias: true,
+                  ),
+                  SizedBox(height: 100),
                   Text(
                     HomeSolutions.catchPrase,
                     style: theme.textTheme.caption?.apply(
                       color: Colors.white,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black,
-                          blurRadius: 20,
-                        ),
-                      ],
+                      shadows: [Shadow(color: Colors.black, blurRadius: 8)],
                     ),
                     textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: size.height * 0.1),
-                  Image.asset(
-                    'assets/logo.png',
-                    height: size.height * 0.3,
-                    isAntiAlias: true,
                   ),
                 ],
               ),
