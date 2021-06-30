@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,9 @@ class LandingPage extends StatelessWidget {
         controller: controller,
         slivers: [
           SliverPersistentHeader(
-              delegate: _NavigationBarDelegate(), floating: true),
+            delegate: _NavigationBarDelegate(),
+            floating: true,
+          ),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Column(
@@ -32,7 +35,7 @@ class LandingPage extends StatelessWidget {
                 FooterSection(),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -49,25 +52,26 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
     final animation = scrollAnimationValue(shrinkOffset);
 
     return Material(
-      elevation: 10 * animation,
+      elevation: 6 * animation,
+      shadowColor: theme.shadowColor.withOpacity(animation / 2),
       color: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.lightBlue.shade700.withOpacity(animation),
-              // Colors.grey.shade400.withOpacity(animation),
-              Colors.white.withOpacity(animation),
-              // Colors.lightBlue.shade900.withOpacity(animation),
-            ],
+          color: Colors.white.withOpacity(animation),
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.lerp(
+                  Radius.elliptical(100, 10),
+                  Radius.circular(30),
+                  animation,
+                ) ??
+                Radius.zero,
           ),
         ),
         height: visibleMainHeight,
         width: size.width,
-        padding:
-            EdgeInsets.symmetric(horizontal: max((size.width - 1140) / 2, 0)),
+        padding: EdgeInsets.symmetric(
+          horizontal: max((size.width - 1140) / 2, 0),
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Stack(
@@ -85,10 +89,10 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
                 )
               else
                 Positioned(
-                  right: 0,
+                  right: lerpDouble(0, 10, animation),
                   child: IconButton(
                     icon: Icon(Icons.menu),
-                    color: Colors.white,
+                    color: theme.primaryColor.withOpacity(animation),
                     onPressed: Scaffold.of(context).openEndDrawer,
                   ),
                 ),
@@ -108,7 +112,7 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
       );
 
   @override
-  double get maxExtent => 60;
+  double get maxExtent => 80;
 
   @override
   double get minExtent => 0;
