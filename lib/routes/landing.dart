@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:home_solutions_kozhikode/partials/navigation_bar.dart';
 import 'package:home_solutions_kozhikode/partials/sections/about.dart';
 import 'package:home_solutions_kozhikode/partials/sections/contact.dart';
 import 'package:home_solutions_kozhikode/partials/sections/footer.dart';
@@ -19,7 +18,8 @@ class LandingPage extends StatelessWidget {
       body: CustomScrollView(
         controller: controller,
         slivers: [
-          SliverPersistentHeader(delegate: _HeaderDelegate(), floating: true),
+          SliverPersistentHeader(
+              delegate: _NavigationBarDelegate(), floating: true),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Column(
@@ -39,9 +39,7 @@ class LandingPage extends StatelessWidget {
   }
 }
 
-class _HeaderDelegate extends SliverPersistentHeaderDelegate {
-  static const _drawer = MyDrawer();
-
+class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(context, shrinkOffset, _) {
     final size = MediaQuery.of(context).size;
@@ -86,7 +84,14 @@ class _HeaderDelegate extends SliverPersistentHeaderDelegate {
                   child: _InlineNavBar(animation: animation),
                 )
               else
-                Positioned(right: 0, child: _drawer),
+                Positioned(
+                  right: 0,
+                  child: IconButton(
+                    icon: Icon(Icons.menu),
+                    color: Colors.white,
+                    onPressed: Scaffold.of(context).openEndDrawer,
+                  ),
+                ),
             ],
           ),
         ),

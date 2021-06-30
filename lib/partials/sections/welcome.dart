@@ -11,23 +11,23 @@ class WelcomeSection extends MySection {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.8,
+      height: size.height,
       width: size.width,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.grey.shade300, Colors.grey.shade200],
-        ),
         image: DecorationImage(
           image: ExactAssetImage('assets/banner.jpg'),
           fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(Colors.black12, BlendMode.darken),
+          colorFilter: ColorFilter.mode(
+            Colors.black12,
+            BlendMode.darken,
+          ),
         ),
       ),
       child: ClipRRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(
-            sigmaX: 0,
-            sigmaY: 0,
+            sigmaX: 4,
+            sigmaY: 4,
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -45,7 +45,9 @@ class WelcomeSection extends MySection {
                   HomeSolutions.catchPrase,
                   style: theme.textTheme.caption?.apply(
                     color: Colors.white,
-                    shadows: [Shadow(color: Colors.black, blurRadius: 8)],
+                    shadows: [
+                      Shadow(color: Colors.black, blurRadius: 8),
+                    ],
                   ),
                   textAlign: TextAlign.center,
                 ),
