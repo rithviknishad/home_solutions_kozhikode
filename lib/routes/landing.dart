@@ -11,31 +11,32 @@ import 'package:home_solutions_kozhikode/partials/sections/steelx/steelx.dart';
 import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
 
 class LandingPage extends StatelessWidget {
-  final controller = ScrollController(initialScrollOffset: 700);
+  static final sections = [
+    WelcomeSection(),
+    SteelxProductSection(),
+    SteelxTankSizesSection(),
+    AboutUsSection(),
+    ContactSection(),
+    FooterSection(),
+  ];
+
+  final controller = ScrollController(initialScrollOffset: 0);
 
   @override
   Widget build(context) {
     return Scaffold(
       body: CustomScrollView(
         controller: controller,
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverPersistentHeader(
             delegate: _NavigationBarDelegate(),
+            pinned: true,
             floating: true,
           ),
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: Column(
-              children: [
-                WelcomeSection(),
-                SteelxProductSection(),
-                SteelxTankSizesSection(),
-                AboutUsSection(),
-                ContactSection(),
-                FooterSection(),
-              ],
-            ),
-          ),
+          SliverList(
+            delegate: SliverChildListDelegate(sections),
+          )
         ],
       ),
     );
@@ -50,57 +51,52 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
 
     final visibleMainHeight = max(maxExtent - shrinkOffset, minExtent);
     final animation = scrollAnimationValue(shrinkOffset);
-    final borderRadius = BorderRadius.vertical(
-      bottom: Radius.lerp(
-            Radius.elliptical(100, 10),
-            Radius.circular(30),
-            animation,
-          ) ??
-          Radius.zero,
-    );
+
     return Material(
       elevation: 6 * animation,
-      // shadowColor: theme.shadowColor.withOpacity(animation / 2),
-
+      shadowColor: Colors.transparent,
       color: Colors.transparent,
-      child: ClipRRect(
-        borderRadius: borderRadius,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(animation),
-            borderRadius: borderRadius,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.lerp(
+              Radius.circular(10),
+              Radius.circular(30),
+              animation,
+            )!,
           ),
-          height: visibleMainHeight,
-          width: size.width,
-          padding: EdgeInsets.symmetric(
-            horizontal: max((size.width - 1140) / 2, 0),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Stack(
-              alignment: AlignmentDirectional.center,
-              fit: StackFit.expand,
-              children: [
-                // Logo
-                Positioned(left: 0, top: 0, bottom: 0, child: logo),
+        ),
+        height: visibleMainHeight,
+        width: size.width,
+        padding: EdgeInsets.symmetric(
+          horizontal: max((size.width - 1140) / 2, 0),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            fit: StackFit.expand,
+            children: [
+              // Logo
+              Positioned(left: 0, top: 0, bottom: 0, child: logo),
 
-                // Nav Bar Buttons
-                if (size.width > 1000)
-                  Positioned(
-                    right: 0,
-                    child: _InlineNavBar(animation: animation),
-                  )
-                else
-                  Positioned(
-                    right: lerpDouble(0, 10, animation),
-                    child: IconButton(
-                      icon: Icon(Icons.menu),
-                      color: theme.primaryColor.withOpacity(animation),
-                      onPressed: Scaffold.of(context).openEndDrawer,
-                    ),
+              // Nav Bar Buttons
+              if (size.width > 1000)
+                Positioned(
+                  right: 0,
+                  child: _InlineNavBar(animation: animation),
+                )
+              else
+                Positioned(
+                  right: lerpDouble(0, 10, animation),
+                  child: IconButton(
+                    icon: Icon(Icons.menu),
+                    color: theme.primaryColor.withOpacity(animation),
+                    onPressed: Scaffold.of(context).openEndDrawer,
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
         ),
       ),
@@ -111,15 +107,15 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
         padding: const EdgeInsets.all(8),
         child: Image.asset(
           'assets/logo_transparent.png',
-          isAntiAlias: true,
+          filterQuality: FilterQuality.high,
         ),
       );
 
   @override
-  double get maxExtent => 60;
+  double get maxExtent => 80;
 
   @override
-  double get minExtent => 0;
+  double get minExtent => 50;
 
   @override
   bool shouldRebuild(_) => true;

@@ -11,7 +11,7 @@ class WelcomeSection extends MySection {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height,
+      height: size.height * 0.9,
       width: size.width,
       decoration: BoxDecoration(
         image: DecorationImage(
