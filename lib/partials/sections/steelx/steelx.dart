@@ -51,7 +51,7 @@ class SteelxProductSection extends MySection {
   Widget get demoTank => Padding(
         padding: const EdgeInsets.all(8),
         child: Image(
-          image: AssetImage('assets/steelx_banner.png'),
+          image: AssetImage('assets/steelx_tank.png'),
           isAntiAlias: true,
           filterQuality: FilterQuality.high,
           height: 600,
