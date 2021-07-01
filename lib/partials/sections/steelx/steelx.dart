@@ -20,7 +20,7 @@ class SteelxProductSection extends MySection {
         children: [
           // The Heading
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
+            padding: const EdgeInsets.fromLTRB(8, 30, 8, 30),
             child: FadeInUp(
               preferences: normalAnimation,
               child: Text(
@@ -48,14 +48,11 @@ class SteelxProductSection extends MySection {
     );
   }
 
-  Widget get demoTank => Padding(
-        padding: const EdgeInsets.all(8),
-        child: Image(
-          image: AssetImage('assets/steelx_tank.png'),
-          isAntiAlias: true,
-          filterQuality: FilterQuality.high,
-          height: 600,
-        ),
+  Widget get demoTank => Image(
+        image: AssetImage('assets/steelx_tank.png'),
+        isAntiAlias: true,
+        filterQuality: FilterQuality.high,
+        height: 400,
       );
 
   EdgeInsets _getPadding(Size size) => EdgeInsets.symmetric(
