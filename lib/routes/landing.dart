@@ -11,31 +11,29 @@ import 'package:home_solutions_kozhikode/partials/sections/steelx/steelx.dart';
 import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
 
 class LandingPage extends StatelessWidget {
-  static final sections = [
-    WelcomeSection(),
-    SteelxProductSection(),
-    SteelxTankSizesSection(),
-    AboutUsSection(),
-    ContactSection(),
-    FooterSection(),
-  ];
-
-  final controller = ScrollController(initialScrollOffset: 0);
-
   @override
   Widget build(context) {
     return Scaffold(
       body: CustomScrollView(
-        controller: controller,
         physics: const BouncingScrollPhysics(),
         slivers: [
+          // App Bar / Navigation Bar / Header
           SliverPersistentHeader(
             delegate: _NavigationBarDelegate(),
             pinned: true,
             floating: true,
           ),
+
+          // Reamining page
           SliverList(
-            delegate: SliverChildListDelegate(sections),
+            delegate: SliverChildListDelegate([
+              WelcomeSection(),
+              SteelxProductSection(),
+              SteelxTankSizesSection(),
+              AboutUsSection(),
+              ContactSection(),
+              FooterSection(),
+            ]),
           )
         ],
       ),
@@ -49,7 +47,6 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
 
-    final visibleMainHeight = max(maxExtent - shrinkOffset, minExtent);
     final animation = scrollAnimationValue(shrinkOffset);
 
     return Material(
@@ -67,49 +64,48 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
             )!,
           ),
         ),
-        height: visibleMainHeight,
-        width: size.width,
-        padding: EdgeInsets.symmetric(
-          horizontal: max((size.width - 1140) / 2, 0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Stack(
-            alignment: AlignmentDirectional.center,
-            fit: StackFit.expand,
-            children: [
-              // Logo
-              Positioned(left: 0, top: 0, bottom: 0, child: logo),
 
-              // Nav Bar Buttons
-              if (size.width > 1000)
-                Positioned(
-                  right: 0,
-                  child: _InlineNavBar(animation: animation),
-                )
-              else
-                Positioned(
-                  right: lerpDouble(0, 10, animation),
-                  child: IconButton(
-                    icon: Icon(Icons.menu),
-                    color: theme.primaryColor.withOpacity(animation),
-                    onPressed: Scaffold.of(context).openEndDrawer,
-                  ),
+        // visible height
+        height: max(maxExtent - shrinkOffset, minExtent),
+        width: size.width,
+
+        // Apply left and right spacing if screen too wide
+        padding: EdgeInsets.symmetric(
+          horizontal: max((size.width - 1140) / 2, 0) + 20,
+        ),
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          fit: StackFit.expand,
+          children: [
+            // Home Solutions Logo, scales with height of app bar
+            Positioned(
+              left: 0,
+              top: 0,
+              bottom: 0,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Image.asset(
+                  'assets/logo_transparent.png',
+                  filterQuality: FilterQuality.high,
                 ),
-            ],
-          ),
+              ),
+            ),
+
+            Positioned(
+              right: lerpDouble(0, 10, animation),
+              child: size.width > 1000
+                  ? _InlineNavBar(animation: animation)
+                  : IconButton(
+                      icon: Icon(Icons.menu),
+                      color: theme.primaryColor.withOpacity(animation),
+                      onPressed: Scaffold.of(context).openEndDrawer,
+                    ),
+            ),
+          ],
         ),
       ),
     );
   }
-
-  Widget get logo => Padding(
-        padding: const EdgeInsets.all(8),
-        child: Image.asset(
-          'assets/logo_transparent.png',
-          filterQuality: FilterQuality.high,
-        ),
-      );
 
   @override
   double get maxExtent => 80;
@@ -143,23 +139,25 @@ class _InlineNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Row(
       children: [
         for (final section in _sections.entries)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: TextButton(
-              onPressed: section.value,
+          TextButton(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
               child: Text(
                 section.key,
                 style: TextStyle(
-                  color:
-                      Color.lerp(Colors.transparent, Colors.white, animation),
-                  fontSize: 16,
+                  color: theme.primaryColor,
+                  fontSize: lerpDouble(14, 16, animation),
                   letterSpacing: 1,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
+            onPressed: section.value,
           )
       ],
     );
