@@ -22,7 +22,7 @@ class SteelxProductFeatures extends StatelessWidget {
       alignment: WrapAlignment.center,
       runAlignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 30,
+      spacing: MediaQuery.of(context).size.width > 1000 ? 30 : 10,
       runSpacing: 30,
       children: [
         for (final f in _features.entries)
@@ -46,11 +46,13 @@ class _FeatureTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     final theme = Theme.of(context);
 
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: 200.0,
+      width: size.width > 1000 ? 200.0 : 160.0,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

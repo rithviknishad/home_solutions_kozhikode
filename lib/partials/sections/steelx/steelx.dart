@@ -2,16 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
-import 'package:home_solutions_kozhikode/partials/gradient_text.dart';
 import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/features.dart';
 
 class SteelxProductSection extends MySection {
-  final Shader titleGradient = LinearGradient(
-    colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)],
-  ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -38,20 +33,17 @@ class SteelxProductSection extends MySection {
             padding: const EdgeInsets.fromLTRB(8, 30, 8, 30),
             child: FadeInUp(
               preferences: normalAnimation,
-              child: GradientText(
-                gradient: LinearGradient(colors: [
-                  Colors.blue.shade400,
-                  Colors.blue.shade900,
-                ]),
-                text: Text(
-                  "Premium Quality Stainless Steel Water Tanks",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 2,
-                  ),
+              child: Text(
+                "Premium Quality Stainless Steel Water Tanks",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: theme.primaryColor,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2,
+                  shadows: [
+                    Shadow(color: Colors.blue.shade300, blurRadius: 20),
+                  ],
                 ),
               ),
             ),
