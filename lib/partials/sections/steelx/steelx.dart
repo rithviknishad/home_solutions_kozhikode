@@ -18,8 +18,8 @@ class SteelxProductSection extends MySection {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.yellow.shade200,
             Colors.lightBlue.shade200,
+            Colors.grey.shade100,
           ],
         ),
       ),
@@ -29,28 +29,31 @@ class SteelxProductSection extends MySection {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // The Heading
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 30, 8, 30),
-            child: FadeInUp(
-              preferences: normalAnimation,
-              child: Text(
-                "Premium Quality Stainless Steel Water Tanks",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: theme.primaryColor,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 2,
-                  shadows: [
-                    Shadow(color: Colors.blue.shade300, blurRadius: 20),
-                  ],
+          FadeInLeft(
+            preferences: slowAnimation,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(8, 30, 8, 30),
+              child: FadeInUp(
+                preferences: normalAnimation,
+                child: Text(
+                  "Premium Quality Stainless Steel Water Tanks",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: theme.primaryColor,
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 2,
+                    shadows: [
+                      Shadow(color: Colors.black54, blurRadius: 20),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
 
           // Tank's Banner
-          demoTank,
+          demoTank(size),
           SizedBox(height: 30.0),
 
           // All features
@@ -61,11 +64,11 @@ class SteelxProductSection extends MySection {
     );
   }
 
-  Widget get demoTank => Image(
+  Widget demoTank(Size size) => Image(
         image: AssetImage('assets/steelx_tank.png'),
         isAntiAlias: true,
         filterQuality: FilterQuality.high,
-        height: 400,
+        height: size.width > 1000 ? 600 : 400,
       );
 
   EdgeInsets _getPadding(Size size) => EdgeInsets.symmetric(
