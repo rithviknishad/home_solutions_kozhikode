@@ -12,37 +12,53 @@ class AboutUsSection extends MySection {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      color: theme.primaryColor,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Colors.lightBlue.shade100,
+            Colors.white,
+          ],
+        ),
+      ),
       padding: EdgeInsets.symmetric(
         horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10,
       ).copyWith(top: 30, bottom: 60),
       width: size.width,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
-            child: FadeInUp(
-              preferences: normalAnimation,
+          FadeInRight(
+            preferences: normalAnimation,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(8, 30, 8, 10),
               child: Text(
                 "We are ...",
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: theme.primaryColor,
                   fontSize: 26,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
                   letterSpacing: 1.0,
                 ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FadeInUp(
-              preferences: slowAnimation,
+          FadeInRight(
+            preferences: slowAnimation,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
-                "${r"    // ** \\   NO CONTENT   // ** \\    " * 4}\n // TODO: set_onContentAvailable: TextStyle(color: Colors.white70)",
-                style: TextStyle(color: Colors.yellow),
+                _description,
+                style: TextStyle(
+                  color: theme.primaryColorDark,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1,
+                ),
+                textAlign: TextAlign.justify,
               ),
             ),
           )
@@ -50,4 +66,7 @@ class AboutUsSection extends MySection {
       ),
     );
   }
+
+  static const _description =
+      "... the official distributors of SteelX stainless water tank products in Kozhikode and Wayanad.\n\nSteelx is a single source manufacturer offering totally integrated water treatment solutions. Vertical integration through recent acquisitions combined expertise and knowledge in the water treatment industry places us clearly above industry competition. Core strength lies in designing customized plants and assemblies with the use of cutting edge technology.";
 }
