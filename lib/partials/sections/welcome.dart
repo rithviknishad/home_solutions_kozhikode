@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -43,7 +44,7 @@ class WelcomeSection extends MySection {
                   ),
                   child: Image.asset(
                     'assets/logo.png',
-                    height: 250,
+                    width: min(250, size.width * 0.3),
                     isAntiAlias: true,
                   ),
                 ),
