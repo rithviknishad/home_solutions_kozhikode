@@ -21,12 +21,11 @@ class LandingPage extends StatelessWidget {
           SliverPersistentHeader(
             delegate: _NavigationBarDelegate(),
             pinned: true,
-            floating: true,
           ),
 
           // Reamining page
           SliverList(
-            delegate: SliverChildListDelegate([
+            delegate: SliverChildListDelegate.fixed([
               WelcomeSection(),
               SteelxProductSection(),
               SteelxTankSizesSection(),
