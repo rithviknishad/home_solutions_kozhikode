@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in_down.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in_up.dart';
@@ -104,41 +105,37 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
                   for (final type in [Axis.vertical, Axis.horizontal])
                     FadeInDown(
                       preferences: slowAnimation,
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          child: Theme(
-                            data:
-                                theme.copyWith(canvasColor: Colors.transparent),
-                            child: Chip(
-                              side: BorderSide(color: Colors.white, width: 2),
-                              backgroundColor: tankAxis == type
-                                  ? Colors.white
-                                  : Colors.transparent,
-                              label: Text(
-                                '$type'.replaceFirst('Axis.', '').toUpperCase(),
-                                style: TextStyle(
-                                  color: tankAxis == type
-                                      ? theme.primaryColor
-                                      : Colors.white,
-                                  fontWeight: tankAxis == type
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
-                                  letterSpacing: 1,
-                                ),
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        child: Theme(
+                          data: theme.copyWith(canvasColor: Colors.transparent),
+                          child: Chip(
+                            side: BorderSide(color: Colors.white, width: 2),
+                            backgroundColor: tankAxis == type
+                                ? Colors.white
+                                : Colors.transparent,
+                            label: Text(
+                              '$type'.replaceFirst('Axis.', '').toUpperCase(),
+                              style: TextStyle(
+                                color: tankAxis == type
+                                    ? theme.primaryColor
+                                    : Colors.white,
+                                fontWeight: tankAxis == type
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                                letterSpacing: 1,
                               ),
                             ),
                           ),
-                          onTap: () {
-                            if (tankAxis != type) {
-                              setState(() {
-                                tankAxis = type;
-                                selectedTank = filteredTanks.first;
-                              });
-                            }
-                          },
                         ),
+                        onTap: () {
+                          if (tankAxis != type) {
+                            setState(() {
+                              tankAxis = type;
+                              selectedTank = filteredTanks.first;
+                            });
+                          }
+                        },
                       ),
                     ),
                 ],
