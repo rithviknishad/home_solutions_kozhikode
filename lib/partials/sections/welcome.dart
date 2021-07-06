@@ -6,6 +6,8 @@ import 'package:home_solutions_kozhikode/home_solutions.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 
 class WelcomeSection extends MySection {
+  WelcomeSection({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
