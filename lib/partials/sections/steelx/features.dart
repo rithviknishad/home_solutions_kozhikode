@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/widgets/fading_entrances/fade_in.dart';
+import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 
 class SteelxProductFeatures extends StatelessWidget {
   const SteelxProductFeatures({Key? key}) : super(key: key);
@@ -50,27 +52,30 @@ class _FeatureTile extends StatelessWidget {
 
     final theme = Theme.of(context);
 
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      width: size.width > 1000 ? 200.0 : 160.0,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image(
-            image: AssetImage(asset),
-            height: 60,
-          ),
-          SizedBox(height: 12.0),
-          Text(
-            description,
-            style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.w700,
-              color: theme.primaryColor,
+    return FadeIn(
+      preferences: slowAnimation,
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        width: size.width > 1000 ? 200.0 : 160.0,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image(
+              image: AssetImage(asset),
+              height: 60,
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+            SizedBox(height: 12.0),
+            Text(
+              description,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w700,
+                color: theme.primaryColor,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
