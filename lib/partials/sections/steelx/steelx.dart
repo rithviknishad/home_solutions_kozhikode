@@ -29,31 +29,31 @@ class SteelxProductSection extends MySection {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // The Heading
-          FadeInLeft(
-            preferences: slowAnimation,
+          FadeInUp(
+            preferences: normalAnimation,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(8, 30, 8, 30),
-              child: FadeInUp(
-                preferences: normalAnimation,
-                child: Text(
-                  "Premium Quality Stainless Steel Water Tanks",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: theme.primaryColor,
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 2,
-                    shadows: [
-                      Shadow(color: Colors.black54, blurRadius: 20),
-                    ],
-                  ),
+              child: Text(
+                "Premium Quality Stainless Steel Water Tanks",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: theme.primaryColor,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2,
+                  shadows: [
+                    Shadow(color: Colors.black38, blurRadius: 20),
+                  ],
                 ),
               ),
             ),
           ),
 
           // Tank's Banner
-          demoTank(size),
+          FadeIn(
+            preferences: slowAnimation,
+            child: demoTank(size),
+          ),
           SizedBox(height: 30.0),
 
           // All features
