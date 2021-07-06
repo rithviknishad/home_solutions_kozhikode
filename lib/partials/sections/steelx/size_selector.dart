@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/widgets/fading_entrances/fade_in_down.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in_up.dart';
 import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
@@ -15,8 +16,17 @@ class SteelxTankSizesSection extends MySection {
 
     return Container(
       padding: _getPadding(size),
-      color: theme.primaryColor,
       width: size.width,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Colors.lightBlue.shade200,
+            theme.primaryColor,
+          ],
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -61,21 +71,78 @@ class SteelxAvailableSizes extends StatefulWidget {
 class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
   SteelxTank selectedTank = SteelxTank.allTanks.first;
 
-  List<SteelxTank> get allTanks => SteelxTank.allTanks;
+  Axis tankAxis =
+      SteelxTank.allTanks.first.isHorizontal ? Axis.horizontal : Axis.vertical;
+
+  List<SteelxTank> get filteredTanks => [
+        ...SteelxTank.allTanks.where(
+            (t) => tankAxis == Axis.vertical ? t.isVertical : t.isHorizontal)
+      ];
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Column(
+    return Wrap(
+      spacing: 120,
+      runSpacing: 20,
+      alignment: WrapAlignment.center,
+      runAlignment: WrapAlignment.spaceBetween,
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        Wrap(
-          spacing: 120,
-          runSpacing: 20,
-          alignment: WrapAlignment.center,
-          runAlignment: WrapAlignment.spaceBetween,
-          crossAxisAlignment: WrapCrossAlignment.center,
+        Column(
           children: [
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  for (final type in [Axis.vertical, Axis.horizontal])
+                    FadeInDown(
+                      preferences: slowAnimation,
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          child: Theme(
+                            data:
+                                theme.copyWith(canvasColor: Colors.transparent),
+                            child: Chip(
+                              side: BorderSide(color: Colors.white, width: 2),
+                              backgroundColor: tankAxis == type
+                                  ? Colors.white
+                                  : Colors.transparent,
+                              label: Text(
+                                '$type'.replaceFirst('Axis.', '').toUpperCase(),
+                                style: TextStyle(
+                                  color: tankAxis == type
+                                      ? theme.primaryColor
+                                      : Colors.white,
+                                  fontWeight: tankAxis == type
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
+                                  letterSpacing: 1,
+                                ),
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            if (tankAxis != type) {
+                              setState(() {
+                                tankAxis = type;
+                                selectedTank = filteredTanks.first;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -95,7 +162,7 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
                   DropdownButton<SteelxTank>(
                     value: selectedTank,
                     items: [
-                      for (final type in SteelxTank.allTanks)
+                      for (final type in filteredTanks)
                         DropdownMenuItem(
                           value: type,
                           child: Padding(
@@ -117,7 +184,7 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
                         ),
                     ],
                     selectedItemBuilder: (_) => [
-                      for (final type in SteelxTank.allTanks)
+                      for (final type in filteredTanks)
                         Text(
                           '${type.capacity} L',
                           style: TextStyle(
@@ -135,14 +202,14 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
                 ],
               ),
             ),
-
-            // Dimensions
-            _InteractiveTank(selectedTank),
-
-            // Other properties
-            _TankProperties(selectedTank),
           ],
         ),
+
+        // Dimensions
+        _InteractiveTank(selectedTank),
+
+        // Other properties
+        _TankProperties(selectedTank),
       ],
     );
   }
@@ -415,7 +482,9 @@ class _InteractiveTank extends StatelessWidget {
   }
 
   Widget get _tankThumbnail => Image(
-        image: AssetImage('assets/tank_size_selection_thumbnail.jpg'),
+        image: AssetImage(
+          'assets/steelx_tank_${tank.isHorizontal ? 'horizontal' : 'vertical'}.png',
+        ),
         height: 300,
       );
 }
