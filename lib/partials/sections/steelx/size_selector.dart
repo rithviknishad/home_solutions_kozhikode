@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/widgets/fading_entrances/fade_in.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in_down.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in_up.dart';
 import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
@@ -143,73 +144,84 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "SELECT CAPACITY:".toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: theme.primaryColorLight,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 1.0,
+            FadeInUp(
+              preferences: slowAnimation,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "SELECT CAPACITY:".toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: theme.primaryColorLight,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.0,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 10),
-                  DropdownButton<SteelxTank>(
-                    value: selectedTank,
-                    items: [
-                      for (final type in filteredTanks)
-                        DropdownMenuItem(
-                          value: type,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('${type.model}'),
-                                Text(
-                                  '${type.capacity} L',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                    SizedBox(height: 10),
+                    DropdownButton<SteelxTank>(
+                      value: selectedTank,
+                      items: [
+                        for (final type in filteredTanks)
+                          DropdownMenuItem(
+                            value: type,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('${type.model}'),
+                                  Text(
+                                    '${type.capacity} L',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                    ],
-                    selectedItemBuilder: (_) => [
-                      for (final type in filteredTanks)
-                        Text(
-                          '${type.capacity} L',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
-                            color: Colors.white,
-                            letterSpacing: 1,
+                      ],
+                      selectedItemBuilder: (_) => [
+                        for (final type in filteredTanks)
+                          Text(
+                            '${type.capacity} L',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                              color: Colors.white,
+                              letterSpacing: 1,
+                            ),
                           ),
-                        ),
-                    ],
-                    onChanged: (value) {
-                      if (value != null) setState(() => selectedTank = value);
-                    },
-                  ),
-                ],
+                      ],
+                      onChanged: (value) {
+                        if (value != null) setState(() => selectedTank = value);
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
         ),
 
         // Dimensions
-        _InteractiveTank(selectedTank),
+        FadeIn(
+          key: Key(selectedTank.model),
+          preferences: normalAnimation.copyWith(offset: Duration.zero),
+          child: _InteractiveTank(selectedTank),
+        ),
 
         // Other properties
-        _TankProperties(selectedTank),
+        FadeIn(
+          key: Key('${selectedTank.model}_p'),
+          preferences: slowAnimation,
+          child: _TankProperties(selectedTank),
+        ),
       ],
     );
   }
