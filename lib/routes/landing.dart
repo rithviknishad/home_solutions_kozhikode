@@ -11,11 +11,14 @@ import 'package:home_solutions_kozhikode/partials/sections/steelx/steelx.dart';
 import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
 
 class LandingPage extends StatelessWidget {
+  final controller = ScrollController();
+
   @override
   Widget build(context) {
     return Scaffold(
       body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
+        cacheExtent: 0,
+        controller: controller,
         slivers: [
           // App Bar / Navigation Bar / Header
           SliverPersistentHeader(
@@ -33,7 +36,7 @@ class LandingPage extends StatelessWidget {
               ContactSection(),
               FooterSection(),
             ]),
-          )
+          ),
         ],
       ),
     );
