@@ -6,7 +6,7 @@ name: Deploy to Firebase Hosting
       - main
 
 env:
-  flutter_version: "2.0.3"
+  flutter_version: "2.2.1"
   java_version: "12.x"
 
 jobs:
