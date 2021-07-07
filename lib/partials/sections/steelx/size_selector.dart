@@ -160,6 +160,7 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
                     ),
                     SizedBox(height: 10),
                     DropdownButton<SteelxTank>(
+                      iconEnabledColor: Colors.white,
                       value: selectedTank,
                       items: [
                         for (final type in filteredTanks)
