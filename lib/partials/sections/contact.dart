@@ -6,7 +6,9 @@ import 'package:home_solutions_kozhikode/home_solutions.dart';
 import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:mailto/mailto.dart';
 import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends MySection {
   @override
@@ -195,8 +197,6 @@ class _ContactUsForm extends StatefulWidget {
 class __ContactUsFormState extends State<_ContactUsForm> {
   bool sent = false;
 
-  bool isValid = false;
-
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final phoneNumberController = TextEditingController();
@@ -206,6 +206,54 @@ class __ContactUsFormState extends State<_ContactUsForm> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
+
+    if (sent) {
+      return Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Colors.greenAccent.shade700,
+              Colors.greenAccent.shade700,
+            ],
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.green,
+              blurRadius: 20,
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.all(16),
+        width: min(size.width - 20, 440),
+        height: 320,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.check_circle,
+                color: Colors.white,
+                size: 50,
+              ),
+              SizedBox(height: 20),
+              Text(
+                "Sit back and relax,\nwe'll contact you ASAP.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1,
+                  fontSize: 24,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     return Container(
       decoration: BoxDecoration(
@@ -288,7 +336,7 @@ class __ContactUsFormState extends State<_ContactUsForm> {
                     primary: theme.primaryColorDark,
                     onPrimary: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: sendMail,
                   icon: Padding(
                     padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
                     child: Icon(Icons.send),
@@ -304,5 +352,40 @@ class __ContactUsFormState extends State<_ContactUsForm> {
         ),
       ),
     );
+  }
+
+  Future<void> sendMail() async {
+    final clientName = nameController.text;
+
+    var clientEmail = emailController.text;
+    if (clientEmail.trim().isEmpty) clientEmail = "(not provided)";
+
+    var clientPhone = phoneNumberController.text;
+    if (clientPhone.trim().isEmpty) clientPhone = "(not provided)";
+
+    final comment = commentController.text;
+
+    final link = Mailto(
+      to: HomeSolutions.MailingIds,
+      subject: 'Enquiry from $clientName',
+      body: """
+Home Solutions,
+
+I, $clientName is trying to reach you.
+
+$comment
+
+Reach me by phone $clientPhone or by email $clientEmail.
+
+Partially auto-generated email.
+      """,
+    );
+
+    if (await canLaunch('$link')) {
+      try {
+        await launch('$link');
+        setState(() => sent = true);
+      } catch (_) {}
+    }
   }
 }
