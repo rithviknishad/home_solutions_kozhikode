@@ -32,12 +32,12 @@ class AboutUsSection extends MySection {
           FadeInRight(
             preferences: normalAnimation,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(8, 30, 8, 10),
+              padding: const EdgeInsets.fromLTRB(16, 30, 8, 16),
               child: Text(
                 "We are ...",
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: theme.primaryColor,
+                  color: theme.primaryColorDark,
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic,
@@ -53,9 +53,10 @@ class AboutUsSection extends MySection {
               child: Text(
                 _description,
                 style: TextStyle(
-                  color: theme.primaryColorDark,
+                  color: theme.primaryColor,
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
+                  fontStyle: FontStyle.italic,
                   letterSpacing: 1,
                 ),
                 textAlign: TextAlign.justify,
