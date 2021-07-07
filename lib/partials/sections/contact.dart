@@ -15,7 +15,16 @@ class ContactSection extends MySection {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      color: Colors.white,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [
+            Colors.grey.shade300,
+            Colors.grey.shade100,
+          ],
+        ),
+      ),
       padding: EdgeInsets.symmetric(
         horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10,
       ).copyWith(top: 30, bottom: 60),
@@ -24,7 +33,7 @@ class ContactSection extends MySection {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
+            padding: const EdgeInsets.fromLTRB(8, 30, 8, 30),
             child: FadeInUp(
               preferences: normalAnimation,
               child: Text(
@@ -38,6 +47,10 @@ class ContactSection extends MySection {
                 ),
               ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _ContactUsForm(),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -170,4 +183,126 @@ class ContactSection extends MySection {
     'sms': 'Send an SMS',
     'whatsapp': 'Message in WhatsApp'
   };
+}
+
+class _ContactUsForm extends StatefulWidget {
+  const _ContactUsForm({Key? key}) : super(key: key);
+
+  @override
+  __ContactUsFormState createState() => __ContactUsFormState();
+}
+
+class __ContactUsFormState extends State<_ContactUsForm> {
+  bool sent = false;
+
+  bool isValid = false;
+
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final commentController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [
+            Colors.grey.shade300,
+            Colors.grey.shade100,
+          ],
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blueGrey.withOpacity(0.5),
+            blurRadius: 10,
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.all(16),
+      width: min(size.width - 20, 440),
+      child: Form(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                'Let us know how can we reach you',
+                style: TextStyle(fontSize: 18, color: Colors.grey),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Name',
+                  icon: Icon(Icons.person),
+                ),
+                controller: nameController,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Email ID',
+                  icon: Icon(Icons.mail_outline_rounded),
+                ),
+                controller: emailController,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Phone Number',
+                  icon: Icon(Icons.phone),
+                ),
+                controller: phoneNumberController,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                maxLines: null,
+                decoration: InputDecoration(
+                  hintText: 'Anything you would like to say to us?',
+                  icon: Icon(Icons.comment),
+                ),
+                controller: commentController,
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    primary: theme.primaryColorDark,
+                    onPrimary: Colors.white,
+                  ),
+                  onPressed: () {},
+                  icon: Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
+                    child: Icon(Icons.send),
+                  ),
+                  label: Padding(
+                    padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
+                    child: Text("Send"),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
