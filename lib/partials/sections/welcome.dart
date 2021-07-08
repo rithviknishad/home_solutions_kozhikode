@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
-import 'package:home_solutions_kozhikode/home_solutions.dart';
+import 'package:home_solutions_kozhikode/main.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 import 'package:home_solutions_kozhikode/routes/landing.dart';
 
@@ -53,7 +53,7 @@ class WelcomeSection extends MySection {
                     offset: const Duration(milliseconds: 400),
                   ),
                   child: Text(
-                    HomeSolutions.catchPrase,
+                    HomeSolutions.catchPhrase,
                     style: theme.textTheme.caption?.apply(
                       color: Colors.white,
                       shadows: [

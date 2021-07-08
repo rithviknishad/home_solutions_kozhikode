@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
-import 'package:home_solutions_kozhikode/home_solutions.dart';
+import 'package:home_solutions_kozhikode/main.dart';
 import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 import 'package:ionicons/ionicons.dart';
@@ -89,7 +89,7 @@ class ContactSection extends MySection {
             ),
           ),
         ),
-        for (final id in HomeSolutions.MailingIds)
+        for (final id in HomeSolutions.mailingIds)
           ButtonBar(
             mainAxisSize: MainAxisSize.min,
             alignment: MainAxisAlignment.center,
@@ -359,7 +359,7 @@ class __ContactUsFormState extends State<_ContactUsForm> {
     final comment = commentController.text;
 
     final link = Mailto(
-      to: HomeSolutions.MailingIds,
+      to: HomeSolutions.mailingIds,
       subject: 'Enquiry from $clientName',
       body: """
 Home Solutions,
