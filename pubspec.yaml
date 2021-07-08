@@ -32,72 +32,8 @@ flutter:
   fonts:
     - family: Lemonada
       fonts:
-        - asset: assets/fonts/Lemonada-Light.ttf
-          weight: 300
         - asset: assets/fonts/Lemonada-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Lemonada-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Lemonada-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Lemonada-Bold.ttf
-          weight: 700
-
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins-Thin.ttf
-          weight: 100
-        - asset: assets/fonts/Poppins-ThinItalic.ttf
-          weight: 100
-          style: italic
-
-        - asset: assets/fonts/Poppins-ExtraLight.ttf
-          weight: 200
-        - asset: assets/fonts/Poppins-ExtraLightItalic.ttf
-          weight: 200
-          style: italic
-
-        - asset: assets/fonts/Poppins-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Poppins-LightItalic.ttf
-          weight: 300
-          style: italic
-
-        - asset: assets/fonts/Poppins-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Poppins-Italic.ttf
-          weight: 400
-          style: italic
-
-        - asset: assets/fonts/Poppins-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Poppins-MediumItalic.ttf
-          weight: 500
-          style: italic
-
-        - asset: assets/fonts/Poppins-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Poppins-SemiBoldItalic.ttf
-          weight: 600
-          style: italic
-
-        - asset: assets/fonts/Poppins-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Poppins-BoldItalic.ttf
-          weight: 700
-          style: italic
-
-        - asset: assets/fonts/Poppins-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/Poppins-ExtraBoldItalic.ttf
-          weight: 800
-          style: italic
-
-        - asset: assets/fonts/Poppins-Black.ttf
-          weight: 900
-        - asset: assets/fonts/Poppins-BlackItalic.ttf
-          weight: 900
-          style: italic
 
     - family: Nunito
       fonts:
@@ -141,25 +77,4 @@ flutter:
           weight: 900
         - asset: assets/fonts/Nunito-BlackItalic.ttf
           weight: 900
-          style: italic
-
-    - family: Ubuntu
-      fonts:
-        - asset: assets/fonts/Ubuntu-Regular.ttf
-        - asset: assets/fonts/Ubuntu-Italic.ttf
-          style: italic
-        - asset: assets/fonts/Ubuntu-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Ubuntu-LightItalic.ttf
-          weight: 300
-          style: italic
-        - asset: assets/fonts/Ubuntu-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Ubuntu-MediumItalic.ttf
-          weight: 500
-          style: italic
-        - asset: assets/fonts/Ubuntu-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Ubuntu-BoldItalic.ttf
-          weight: 700
           style: italic

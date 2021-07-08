@@ -36,16 +36,18 @@ class ContactSection extends MySection {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 30, 8, 30),
-            child: FadeInUp(
-              preferences: normalAnimation,
+            child: FadeIn(
+              preferences: const AnimationPreferences(
+                duration: Duration(milliseconds: 300),
+              ),
               child: Text(
                 "GET IN TOUCH WITH US TODAY !",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: theme.primaryColor.withAlpha(160),
-                  fontSize: 26,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 1.0,
+                  color: theme.primaryColor,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1,
                 ),
               ),
             ),
