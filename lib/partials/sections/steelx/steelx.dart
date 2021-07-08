@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
-import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/features.dart';
 
@@ -18,8 +17,8 @@ class SteelxProductSection extends MySection {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.lightBlue.shade200,
             Colors.grey.shade100,
+            Colors.grey.shade300,
           ],
         ),
       ),
@@ -29,36 +28,43 @@ class SteelxProductSection extends MySection {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // The Heading
-          FadeInUp(
-            preferences: normalAnimation,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(8, 30, 8, 30),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15, 30, 15, 15),
+            child: FadeIn(
+              preferences: const AnimationPreferences(
+                duration: Duration(milliseconds: 500),
+                offset: Duration(milliseconds: 100),
+              ),
               child: Text(
                 "Premium Quality Stainless Steel Water Tanks",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: theme.primaryColor,
-                  fontSize: 32,
+                  fontSize: 28,
                   fontWeight: FontWeight.w700,
-                  letterSpacing: 2,
-                  shadows: [
-                    Shadow(color: Colors.black38, blurRadius: 20),
-                  ],
+                  letterSpacing: 1,
                 ),
               ),
             ),
           ),
 
           // Tank's Banner
-          FadeIn(
-            preferences: slowAnimation,
-            child: demoTank(size),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: FadeIn(
+              preferences: const AnimationPreferences(
+                duration: Duration(milliseconds: 500),
+                offset: Duration(milliseconds: 400),
+              ),
+              child: demoTank(size),
+            ),
           ),
-          SizedBox(height: 30.0),
 
           // All features
-          SteelxProductFeatures(),
-          SizedBox(height: 30.0),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: SteelxProductFeatures(),
+          ),
         ],
       ),
     );
@@ -68,10 +74,10 @@ class SteelxProductSection extends MySection {
         image: AssetImage('assets/steelx_tank.png'),
         isAntiAlias: true,
         filterQuality: FilterQuality.high,
-        height: size.width > 1000 ? 600 : 400,
+        height: size.width > 1000 ? 500 : 400,
       );
 
   EdgeInsets _getPadding(Size size) => EdgeInsets.symmetric(
-        horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10,
+        horizontal: max((size.width - maxDisplayWidth) / 2, 0),
       ).copyWith(top: 30, bottom: 60);
 }
