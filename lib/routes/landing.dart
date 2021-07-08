@@ -28,7 +28,6 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         controller: scrollController,
-        cacheExtent: 0,
         slivers: [
           // App Bar / Navigation Bar / Header
           const SliverPersistentHeader(
