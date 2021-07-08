@@ -5,17 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:home_solutions_kozhikode/home_solutions.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
+import 'package:home_solutions_kozhikode/routes/landing.dart';
 
 class WelcomeSection extends MySection {
+  static double sectionHeight = 0;
+
   WelcomeSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
-
+    sectionHeight = size.height * (size.width < 1000 ? 0.7 : 0.9);
     return Container(
-      height: size.height * (size.width < 1000 ? 0.7 : 0.9),
+      height: sectionHeight,
       width: size.width,
       decoration: _decoration,
       child: ClipRRect(
@@ -60,7 +63,33 @@ class WelcomeSection extends MySection {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const Spacer(flex: 5),
+                const Spacer(flex: 3),
+
+                FadeIn(
+                  preferences: AnimationPreferences(
+                    duration: const Duration(milliseconds: 1000),
+                    offset: const Duration(milliseconds: 2000),
+                  ),
+                  child: Bounce(
+                    preferences: AnimationPreferences(
+                      duration: const Duration(milliseconds: 1000),
+                      offset: const Duration(milliseconds: 3000),
+                    ),
+                    child: IconButton(
+                      onPressed: () => LandingPage.scrollController.animateTo(
+                        sectionHeight + 50,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.fastLinearToSlowEaseIn,
+                      ),
+                      icon: Icon(
+                        Icons.expand_more,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    ),
+                  ),
+                ),
+                const Spacer(flex: 2),
               ],
             ),
           ),
