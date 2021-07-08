@@ -27,6 +27,7 @@ class LandingPage extends StatelessWidget {
   build(context) {
     return Scaffold(
       body: CustomScrollView(
+        cacheExtent: 0,
         controller: scrollController,
         slivers: [
           // App Bar / Navigation Bar / Header
@@ -36,9 +37,7 @@ class LandingPage extends StatelessWidget {
           ),
 
           // Reamining page
-          SliverList(
-            delegate: SliverChildListDelegate.fixed(sections),
-          ),
+          SliverList(delegate: SliverChildListDelegate.fixed(sections)),
         ],
       ),
     );
