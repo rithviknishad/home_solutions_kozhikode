@@ -52,7 +52,7 @@ class ContactSection extends MySection {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _ContactUsForm(),
+            child: _ContactUsForm(key: Key('contact_us_form')),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
