@@ -1,6 +1,6 @@
 import 'package:flutter_animator/flutter_animator.dart';
 
-const _defaultOffset = Duration(milliseconds: 500);
+const _defaultOffset = Duration(milliseconds: 100);
 
 const slowAnimation = AnimationPreferences(
   duration: Duration(milliseconds: 800),

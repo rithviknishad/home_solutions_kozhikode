@@ -11,31 +11,34 @@ import 'package:home_solutions_kozhikode/partials/sections/steelx/steelx.dart';
 import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
 
 class LandingPage extends StatelessWidget {
-  final controller = ScrollController();
+  static final sections = [
+    WelcomeSection(),
+    SteelxProductSection(),
+    SteelxTankSizesSection(),
+    AboutUsSection(),
+    ContactSection(),
+    FooterSection(),
+  ];
 
-  @override
-  Widget build(context) {
+  LandingPage() : super(key: Key('_landing_page'));
+
+  static final scrollController = ScrollController();
+
+  build(context) {
     return Scaffold(
       body: CustomScrollView(
+        controller: scrollController,
         cacheExtent: 0,
-        controller: controller,
         slivers: [
           // App Bar / Navigation Bar / Header
-          SliverPersistentHeader(
+          const SliverPersistentHeader(
             delegate: _NavigationBarDelegate(),
             pinned: true,
           ),
 
           // Reamining page
           SliverList(
-            delegate: SliverChildListDelegate.fixed([
-              WelcomeSection(),
-              SteelxProductSection(),
-              SteelxTankSizesSection(),
-              AboutUsSection(),
-              ContactSection(),
-              FooterSection(),
-            ]),
+            delegate: SliverChildListDelegate.fixed(sections),
           ),
         ],
       ),
@@ -44,8 +47,9 @@ class LandingPage extends StatelessWidget {
 }
 
 class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
-  @override
-  Widget build(context, shrinkOffset, _) {
+  const _NavigationBarDelegate();
+
+  build(context, shrinkOffset, _) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
 
@@ -109,14 +113,11 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
     );
   }
 
-  @override
-  double get maxExtent => 80;
+  get maxExtent => 80;
 
-  @override
-  double get minExtent => 50;
+  get minExtent => 50;
 
-  @override
-  bool shouldRebuild(_) => true;
+  shouldRebuild(_) => true;
 
   double scrollAnimationValue(double shrinkOffset) {
     double maxScrollAllowed = maxExtent - minExtent;
