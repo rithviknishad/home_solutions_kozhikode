@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/flutter_animator.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in.dart';
-import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 
 class SteelxProductFeatures extends StatelessWidget {
-  const SteelxProductFeatures({Key? key}) : super(key: key);
+  SteelxProductFeatures({Key? key}) : super(key: key);
 
   static const _features = {
     "No Bacteria, Fungus & Algae": "no_bacteria_fungae_and_algae.png",
@@ -18,6 +18,8 @@ class SteelxProductFeatures extends StatelessWidget {
     "High Resale Valued Material": "high_resale_valued_material.png",
   };
 
+  final features = _features.entries.toList();
+
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -27,10 +29,11 @@ class SteelxProductFeatures extends StatelessWidget {
       spacing: MediaQuery.of(context).size.width > 1000 ? 30 : 10,
       runSpacing: 30,
       children: [
-        for (final f in _features.entries)
+        for (int index = 0; index < features.length; ++index)
           _FeatureTile(
-            description: f.key,
-            asset: 'assets/steelx_features/${f.value}',
+            index,
+            description: features[index].key,
+            asset: 'assets/steelx_features/${features[index].value}',
           ),
       ],
     );
@@ -40,8 +43,10 @@ class SteelxProductFeatures extends StatelessWidget {
 class _FeatureTile extends StatelessWidget {
   final String description;
   final String asset;
+  final int index;
 
-  const _FeatureTile({
+  const _FeatureTile(
+    this.index, {
     required this.description,
     required this.asset,
   });
@@ -53,7 +58,10 @@ class _FeatureTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return FadeIn(
-      preferences: slowAnimation,
+      preferences: AnimationPreferences(
+        duration: const Duration(milliseconds: 500),
+        offset: Duration(milliseconds: 100 + index * 100),
+      ),
       child: Container(
         padding: const EdgeInsets.all(8.0),
         width: size.width > 1000 ? 200.0 : 160.0,
@@ -62,6 +70,7 @@ class _FeatureTile extends StatelessWidget {
           children: [
             Image(
               image: AssetImage(asset),
+              isAntiAlias: true,
               height: 60,
             ),
             SizedBox(height: 12.0),
