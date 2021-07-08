@@ -257,14 +257,7 @@ class __ContactUsFormState extends State<_ContactUsForm> {
 
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            Colors.grey.shade300,
-            Colors.grey.shade100,
-          ],
-        ),
+        color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(30)),
         boxShadow: [
           BoxShadow(
