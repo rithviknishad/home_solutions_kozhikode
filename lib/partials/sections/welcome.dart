@@ -17,16 +17,7 @@ class WelcomeSection extends MySection {
     return Container(
       height: size.height * (size.width < 1000 ? 0.7 : 0.9),
       width: size.width,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: ExactAssetImage('assets/banner.jpg'),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-            Colors.black12,
-            BlendMode.darken,
-          ),
-        ),
-      ),
+      decoration: _decoration,
       child: ClipRRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
@@ -36,11 +27,12 @@ class WelcomeSection extends MySection {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Spacer(flex: 5),
+                const Spacer(flex: 5),
                 // Logo
-                FadeInDown(
+                FadeIn(
                   preferences: AnimationPreferences(
-                    duration: const Duration(milliseconds: 400),
+                    duration: const Duration(milliseconds: 1000),
+                    offset: const Duration(milliseconds: 100),
                   ),
                   child: Image.asset(
                     'assets/logo.png',
@@ -49,20 +41,26 @@ class WelcomeSection extends MySection {
                   ),
                 ),
 
-                Spacer(flex: 1),
+                const Spacer(flex: 1),
 
                 // Catch Phrase
-                Text(
-                  HomeSolutions.catchPrase,
-                  style: theme.textTheme.caption?.apply(
-                    color: Colors.white,
-                    shadows: [
-                      Shadow(color: Colors.black, blurRadius: 8),
-                    ],
+                SlideInUp(
+                  preferences: AnimationPreferences(
+                    duration: const Duration(milliseconds: 1000),
+                    offset: const Duration(milliseconds: 400),
                   ),
-                  textAlign: TextAlign.center,
+                  child: Text(
+                    HomeSolutions.catchPrase,
+                    style: theme.textTheme.caption?.apply(
+                      color: Colors.white,
+                      shadows: [
+                        Shadow(color: Colors.black, blurRadius: 8),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                Spacer(flex: 5),
+                const Spacer(flex: 5),
               ],
             ),
           ),
@@ -70,4 +68,12 @@ class WelcomeSection extends MySection {
       ),
     );
   }
+
+  static const _decoration = BoxDecoration(
+    image: DecorationImage(
+      image: ExactAssetImage('assets/banner.jpg'),
+      fit: BoxFit.cover,
+      colorFilter: ColorFilter.mode(Colors.black12, BlendMode.darken),
+    ),
+  );
 }
