@@ -24,7 +24,7 @@ jobs:
       - name: Flutter Build (Web)
         run: |
           flutter config --enable-web
-          flutter build web --web-renderer html --tree-shake-icons
+          flutter build web --tree-shake-icons
 
       - name: Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
