@@ -3,12 +3,15 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/flutter_animator.dart';
+import 'package:flutter_animator/widgets/fading_entrances/fade_in.dart';
 import 'package:home_solutions_kozhikode/partials/sections/about.dart';
 import 'package:home_solutions_kozhikode/partials/sections/contact.dart';
 import 'package:home_solutions_kozhikode/partials/sections/footer.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/size_selector.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/steelx.dart';
 import 'package:home_solutions_kozhikode/partials/sections/welcome.dart';
+import 'package:url_launcher/link.dart';
 
 class LandingPage extends StatelessWidget {
   static final sections = [
@@ -25,6 +28,7 @@ class LandingPage extends StatelessWidget {
   static final scrollController = ScrollController();
 
   build(context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: CustomScrollView(
         cacheExtent: 0,
@@ -42,6 +46,29 @@ class LandingPage extends StatelessWidget {
             delegate: SliverChildListDelegate.fixed(sections),
           ),
         ],
+      ),
+      endDrawer: Drawer(
+        child: Column(
+          children: [
+            for (final section in _InlineNavBar._sections.entries)
+              ListTile(
+                contentPadding: const EdgeInsets.all(16),
+                title: Text(
+                  section.key,
+                  style: TextStyle(
+                    color: theme.primaryColor,
+                    fontSize: 20,
+                  ),
+                ),
+                onTap: () {
+                  section.value();
+                  Navigator.of(context).pop();
+                },
+              ),
+            Spacer(),
+            // TODO: add contact button here...
+          ],
+        ),
       ),
     );
   }
@@ -101,10 +128,17 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
               right: lerpDouble(0, 10, animation),
               child: size.width > 1000
                   ? _InlineNavBar(animation: animation)
-                  : IconButton(
-                      icon: Icon(Icons.menu),
-                      color: theme.primaryColor.withOpacity(animation),
-                      onPressed: Scaffold.of(context).openEndDrawer,
+                  : Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CallNowButton(),
+                        SizedBox(width: 16),
+                        IconButton(
+                          icon: Icon(Icons.menu),
+                          color: theme.primaryColor,
+                          onPressed: Scaffold.of(context).openEndDrawer,
+                        ),
+                      ],
                     ),
             ),
           ],
@@ -134,10 +168,21 @@ class _InlineNavBar extends StatelessWidget {
   const _InlineNavBar({this.animation = 1.0});
 
   static final _sections = {
-    "Products": () {},
-    "Services": () {},
-    "About": () {},
-    "Contact": () {},
+    "Products": () => LandingPage.scrollController.animateTo(
+          WelcomeSection.sectionHeight + 50,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.fastLinearToSlowEaseIn,
+        ),
+    "About": () => LandingPage.scrollController.animateTo(
+          WelcomeSection.sectionHeight + 2750,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.fastLinearToSlowEaseIn,
+        ),
+    "Contact": () => LandingPage.scrollController.animateTo(
+          WelcomeSection.sectionHeight + 3420,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.fastLinearToSlowEaseIn,
+        ),
   };
 
   @override
@@ -161,7 +206,9 @@ class _InlineNavBar extends StatelessWidget {
               ),
             ),
             onPressed: section.value,
-          )
+          ),
+        SizedBox(width: 26),
+        CallNowButton(),
       ],
     );
   }
@@ -182,6 +229,45 @@ class _Footer extends StatelessWidget {
         horizontal: (size.width - 1170) / 2,
       ),
       child: Container(),
+    );
+  }
+}
+
+class CallNowButton extends StatelessWidget {
+  const CallNowButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return FadeIn(
+      key: Key('call_us_button'),
+      preferences: AnimationPreferences(
+        duration: const Duration(milliseconds: 500),
+        offset: const Duration(milliseconds: 500),
+      ),
+      child: Link(
+        uri: Uri(scheme: 'tel', path: '+91 9048-336658'),
+        builder: (context, followLink) => ElevatedButton.icon(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50),
+            ),
+            elevation: 8,
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 22),
+            onPrimary: Colors.white,
+          ),
+          onPressed: followLink,
+          icon: Icon(Icons.call),
+          label: Text(
+            'Call us now',
+            style: TextStyle(
+              fontSize: 16,
+              letterSpacing: 1,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
