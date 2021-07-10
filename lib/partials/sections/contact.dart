@@ -204,22 +204,15 @@ class __ContactUsFormState extends State<_ContactUsForm> {
   final phoneNumberController = TextEditingController();
   final commentController = TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
 
     if (sent) {
       return Container(
+        key: Key('contact_us_form_sent'),
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Colors.greenAccent.shade700,
-              Colors.greenAccent.shade700,
-            ],
-          ),
+          color: Colors.greenAccent.shade700,
           borderRadius: BorderRadius.all(Radius.circular(30)),
           boxShadow: [
             BoxShadow(
@@ -258,6 +251,7 @@ class __ContactUsFormState extends State<_ContactUsForm> {
     }
 
     return Container(
+      key: Key('contact_us_form_no_sent_root'),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(30)),
