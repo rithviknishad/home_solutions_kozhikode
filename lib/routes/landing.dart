@@ -37,7 +37,14 @@ class LandingPage extends StatelessWidget {
           ),
 
           // Reamining page
-          SliverList(delegate: SliverChildListDelegate.fixed(sections)),
+          SliverFillRemaining(
+            child: ListView(
+              children: sections,
+            ),
+          ),
+          // SliverList(
+          //   delegate: SliverChildListDelegate.fixed(sections),
+          // ),
         ],
       ),
     );
