@@ -70,8 +70,7 @@ class _FeatureTile extends StatelessWidget {
           children: [
             Image(
               image: AssetImage(asset),
-              isAntiAlias: true,
-              height: 60,
+              height: 50,
             ),
             SizedBox(height: 12.0),
             Text(

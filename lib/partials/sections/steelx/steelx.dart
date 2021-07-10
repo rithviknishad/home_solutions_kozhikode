@@ -17,7 +17,7 @@ class SteelxProductSection extends MySection {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.grey.shade100,
+            Colors.lightBlue.shade100,
             Colors.grey.shade300,
           ],
         ),
@@ -36,7 +36,7 @@ class SteelxProductSection extends MySection {
                 offset: Duration(milliseconds: 100),
               ),
               child: Text(
-                "Premium Quality Stainless Steel Water Tanks",
+                "We distribute Premium Quality Stainless Steel Water Tanks",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: theme.primaryColor,
@@ -72,8 +72,6 @@ class SteelxProductSection extends MySection {
 
   Widget demoTank(Size size) => Image(
         image: AssetImage('assets/steelx_tank.png'),
-        isAntiAlias: true,
-        filterQuality: FilterQuality.high,
         height: size.width > 1000 ? 500 : 400,
       );
 

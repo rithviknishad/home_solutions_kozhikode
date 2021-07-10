@@ -40,7 +40,6 @@ class WelcomeSection extends MySection {
                   child: Image.asset(
                     'assets/logo.png',
                     width: min(250, size.width * 0.3),
-                    isAntiAlias: true,
                   ),
                 ),
 

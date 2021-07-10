@@ -90,7 +90,6 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
                 padding: const EdgeInsets.all(8),
                 child: Image.asset(
                   'assets/logo_transparent.png',
-                  filterQuality: FilterQuality.high,
                 ),
               ),
             ),
