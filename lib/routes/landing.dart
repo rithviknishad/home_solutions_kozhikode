@@ -190,6 +190,7 @@ class _InlineNavBar extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         for (final section in _sections.entries)
           TextButton(
