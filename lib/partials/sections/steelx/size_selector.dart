@@ -565,10 +565,21 @@ class _InteractiveTank extends StatelessWidget {
     );
   }
 
-  Widget get _tankThumbnail => Image(
+  Widget get _tankThumbnail {
+    if (tank.isHorizontal) {
+      return Image(
         image: AssetImage(
-          'assets/steelx_tank_${tank.isHorizontal ? 'horizontal' : 'vertical'}.png',
+          'assets/steelx_tank_horizontal.png',
         ),
-        height: tank.isVertical ? 300 : 250,
+        height: 250,
       );
+    } else {
+      return Image(
+        image: AssetImage(
+          'assets/steelx_tank_vertical.png',
+        ),
+        height: 300,
+      );
+    }
+  }
 }
