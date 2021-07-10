@@ -149,7 +149,7 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
 
   get maxExtent => 80;
 
-  get minExtent => 50;
+  get minExtent => 60;
 
   shouldRebuild(_) => true;
 
@@ -200,7 +200,7 @@ class _InlineNavBar extends StatelessWidget {
                 section.key,
                 style: TextStyle(
                   color: theme.primaryColor,
-                  fontSize: lerpDouble(14, 16, animation),
+                  fontSize: lerpDouble(16, 18, animation),
                   letterSpacing: 1,
                   fontWeight: FontWeight.bold,
                 ),
