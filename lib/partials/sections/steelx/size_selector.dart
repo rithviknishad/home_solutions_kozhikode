@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in_down.dart';
-import 'package:flutter_animator/widgets/fading_entrances/fade_in_up.dart';
-import 'package:home_solutions_kozhikode/partials/k_anim_prefs.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/tank_model.dart';
 
@@ -88,7 +86,7 @@ class _SteelxAvailableSizesState extends State<SteelxAvailableSizes> {
     final theme = Theme.of(context);
 
     return Wrap(
-      spacing: 120,
+      spacing: 50,
       runSpacing: 20,
       alignment: WrapAlignment.center,
       runAlignment: WrapAlignment.spaceBetween,
