@@ -29,6 +29,7 @@ class LandingPage extends StatelessWidget {
 
   build(context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: CustomScrollView(
         cacheExtent: 0,
@@ -47,6 +48,15 @@ class LandingPage extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: size.width < 1000
+          ? BounceIn(
+              preferences: const AnimationPreferences(
+                duration: Duration(milliseconds: 500),
+                offset: Duration(seconds: 4),
+              ),
+              child: CallNowButton(),
+            )
+          : null,
       endDrawer: Drawer(
         child: Column(
           children: [
@@ -55,18 +65,13 @@ class LandingPage extends StatelessWidget {
                 contentPadding: const EdgeInsets.all(16),
                 title: Text(
                   section.key,
-                  style: TextStyle(
-                    color: theme.primaryColor,
-                    fontSize: 20,
-                  ),
+                  style: TextStyle(color: theme.primaryColor, fontSize: 16),
                 ),
                 onTap: () {
                   section.value();
                   Navigator.of(context).pop();
                 },
               ),
-            Spacer(),
-            // TODO: add contact button here...
           ],
         ),
       ),
@@ -128,17 +133,10 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
               right: lerpDouble(0, 10, animation),
               child: size.width > 1000
                   ? _InlineNavBar(animation: animation)
-                  : Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        CallNowButton(),
-                        SizedBox(width: 16),
-                        IconButton(
-                          icon: Icon(Icons.menu),
-                          color: theme.primaryColor,
-                          onPressed: Scaffold.of(context).openEndDrawer,
-                        ),
-                      ],
+                  : IconButton(
+                      icon: Icon(Icons.menu),
+                      color: theme.primaryColor,
+                      onPressed: Scaffold.of(context).openEndDrawer,
                     ),
             ),
           ],
@@ -254,7 +252,7 @@ class CallNowButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
             ),
-            elevation: 8,
+            elevation: 10,
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 22),
             onPrimary: Colors.white,
           ),
@@ -262,10 +260,7 @@ class CallNowButton extends StatelessWidget {
           icon: Icon(Icons.call),
           label: Text(
             'Call us now',
-            style: TextStyle(
-              fontSize: 16,
-              letterSpacing: 1,
-            ),
+            style: TextStyle(letterSpacing: 1),
           ),
         ),
       ),

@@ -14,6 +14,7 @@ class FooterSection extends MySection {
       color: Colors.grey[900],
       child: Container(
         padding: sectionPadding(size),
+        height: 100,
         width: size.width,
         child: Column(
           children: [
