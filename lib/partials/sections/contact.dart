@@ -222,6 +222,7 @@ class ContactSection extends MySection {
                       SizedBox(height: 16),
                       Link(
                         uri: HomeSolutions.whatsAppUri,
+                        target: LinkTarget.blank,
                         builder: (_, followLink) => TextButton.icon(
                           style: TextButton.styleFrom(
                             primary: Colors.white,
