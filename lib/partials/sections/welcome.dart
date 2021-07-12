@@ -53,7 +53,9 @@ class WelcomeSection extends MySection {
                   ),
                   child: Text(
                     HomeSolutions.catchPhrase,
-                    style: theme.textTheme.caption?.apply(
+                    style: TextStyle(
+                      fontFamily: 'Lemonada',
+                      fontSize: 32,
                       color: Colors.white,
                       shadows: [
                         Shadow(color: Colors.black, blurRadius: 8),

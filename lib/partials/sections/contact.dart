@@ -204,6 +204,8 @@ class __ContactUsFormState extends State<_ContactUsForm> {
   final phoneNumberController = TextEditingController();
   final commentController = TextEditingController();
 
+  final formKey = GlobalKey<FormState>();
+
   build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
@@ -265,6 +267,7 @@ class __ContactUsFormState extends State<_ContactUsForm> {
       padding: const EdgeInsets.all(16),
       width: min(size.width - 20, 440),
       child: Form(
+        key: formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -283,6 +286,13 @@ class __ContactUsFormState extends State<_ContactUsForm> {
                   icon: Icon(Icons.person),
                 ),
                 controller: nameController,
+                validator: (value) {
+                  value ??= "";
+
+                  if (value.trim().isEmpty) {
+                    return "Specify a name";
+                  }
+                },
               ),
             ),
             Padding(
@@ -344,6 +354,8 @@ class __ContactUsFormState extends State<_ContactUsForm> {
   }
 
   Future<void> sendMail() async {
+    if ((formKey.currentState?.validate() ?? false) == false) return;
+
     final clientName = nameController.text;
 
     var clientEmail = emailController.text;

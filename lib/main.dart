@@ -68,8 +68,6 @@ class HomeSolutions extends StatelessWidget {
     accentColor: accentColor,
     scaffoldBackgroundColor: subtleWhite,
     canvasColor: subtleWhite,
-    textTheme:
-        TextTheme(caption: TextStyle(fontFamily: 'Lemonada', fontSize: 32)),
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: accentColor.withOpacity(0.35),
       cursorColor: accentColor,
