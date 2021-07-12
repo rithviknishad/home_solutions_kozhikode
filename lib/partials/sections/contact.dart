@@ -13,8 +13,9 @@ import 'package:url_launcher/url_launcher.dart';
 class ContactSection extends MySection {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
+
+    final _tileWidth = min(size.width, 330.0);
 
     return Container(
       decoration: BoxDecoration(
@@ -22,8 +23,8 @@ class ContactSection extends MySection {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Colors.grey.shade300,
-            Colors.grey.shade100,
+            Color(0xFF1C3559),
+            Color(0xFF051937),
           ],
         ),
       ),
@@ -39,12 +40,13 @@ class ContactSection extends MySection {
             child: FadeIn(
               preferences: const AnimationPreferences(
                 duration: Duration(milliseconds: 300),
+                offset: Duration(milliseconds: 300),
               ),
               child: Text(
                 "GET IN TOUCH WITH US TODAY !",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: theme.primaryColor,
+                  color: Colors.white,
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1,
@@ -57,129 +59,205 @@ class ContactSection extends MySection {
             child: _ContactUsForm(key: Key('contact_us_form')),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              direction: Axis.horizontal,
-              spacing: 60,
-              runSpacing: 60,
-              children: [
-                mailingAddressWidget(context),
-                contactNumbersWidget(context),
-              ],
+            padding: const EdgeInsets.all(40),
+            child: Text(
+              "OR",
+              style: TextStyle(
+                color: Colors.grey.shade300,
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 1,
+              ),
             ),
+          ),
+          Wrap(
+            alignment: WrapAlignment.center,
+            direction: Axis.horizontal,
+            spacing: 60,
+            runSpacing: 60,
+            children: [
+              // Mail Us
+              FadeInUp(
+                preferences: const AnimationPreferences(
+                  duration: Duration(milliseconds: 800),
+                  offset: Duration(milliseconds: 800),
+                ),
+                child: SizedBox(
+                  width: _tileWidth,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Link(
+                        uri: Uri(
+                          scheme: 'mailto',
+                          path: HomeSolutions.mailingIds.first,
+                        ),
+                        builder: (_, followLink) => TextButton(
+                          onPressed: followLink,
+                          child: Icon(
+                            Ionicons.mail_open_outline,
+                            size: 32,
+                            color: Colors.grey.shade300,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        "mail us at ",
+                        style: TextStyle(
+                          color: Colors.grey.shade300,
+                          letterSpacing: 1,
+                          fontSize: 18,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      SelectableText(
+                        HomeSolutions.mailingIds.first,
+                        style: TextStyle(
+                          color: Colors.grey.shade200,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              // Call / SMS us
+              FadeInUp(
+                preferences: const AnimationPreferences(
+                  duration: Duration(milliseconds: 800),
+                  offset: Duration(milliseconds: 1000),
+                ),
+                child: SizedBox(
+                  width: _tileWidth,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      FadeInUp(
+                        preferences: slowAnimation,
+                        child: Icon(
+                          Ionicons.call_outline,
+                          size: 32,
+                          color: Colors.grey.shade300,
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        "speak with us ",
+                        style: TextStyle(
+                          color: Colors.grey.shade300,
+                          letterSpacing: 1,
+                          fontSize: 18,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      for (final entry in HomeSolutions.contactNumbers.entries)
+                        Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SelectableText(
+                                entry.key,
+                                style: TextStyle(
+                                  color: Colors.grey.shade200,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 1,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              for (final method in entry.value.entries)
+                                if (method.key != "whatsapp")
+                                  Link(
+                                    uri: method.value,
+                                    builder: (_, followLink) => IconButton(
+                                      icon: _contactIcon[method.key]!,
+                                      tooltip: _tooltip[method.key],
+                                      color: Colors.lightBlueAccent,
+                                      onPressed: followLink,
+                                    ),
+                                  ),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+
+              // Message us
+              FadeInUp(
+                preferences: const AnimationPreferences(
+                  duration: Duration(milliseconds: 800),
+                  offset: Duration(milliseconds: 1200),
+                ),
+                child: SizedBox(
+                  width: _tileWidth,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      FadeInUp(
+                        preferences: slowAnimation,
+                        child: Icon(
+                          Ionicons.chatbubbles_outline,
+                          size: 32,
+                          color: Colors.grey.shade300,
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        "message us",
+                        style: TextStyle(
+                          color: Colors.grey.shade300,
+                          letterSpacing: 1,
+                          fontSize: 18,
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      Link(
+                        uri: HomeSolutions.whatsAppUri,
+                        builder: (_, followLink) => TextButton.icon(
+                          style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Color(0xFF31D26E),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 20,
+                              horizontal: 26,
+                            ),
+                          ),
+                          onPressed: followLink,
+                          icon: _contactIcon['whatsapp']!,
+                          label: Text(
+                            "in WhatsApp",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           )
         ],
       ),
     );
   }
 
-  Widget mailingAddressWidget(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30),
-          child: FadeInUp(
-            preferences: slowAnimation,
-            child: Icon(
-              Ionicons.mail_open_outline,
-              size: 64,
-              color: theme.primaryColorDark,
-            ),
-          ),
-        ),
-        for (final id in HomeSolutions.mailingIds)
-          ButtonBar(
-            mainAxisSize: MainAxisSize.min,
-            alignment: MainAxisAlignment.center,
-            children: [
-              Link(
-                uri: Uri(scheme: 'mailto', path: id),
-                builder: (_, followLink) => TextButton(
-                  onPressed: followLink,
-                  child: FadeInUp(
-                    preferences: slowAnimation,
-                    child: Text(
-                      id,
-                      style:
-                          TextStyle(color: theme.primaryColor.withAlpha(200)),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-      ],
-    );
-  }
-
-  Widget contactNumbersWidget(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30),
-          child: FadeInUp(
-            preferences: slowAnimation,
-            child: Icon(
-              Ionicons.chatbubbles_outline,
-              size: 64,
-              color: theme.primaryColorDark,
-            ),
-          ),
-        ),
-
-        // Contact Details
-        for (final entry in HomeSolutions.contactNumbers.entries)
-          FadeInUp(
-            preferences: slowAnimation,
-            child: SizedBox(
-              width: 300,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    entry.key,
-                    style: TextStyle(color: theme.primaryColor),
-                  ),
-                  ButtonBar(
-                    children: [
-                      for (final method in entry.value.entries)
-                        Link(
-                          uri: method.value,
-                          builder: (context, followLink) {
-                            return IconButton(
-                              icon: _contactIcon[method.key]!,
-                              tooltip: _tooltip[method.key],
-                              color: theme.primaryColorDark,
-                              onPressed: followLink,
-                            );
-                          },
-                        ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-      ],
-    );
-  }
-
   static final _contactIcon = {
     'call': Icon(Ionicons.call_outline),
     'sms': Icon(Ionicons.chatbox_ellipses_outline),
-    'whatsapp': Icon(
-      Ionicons.logo_whatsapp,
-      color: Color(0xff31d26e),
-    ),
+    'whatsapp': Icon(Ionicons.logo_whatsapp),
   };
 
   static final _tooltip = {
@@ -255,7 +333,7 @@ class __ContactUsFormState extends State<_ContactUsForm> {
     return Container(
       key: Key('contact_us_form_no_sent_root'),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey.shade100,
         borderRadius: BorderRadius.all(Radius.circular(30)),
         boxShadow: [
           BoxShadow(
@@ -330,19 +408,25 @@ class __ContactUsFormState extends State<_ContactUsForm> {
               alignment: Alignment.centerRight,
               child: Padding(
                 padding: const EdgeInsets.all(16),
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    primary: theme.primaryColorDark,
-                    onPrimary: Colors.white,
+                child: FadeIn(
+                  preferences: const AnimationPreferences(
+                    duration: Duration(milliseconds: 700),
+                    offset: Duration(seconds: 2),
                   ),
-                  onPressed: sendMail,
-                  icon: Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
-                    child: Icon(Icons.send),
-                  ),
-                  label: Padding(
-                    padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
-                    child: Text("Send"),
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      primary: theme.primaryColorDark,
+                      onPrimary: Colors.white,
+                    ),
+                    onPressed: sendMail,
+                    icon: Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
+                      child: Icon(Icons.send),
+                    ),
+                    label: Padding(
+                      padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
+                      child: Text("Send"),
+                    ),
                   ),
                 ),
               ),

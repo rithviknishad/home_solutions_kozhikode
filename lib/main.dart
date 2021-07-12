@@ -27,13 +27,12 @@ class HomeSolutions extends StatelessWidget {
       'sms': Uri(scheme: 'sms', path: '+91 9048-336657'),
     },
     "+91 9048-336658": {
-      'whatsapp': Uri(scheme: 'wa.me', path: '+91 9048-336658'),
       'call': Uri(scheme: 'tel', path: '+91 9048-336658'),
       'sms': Uri(scheme: 'sms', path: '+91 9048-336658'),
     },
   };
 
-  static const whatsAppNumber = "+91 9048-336658";
+  static final whatsAppUri = Uri.parse('https://wa.me/+919048336658');
 
   static const catchPhrase = "We take care of your needs...";
 
