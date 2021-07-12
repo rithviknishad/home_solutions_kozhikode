@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in.dart';
+import 'package:home_solutions_kozhikode/main.dart';
 import 'package:home_solutions_kozhikode/partials/sections/about.dart';
 import 'package:home_solutions_kozhikode/partials/sections/contact.dart';
 import 'package:home_solutions_kozhikode/partials/sections/footer.dart';
@@ -148,11 +149,29 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
               left: 0,
               top: 0,
               bottom: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Image.asset(
-                  'assets/logo_transparent.png',
-                ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Image.asset(
+                      'assets/logo_transparent.png',
+                    ),
+                  ),
+                  if (animation == 0)
+                    FadeInDown(
+                      preferences: const AnimationPreferences(
+                        duration: Duration(milliseconds: 500),
+                      ),
+                      child: Text(
+                        HomeSolutions.catchPhrase,
+                        style: TextStyle(
+                          fontFamily: 'Lemonada',
+                          color: theme.primaryColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                ],
               ),
             ),
 

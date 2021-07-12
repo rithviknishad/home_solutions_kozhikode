@@ -72,9 +72,9 @@ class WelcomeSection extends MySection {
                     offset: const Duration(milliseconds: 2000),
                   ),
                   child: Bounce(
-                    preferences: AnimationPreferences(
-                      duration: const Duration(milliseconds: 1000),
-                      offset: const Duration(milliseconds: 3000),
+                    preferences: const AnimationPreferences(
+                      duration: Duration(milliseconds: 1000),
+                      offset: Duration(milliseconds: 3000),
                     ),
                     child: IconButton(
                       onPressed: () => LandingPage.scrollController.animateTo(
