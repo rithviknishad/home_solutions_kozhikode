@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 
+// TODO: add address...
+
 class FooterSection extends MySection {
   @override
   Widget build(BuildContext context) {

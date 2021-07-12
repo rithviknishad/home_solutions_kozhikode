@@ -91,7 +91,9 @@ class LandingPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     onTap: () {
-                      _InlineNavBar._sections.entries.elementAt(i).value();
+                      _InlineNavBar._sections.entries
+                          .elementAt(i)
+                          .value(context);
                       Navigator.of(context).pop();
                     },
                   ),
@@ -191,22 +193,50 @@ class _InlineNavBar extends StatelessWidget {
   const _InlineNavBar({this.animation = 1.0});
 
   static final _sections = {
-    "Products": () => LandingPage.scrollController.animateTo(
-          WelcomeSection.sectionHeight + 50,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.fastLinearToSlowEaseIn,
-        ),
-    "About": () => LandingPage.scrollController.animateTo(
-          WelcomeSection.sectionHeight + 2750,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.fastLinearToSlowEaseIn,
-        ),
-    "Contact": () => LandingPage.scrollController.animateTo(
-          WelcomeSection.sectionHeight + 3420,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.fastLinearToSlowEaseIn,
-        ),
+    "Products": jumpToProductSection,
+    "About": jumpToAboutSection,
+    "Contact": jumpToContactSection,
   };
+
+  static void jumpToProductSection(BuildContext context) {
+    LandingPage.scrollController.animateTo(
+      WelcomeSection.sectionHeight + 50,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.fastLinearToSlowEaseIn,
+    );
+  }
+
+  static void jumpToAboutSection(BuildContext context) {
+    if (MediaQuery.of(context).size.width > 1000) {
+      LandingPage.scrollController.animateTo(
+        2414,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastLinearToSlowEaseIn,
+      );
+    } else {
+      LandingPage.scrollController.animateTo(
+        WelcomeSection.sectionHeight + 2750,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastLinearToSlowEaseIn,
+      );
+    }
+  }
+
+  static void jumpToContactSection(BuildContext context) {
+    if (MediaQuery.of(context).size.width > 1000) {
+      LandingPage.scrollController.animateTo(
+        3053,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastLinearToSlowEaseIn,
+      );
+    } else {
+      LandingPage.scrollController.animateTo(
+        WelcomeSection.sectionHeight + 3420,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastLinearToSlowEaseIn,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -229,7 +259,7 @@ class _InlineNavBar extends StatelessWidget {
                 ),
               ),
             ),
-            onPressed: section.value,
+            onPressed: () => section.value(context),
           ),
         SizedBox(width: 26),
         CallNowButton(),
