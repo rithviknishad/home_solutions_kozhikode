@@ -57,22 +57,47 @@ class LandingPage extends StatelessWidget {
               child: CallNowButton(),
             )
           : null,
-      endDrawer: Drawer(
-        child: Column(
-          children: [
-            for (final section in _InlineNavBar._sections.entries)
-              ListTile(
-                contentPadding: const EdgeInsets.all(16),
-                title: Text(
-                  section.key,
-                  style: TextStyle(color: theme.primaryColor, fontSize: 16),
-                ),
-                onTap: () {
-                  section.value();
-                  Navigator.of(context).pop();
-                },
+      endDrawer: Theme(
+        data: theme.copyWith(canvasColor: Colors.transparent),
+        child: Drawer(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFF1C3559).withOpacity(0.9),
+                  Color(0xFF051937).withOpacity(0.9),
+                ],
               ),
-          ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                for (int i = 0; i < _InlineNavBar._sections.length; ++i)
+                  ListTile(
+                    tileColor:
+                        i.isEven ? Colors.grey.shade500 : Colors.grey.shade300,
+                    contentPadding: const EdgeInsets.all(16),
+                    title: Text(
+                      _InlineNavBar._sections.entries.elementAt(i).key,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    onTap: () {
+                      _InlineNavBar._sections.entries.elementAt(i).value();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+              ],
+            ),
+          ),
         ),
       ),
     );
