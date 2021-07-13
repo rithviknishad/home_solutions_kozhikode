@@ -76,13 +76,13 @@ class LandingPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                for (int i = 0; i < _InlineNavBar._sections.length; ++i)
+                for (int i = 0; i < InlineNavBar.sections.length; ++i)
                   ListTile(
                     tileColor:
                         i.isEven ? Colors.grey.shade500 : Colors.grey.shade300,
                     contentPadding: const EdgeInsets.all(16),
                     title: Text(
-                      _InlineNavBar._sections.entries.elementAt(i).key,
+                      InlineNavBar.sections.entries.elementAt(i).key,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -92,9 +92,7 @@ class LandingPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     onTap: () {
-                      _InlineNavBar._sections.entries
-                          .elementAt(i)
-                          .value(context);
+                      InlineNavBar.sections.entries.elementAt(i).value(context);
                       Navigator.of(context).pop();
                     },
                   ),
@@ -178,7 +176,7 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
             Positioned(
               right: lerpDouble(0, 10, animation),
               child: size.width > 1000
-                  ? _InlineNavBar(animation: animation)
+                  ? InlineNavBar(animation: animation)
                   : IconButton(
                       icon: Icon(Icons.menu),
                       color: theme.primaryColor,
@@ -206,12 +204,12 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-class _InlineNavBar extends StatelessWidget {
+class InlineNavBar extends StatelessWidget {
   final double animation;
 
-  const _InlineNavBar({this.animation = 1.0});
+  const InlineNavBar({this.animation = 1.0});
 
-  static final _sections = {
+  static final sections = {
     "Products": jumpToProductSection,
     "About": jumpToAboutSection,
     "Contact": jumpToContactSection,
@@ -264,7 +262,7 @@ class _InlineNavBar extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        for (final section in _sections.entries)
+        for (final section in sections.entries)
           TextButton(
             child: Padding(
               padding: const EdgeInsets.all(16),

@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in.dart';
 import 'package:flutter_animator/widgets/fading_entrances/fade_in_down.dart';
+import 'package:home_solutions_kozhikode/partials/sections/contact.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 import 'package:home_solutions_kozhikode/partials/sections/steelx/tank_model.dart';
+import 'package:home_solutions_kozhikode/routes/landing.dart';
 
 class SteelxTankSizesSection extends MySection {
   @override
@@ -370,7 +372,12 @@ class _TankProperties extends StatelessWidget {
                   elevation: 10,
                   padding: const EdgeInsets.all(20),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  ContactUsForm.commentController.text =
+                      'I would like to get a quote on the ${tank.capacity}L model of SteelX Stainless Steel tank model: ${tank.model}.';
+
+                  InlineNavBar.sections['Contact']?.call(context);
+                },
                 child: Text(
                   'GET QUOTE',
                   style: TextStyle(

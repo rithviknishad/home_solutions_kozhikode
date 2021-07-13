@@ -56,7 +56,7 @@ class ContactSection extends MySection {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _ContactUsForm(key: Key('contact_us_form')),
+            child: ContactUsForm(key: Key('contact_us_form')),
           ),
           Padding(
             padding: const EdgeInsets.all(40),
@@ -268,20 +268,20 @@ class ContactSection extends MySection {
   };
 }
 
-class _ContactUsForm extends StatefulWidget {
-  const _ContactUsForm({Key? key}) : super(key: key);
+class ContactUsForm extends StatefulWidget {
+  const ContactUsForm({Key? key}) : super(key: key);
+
+  static final nameController = TextEditingController();
+  static final emailController = TextEditingController();
+  static final phoneNumberController = TextEditingController();
+  static final commentController = TextEditingController();
 
   @override
-  __ContactUsFormState createState() => __ContactUsFormState();
+  _ContactUsFormState createState() => _ContactUsFormState();
 }
 
-class __ContactUsFormState extends State<_ContactUsForm> {
+class _ContactUsFormState extends State<ContactUsForm> {
   bool sent = false;
-
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final phoneNumberController = TextEditingController();
-  final commentController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
@@ -364,7 +364,7 @@ class __ContactUsFormState extends State<_ContactUsForm> {
                   hintText: 'Name',
                   icon: Icon(Icons.person),
                 ),
-                controller: nameController,
+                controller: ContactUsForm.nameController,
                 validator: (value) {
                   value ??= "";
 
@@ -381,7 +381,7 @@ class __ContactUsFormState extends State<_ContactUsForm> {
                   hintText: 'Email ID',
                   icon: Icon(Icons.mail_outline_rounded),
                 ),
-                controller: emailController,
+                controller: ContactUsForm.emailController,
               ),
             ),
             Padding(
@@ -391,7 +391,7 @@ class __ContactUsFormState extends State<_ContactUsForm> {
                   hintText: 'Phone Number',
                   icon: Icon(Icons.phone),
                 ),
-                controller: phoneNumberController,
+                controller: ContactUsForm.phoneNumberController,
               ),
             ),
             Padding(
@@ -402,7 +402,7 @@ class __ContactUsFormState extends State<_ContactUsForm> {
                   hintText: 'Anything you would like to say to us?',
                   icon: Icon(Icons.comment),
                 ),
-                controller: commentController,
+                controller: ContactUsForm.commentController,
               ),
             ),
             Align(
@@ -441,15 +441,15 @@ class __ContactUsFormState extends State<_ContactUsForm> {
   Future<void> sendMail() async {
     if ((formKey.currentState?.validate() ?? false) == false) return;
 
-    final clientName = nameController.text;
+    final clientName = ContactUsForm.nameController.text;
 
-    var clientEmail = emailController.text;
+    var clientEmail = ContactUsForm.emailController.text;
     if (clientEmail.trim().isEmpty) clientEmail = "(not provided)";
 
-    var clientPhone = phoneNumberController.text;
+    var clientPhone = ContactUsForm.phoneNumberController.text;
     if (clientPhone.trim().isEmpty) clientPhone = "(not provided)";
 
-    final comment = commentController.text;
+    final comment = ContactUsForm.commentController.text;
 
     final link = Mailto(
       to: HomeSolutions.mailingIds,
