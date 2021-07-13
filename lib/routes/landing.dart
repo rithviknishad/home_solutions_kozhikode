@@ -67,8 +67,8 @@ class LandingPage extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Color(0xFF1C3559).withOpacity(0.9),
-                  Color(0xFF051937).withOpacity(0.9),
+                  Color(0xFF1C3599).withOpacity(0.6),
+                  Color(0xFF051967).withOpacity(0.6),
                 ],
               ),
             ),
@@ -298,7 +298,7 @@ class CallNowButton extends StatelessWidget {
         offset: const Duration(milliseconds: 500),
       ),
       child: Link(
-        uri: Uri(scheme: 'tel', path: '+91 9048-336658'),
+        uri: Uri(scheme: 'tel', path: '+91 9048-336657'),
         builder: (context, followLink) => ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
