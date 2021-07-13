@@ -165,6 +165,7 @@ class _NavigationBarDelegate extends SliverPersistentHeaderDelegate {
                         style: TextStyle(
                           fontFamily: 'Lemonada',
                           color: theme.primaryColor,
+                          fontSize: 12,
                         ),
                         textAlign: TextAlign.center,
                       ),
