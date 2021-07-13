@@ -3,30 +3,42 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:home_solutions_kozhikode/partials/sections/section.dart';
 
-// TODO: add address...
-
 class FooterSection extends MySection {
+  TextStyle get addressStyle => TextStyle(
+        color: Colors.grey.shade300,
+        fontSize: 16,
+        letterSpacing: 1,
+      );
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
 
-    return Material(
-      elevation: 4,
-      color: Colors.grey[900],
-      child: Container(
-        padding: sectionPadding(size),
-        height: 100,
-        width: size.width,
-        child: Column(
-          children: [
-            Text(""),
-          ],
-        ),
+    return Container(
+      color: Colors.grey.shade900,
+      padding: sectionPadding(size),
+      width: size.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'HOME SOLUTIONS',
+            style: TextStyle(
+              color: Colors.amber,
+              fontSize: 24,
+              letterSpacing: 1,
+            ),
+          ),
+          SizedBox(height: 15),
+          Text("P.O. Edakkad, Kunduparamba", style: addressStyle),
+          Text("Kozhikode, 673005", style: addressStyle),
+        ],
       ),
     );
   }
 
   EdgeInsets sectionPadding(Size size) => EdgeInsets.symmetric(
-      horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10);
+        horizontal: max((size.width - maxDisplayWidth) / 2, 0) + 10,
+        vertical: 60,
+      );
 }
