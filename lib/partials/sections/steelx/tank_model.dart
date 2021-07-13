@@ -58,25 +58,11 @@ class SteelxTank {
 
   static List<SteelxTank> allTanks = [
     SteelxTank(
-      'SX25',
-      capacity: 250,
-      dimensions: VerticalTankDimensions(700, 960),
-      manholeDiameter: 420,
-      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
-    ),
-    SteelxTank(
       'SXG250L',
       capacity: 250,
       dimensions: VerticalTankDimensions(760, 960),
       stand: 320,
       legs: 3,
-    ),
-    SteelxTank(
-      'SX50',
-      capacity: 500,
-      dimensions: VerticalTankDimensions(700, 1450),
-      manholeDiameter: 420,
-      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
     ),
     SteelxTank(
       'SXG500L',
@@ -86,13 +72,6 @@ class SteelxTank {
       legs: 3,
     ),
     SteelxTank(
-      'SX100',
-      capacity: 1000,
-      dimensions: VerticalTankDimensions(970, 1760),
-      manholeDiameter: 420,
-      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
-    ),
-    SteelxTank(
       'SXG1000L',
       capacity: 1000,
       dimensions: VerticalTankDimensions(1030, 1760),
@@ -100,25 +79,11 @@ class SteelxTank {
       legs: 3,
     ),
     SteelxTank(
-      'SX150',
-      capacity: 1500,
-      dimensions: VerticalTankDimensions(1230, 2325),
-      manholeDiameter: 420,
-      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
-    ),
-    SteelxTank(
       'SXG1500L',
       capacity: 1500,
       dimensions: VerticalTankDimensions(1030, 2325),
       stand: 320,
       legs: 4,
-    ),
-    SteelxTank(
-      'SX200',
-      capacity: 2000,
-      dimensions: VerticalTankDimensions(1420, 2355),
-      manholeDiameter: 530,
-      holeFittingSize: HoleFittingSize(1, 2, 0.6, 1),
     ),
     SteelxTank(
       'SXG2000L',
@@ -135,13 +100,6 @@ class SteelxTank {
       legs: 4,
     ),
     SteelxTank(
-      'SX300',
-      capacity: 3000,
-      dimensions: VerticalTankDimensions(1420, 2365),
-      manholeDiameter: 530,
-      holeFittingSize: HoleFittingSize(1, 2, 0.8, 1),
-    ),
-    SteelxTank(
       'SXG3000L',
       capacity: 3000,
       dimensions: VerticalTankDimensions(1480, 2575),
@@ -149,25 +107,11 @@ class SteelxTank {
       legs: 6,
     ),
     SteelxTank(
-      'SX400',
-      capacity: 4000,
-      dimensions: VerticalTankDimensions(1700, 2575),
-      manholeDiameter: 530,
-      holeFittingSize: HoleFittingSize(2, 2, 0.8, 1),
-    ),
-    SteelxTank(
       'SXG4000L',
       capacity: 4000,
       dimensions: VerticalTankDimensions(1720, 2150),
       stand: 485,
       legs: 8,
-    ),
-    SteelxTank(
-      'SX500',
-      capacity: 5000,
-      dimensions: VerticalTankDimensions(1700, 2600),
-      manholeDiameter: 700,
-      holeFittingSize: HoleFittingSize(2, 2, 0.8, 1),
     ),
     SteelxTank(
       'SXG5000L',
