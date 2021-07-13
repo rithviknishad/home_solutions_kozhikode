@@ -49,7 +49,7 @@ class AboutUsSection extends MySection {
           FadeInRight(
             preferences: slowAnimation,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
               child: Text(
                 _description,
                 style: TextStyle(
@@ -57,7 +57,6 @@ class AboutUsSection extends MySection {
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.italic,
-                  letterSpacing: 1,
                 ),
                 textAlign: TextAlign.justify,
               ),

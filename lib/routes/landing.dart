@@ -287,32 +287,11 @@ class _InlineNavBar extends StatelessWidget {
   }
 }
 
-class _Footer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final size = MediaQuery.of(context).size;
-
-    return Container(
-      color: theme.accentColor,
-      height: 510,
-      width: size.width,
-      padding: EdgeInsets.symmetric(
-        vertical: 65,
-        horizontal: (size.width - 1170) / 2,
-      ),
-      child: Container(),
-    );
-  }
-}
-
 class CallNowButton extends StatelessWidget {
   const CallNowButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return FadeIn(
       key: Key('call_us_button'),
       preferences: AnimationPreferences(

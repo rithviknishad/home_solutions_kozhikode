@@ -14,7 +14,6 @@ class WelcomeSection extends MySection {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
     sectionHeight = size.height * (size.width < 1000 ? 0.7 : 0.9);
     return Container(
