@@ -23,7 +23,8 @@ class WelcomeSection extends MySection {
       child: ClipRRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-          child: Padding(
+          child: Container(
+            color: Colors.black38,
             padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +46,7 @@ class WelcomeSection extends MySection {
                 const Spacer(flex: 1),
 
                 // Catch Phrase
-                SlideInUp(
+                FadeInUp(
                   preferences: AnimationPreferences(
                     duration: const Duration(milliseconds: 1000),
                     offset: const Duration(milliseconds: 400),
@@ -53,8 +54,10 @@ class WelcomeSection extends MySection {
                   child: Text(
                     HomeSolutions.catchPhrase,
                     style: TextStyle(
-                      fontFamily: 'Lemonada',
-                      fontSize: 32,
+                      height: 2,
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28,
                       color: Colors.white,
                       shadows: [
                         Shadow(color: Colors.black, blurRadius: 8),
