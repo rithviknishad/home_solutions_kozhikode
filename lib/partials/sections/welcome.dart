@@ -57,6 +57,7 @@ class WelcomeSection extends MySection {
                       height: 2,
                       letterSpacing: 2,
                       fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
                       fontSize: 28,
                       color: Colors.white,
                       shadows: [
